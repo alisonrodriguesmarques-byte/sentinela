@@ -5,287 +5,209 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
-
-// Servir o frontend
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-const DB_FILE = path.join(__dirname, "db.json");
-
-// ======================================================
-// BANCO DE DADOS
-// ======================================================
+const DB = path.join(__dirname, "db.json");
 
 function readDB() {
-  if (!fs.existsSync(DB_FILE)) {
-    return {
-      usuarios: [],
-      pacientes: [],
-      triagens: [],
-      consultas: [],
-      chamadas: []
-    };
-  }
+    if (!fs.existsSync(DB)) {
+        return {
+            usuarios: [],
+            pacientes: [],
+            triagens: [],
+            consultas: [],
+            tv: null,
+            historicoTV: []
+        };
+    }
 
-  const db = JSON.parse(fs.readFileSync(DB_FILE, "utf8"));
+    const db = JSON.parse(fs.readFileSync(DB, "utf8"));
 
-  // Compatibilidade com db.json antigo
-  if (!db.usuarios) db.usuarios = [];
-  if (!db.pacientes) db.pacientes = [];
-  if (!db.triagens) db.triagens = [];
-  if (!db.consultas) db.consultas = [];
-  if (!db.chamadas) db.chamadas = [];
+    db.usuarios ||= [];
+    db.pacientes ||= [];
+    db.triagens ||= [];
+    db.consultas ||= [];
+    db.historicoTV ||= [];
+    db.tv ||= null;
 
-  return db;
+    return db;
 }
 
-function writeDB(data) {
-  fs.writeFileSync(
-    DB_FILE,
-    JSON.stringify(data, null, 2)
-  );
+function writeDB(db) {
+    fs.writeFileSync(DB, JSON.stringify(db, null, 2));
 }
 
-
-// ======================================================
-// LOGIN
-// ======================================================
-
+/* LOGIN */
 app.post("/login", (req, res) => {
-  const db = readDB();
+    const db = readDB();
 
-  const user = db.usuarios.find(
-    u =>
-      u.usuario === req.body.usuario &&
-      u.senha === req.body.senha
-  );
+    const user = db.usuarios.find(u =>
+        u.usuario === req.body.usuario &&
+        u.senha === req.body.senha
+    );
 
-  if (!user) {
-    return res.status(401).json({
-      erro: "Login inválido"
-    });
-  }
+    if (!user)
+        return res.status(401).json({ erro: "Login inválido" });
 
-  res.json(user);
+    res.json(user);
 });
 
-
-// ======================================================
-// ATENDIMENTO - CADASTRAR PACIENTE
-// ======================================================
-
+/* CADASTRAR PACIENTE */
 app.post("/atendimento", (req, res) => {
-  const db = readDB();
+    const db = readDB();
 
-  const paciente = {
-    id: Date.now(),
-    nome: req.body.nome,
-    cpf: req.body.cpf,
-    tipo: req.body.tipo,
-    status: "triagem",
-    createdAt: new Date()
-  };
+    const paciente = {
+        id: Date.now(),
+        nome: req.body.nome,
+        cpf: req.body.cpf || "",
+        tipo: req.body.tipo || "",
+        status: "triagem",
+        createdAt: new Date().toISOString()
+    };
 
-  db.pacientes.push(paciente);
+    db.pacientes.push(paciente);
+    writeDB(db);
 
-  writeDB(db);
-
-  res.json(paciente);
+    res.json(paciente);
 });
 
-
-// ======================================================
-// LISTAR PACIENTES
-// ======================================================
-
+/* LISTAR PACIENTES */
 app.get("/pacientes", (req, res) => {
-  const db = readDB();
-
-  res.json(db.pacientes || []);
+    res.json(readDB().pacientes);
 });
 
-
-// ======================================================
-// TRIAGEM
-// ======================================================
-
+/* SALVAR TRIAGEM */
 app.post("/triagem", (req, res) => {
-  const db = readDB();
+    const db = readDB();
 
-  let risco = req.body.risco;
+    const pacienteId = req.body.pacienteId || null;
+    const temperatura = Number(req.body.temperatura) || 0;
 
-  if (req.body.temperatura >= 39) {
-    risco = "vermelho";
-  } else if (req.body.temperatura >= 38) {
-    risco = "amarelo";
-  } else if (!risco) {
-    risco = "verde";
-  }
+    let risco = req.body.risco || "verde";
 
-  const triagem = {
-    id: Date.now(),
-    nome: req.body.nome,
-    sintoma: req.body.sintoma,
-    temperatura: req.body.temperatura,
-    alergia: req.body.alergia,
-    observacao: req.body.observacao,
-    risco: risco,
-    status: "aguardando_medico",
-    createdAt: new Date()
-  };
+    if (temperatura >= 39) risco = "vermelho";
+    else if (temperatura >= 38) risco = "amarelo";
 
-  db.triagens.push(triagem);
+    const triagem = {
+        id: Date.now(),
+        pacienteId,
+        nome: req.body.nome,
+        idade: req.body.idade,
+        sexo: req.body.sexo,
+        peso: req.body.peso,
+        altura: req.body.altura,
+        sintoma: req.body.sintoma,
+        temperatura,
+        pressao: req.body.pressao,
+        frequencia: req.body.frequencia,
+        saturacao: req.body.saturacao,
+        alergia: req.body.alergia,
+        medicamentos: req.body.medicamentos,
+        doencas: req.body.doencas,
+        observacao: req.body.observacao,
+        risco,
+        status: "aguardando_medico",
+        createdAt: new Date().toISOString()
+    };
 
-  writeDB(db);
+    db.triagens.push(triagem);
 
-  res.json(triagem);
+    const paciente = db.pacientes.find(p =>
+        pacienteId
+            ? String(p.id) === String(pacienteId)
+            : p.nome?.toLowerCase() === req.body.nome?.toLowerCase()
+              && p.status === "triagem"
+    );
+
+    if (paciente) {
+        paciente.status = "aguardando_medico";
+        paciente.triagemId = triagem.id;
+    }
+
+    writeDB(db);
+    res.json(triagem);
 });
 
-
-// ======================================================
-// LISTAR TRIAGENS
-// ======================================================
-
+/* TRIAGENS */
 app.get("/triagens", (req, res) => {
-  const db = readDB();
-
-  res.json(db.triagens);
+    res.json(readDB().triagens);
 });
 
-
-// ======================================================
-// MEDICAÇÕES DISPONÍVEIS
-// ======================================================
-
-app.get("/lista-medicacoes", (req, res) => {
-  res.json([
-    "Dipirona",
-    "Paracetamol",
-    "Ibuprofeno",
-    "Amoxicilina",
-    "Azitromicina",
-    "Loratadina",
-    "Omeprazol",
-    "Buscopan",
-    "Dramin",
-    "Soro fisiológico"
-  ]);
-});
-
-
-// ======================================================
-// CONSULTA
-// ======================================================
-
+/* CONSULTA */
 app.post("/consulta", (req, res) => {
-  const db = readDB();
+    const db = readDB();
 
-  const consulta = {
-    id: Date.now(),
-    paciente: req.body.paciente,
-    diagnostico: req.body.diagnostico,
-    medicacao: req.body.medicacao,
-    obs: req.body.obs,
-    createdAt: new Date()
-  };
+    const consulta = {
+        id: Date.now(),
+        pacienteId: req.body.pacienteId || null,
+        paciente: req.body.paciente,
+        diagnostico: req.body.diagnostico,
+        medicacao: req.body.medicacao,
+        obs: req.body.obs,
+        createdAt: new Date().toISOString()
+    };
 
-  db.consultas.push(consulta);
+    db.consultas.push(consulta);
 
-  writeDB(db);
+    const paciente = db.pacientes.find(p =>
+        String(p.id) === String(consulta.pacienteId)
+    );
 
-  res.json(consulta);
+    if (paciente) {
+        paciente.status = "atendido";
+        paciente.consultaId = consulta.id;
+    }
+
+    writeDB(db);
+    res.json(consulta);
 });
 
+/* CHAMAR NA TV */
+app.post("/tv/chamar", (req, res) => {
+    const db = readDB();
 
-// ======================================================
-// MEDICAÇÕES / CONSULTAS
-// ======================================================
+    const chamada = {
+        id: Date.now(),
+        localTipo: req.body.localTipo || "GUICHÊ",
+        localNumero: req.body.localNumero || "01",
+        paciente: req.body.paciente || "",
+        criadaEm: new Date().toISOString()
+    };
 
-app.get("/medicacoes", (req, res) => {
-  const db = readDB();
+    db.tv = chamada;
+    db.historicoTV.unshift(chamada);
+    db.historicoTV = db.historicoTV.slice(0, 10);
 
-  res.json(db.consultas);
+    writeDB(db);
+
+    res.json({
+        sucesso: true,
+        chamada
+    });
 });
 
-
-// ======================================================
-// CHAMAR PACIENTE NA TV
-// ======================================================
-
-app.post("/tv/chamada", (req, res) => {
-  const db = readDB();
-
-  const chamada = {
-    id: Date.now(),
-    localTipo: req.body.localTipo || "GUICHÊ",
-    localNumero: req.body.localNumero || "01",
-    paciente: req.body.paciente || "AGUARDANDO...",
-    createdAt: new Date()
-  };
-
-  // Coloca a chamada mais recente no começo
-  db.chamadas.unshift(chamada);
-
-  // Mantém apenas as últimas 10
-  db.chamadas = db.chamadas.slice(0, 10);
-
-  writeDB(db);
-
-  res.json(chamada);
-});
-
-
-// ======================================================
-// TV - CHAMADA ATUAL E HISTÓRICO
-// ======================================================
-
+/* TV - ATUAL */
 app.get("/tv/chamada", (req, res) => {
-  const db = readDB();
+    const db = readDB();
 
-  const historico = db.chamadas || [];
-
-  const chamada =
-    historico.length > 0
-      ? historico[0]
-      : null;
-
-  res.json({
-    chamada: chamada,
-    historico: historico
-  });
+    res.json({
+        chamada: db.tv,
+        historico: db.historicoTV
+    });
 });
 
+/* LIMPAR TV */
+app.post("/tv/limpar", (req, res) => {
+    const db = readDB();
 
-// ======================================================
-// LIMPAR HISTÓRICO DA TV
-// ======================================================
+    db.tv = null;
 
-app.delete("/tv/chamada", (req, res) => {
-  const db = readDB();
+    writeDB(db);
 
-  db.chamadas = [];
-
-  writeDB(db);
-
-  res.json({
-    mensagem: "Histórico de chamadas limpo"
-  });
+    res.json({ sucesso: true });
 });
-
-
-// ======================================================
-// TESTE
-// ======================================================
-
-app.get("/", (req, res) => {
-  res.send("🏥 Hospital Pro - Servidor funcionando!");
-});
-
-
-// ======================================================
-// INICIAR SERVIDOR
-// ======================================================
 
 const POST = process.env.POST || 3000;
 
