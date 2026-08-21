@@ -6,114 +6,187 @@
 
 <title>TV Hospital</title>
 
-<style>
+    <style>
 
-* {
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
-}
+     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
 
-body {
-    background:#eaf6fb;
+    body {
+      font-family:'Cinzel',serif;
     height:100vh;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+
+    background:
+        /* linear-gradient(rgba(0, 0, 0, 0.491), rgba(0, 0, 0, 0.582)), */
+        url("css/fundo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     overflow:hidden;
+    }
+
+    .tv-container {
+      display: flex;
+      width: 95vw;
+      height: 90vh;
+      gap: 18px;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      gap: 18px;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      width: 65%;
+      gap: 18px;
+    }
+
+    .box {
+      background: linear-gradient(rgba(0, 0, 0, 0.228), rgba(0, 0, 0, 0.301)) ;
+      border:2px solid #9c7a3d;
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .box-title {
+      color:#efe3c1;
+      font-size: 2.2vw;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+      margin-bottom: 12px;
+    }
+
+    /* Painel esquerdo - local (guichê ou consultório) */
+    .local-box { flex: 1; }
+    .local-number {
+      color:#cba85d;
+      font-size: 9vw;
+      font-weight: bold;
+      line-height: 1;
+    }
+    .local-type {
+      color: #555;
+      font-size: 1.8vw;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    /* Histórico */
+    .history-box {
+      flex: 1;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .history-box .box-title { font-size: 1.8vw; align-self: center; }
+    #history-list {
+      list-style: none;
+      width: 100%;
+      color:#cba85d;
+      font-size: 1.5vw;
+      font-weight: bold;
+      text-align: left;
+    }
+    #history-list li {
+      margin-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 5px;
+    }
+
+    /* Painel direito - nome do paciente */
+    .patient-box { flex: 10; }
+    .patient-name {
+      color:#cba85d;
+      font-size: 6.5vw;
+      font-weight: bold;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    /* Logo */
+    .logo-box { flex: 1; }
+    .logo-text {
+      color:#8d8d8d;
+      font-size: 2vw;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      display: flex;
+    }
+    .name-logo{
+      position: relative;
+      top: 30%;
+      -webkit-text-stroke-width: 2px; /* Largura da borda */
+      -webkit-text-stroke-color: #d6b341; /* Dourado metálico */
+
+      /* Degradê inspirado na paleta da logo */
+      background-image: linear-gradient(
+      to top,
+      #8A5A00,
+      #D4AF37,
+      #FFD966,
+      #B8860B
+);
+
+      /* Limita o fundo ao texto */
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      /* Torna o texto transparente para exibir o fundo */
+      -webkit-text-fill-color: transparent;
+
+      /* Estilização adicional para melhor visualização */
+    }
+
+    .logo-text img{
+      width: 5vw;
+      position: relative;
+      top: 10%;
+    }
+
+    .logo{
+
+    width:130px;
+
+    height:130px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:0 auto 15px;
+
+    filter:
+        drop-shadow(0 0 10px #FFD700)
+        drop-shadow(0 0 25px rgba(255,215,0,.6));
+
+    transition:.3s;
+
 }
 
-.tv {
-    width:95vw;
-    height:90vh;
-    display:grid;
-    grid-template-columns:35% 65%;
-    gap:15px;
-}
+    /* Animação de flash quando chama */
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .flash { animation: flash 0.5s ease 3; }
 
-.col {
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.box {
-    background:white;
-    border:4px solid #b8dfed;
-    border-radius:15px;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.local {
-    flex:1;
-}
-
-.history {
-    flex:1;
-    justify-content:flex-start;
-}
-
-.patient {
-    flex:3;
-}
-
-.logo {
-    flex:1;
-}
-
-.title {
-    color:#175c78;
-    font-size:2.2vw;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.numero {
-    color:#087ca8;
-    font-size:7vw;
-    font-weight:bold;
-}
-
-.nome {
-    font-size:6vw;
-    font-weight:bold;
-    word-break:break-word;
-}
-
-.logo-text {
-    color:#175c78;
-    font-size:3vw;
-    font-weight:bold;
-}
-
-#history {
-    width:100%;
-    list-style:none;
-    text-align:left;
-    font-size:1.5vw;
-    color:#174c61;
-}
-
-#history li {
-    padding:7px 0;
-    border-bottom:1px solid #ccc;
-}
-
-@keyframes piscar {
-    50% { opacity:.2; }
-}
-
-.flash {
-    animation:piscar .5s 4;
-}
-
-</style>
+    </style>
 </head>
 
 <body>
