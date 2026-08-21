@@ -516,6 +516,8 @@ app.get("/", (req, res) => {
 // INICIAR SERVIDOR
 // ======================================================
 
-app.listen(3000, () => {
-  console.log("🏥 Hospital Pro rodando em http://localhost:3000");
+const POST = process.env.POST || 3000;
+
+app.listen(POST, () => {
+  console.log(`🏥 Hospital Pro rodando em ${POST}`);
 });
