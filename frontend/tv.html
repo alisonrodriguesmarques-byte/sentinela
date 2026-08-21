@@ -131,7 +131,7 @@
       top: 30%;
       -webkit-text-stroke-width: 2px; /* Largura da borda */
       -webkit-text-stroke-color: #d6b341; /* Dourado metálico */
-
+ 
       /* Degradê inspirado na paleta da logo */
       background-image: linear-gradient(
       to top,
@@ -188,220 +188,124 @@
     <title> Midia Indoor - TV</title>
 </head>
 <body>
-  <img src="./css/favicon.png" style="width: 10vw; position: absolute; top: 10px; left: 90%; filter:drop-shadow (0 0 10px #FFD700) drop-shadow(0 0 25px rgba(255,215,0,.6));">
-    <!-- Estrutura da tela da TV cria para exibir o local e o nome do paciente chamado -->
-     <div class="tv-container">
-        <div class="left-panel">
 
-          <div class="box local-box">
-            <div class="box-title" id="local-tipo">GUICHÊ</div>
-            <div class="local-number" id="local-numero">--</div>
-          </div>
-            
-          <div class="box history-box">
-            <div class="box-title">ÚLTIMAS CHAMADAS</div>
-            <ul id="history-list"></ul>
-          </div>
-           
-           </div>
-          <div class="right-panel">
-            <div class="box patient-box">
-              <div class="box-title">PACIENTE</div>
-              <div class="patient-name" id="patient-name">AGUARDANDO...</div>
+<div class="tv">
+
+    <div class="col">
+
+        <div class="box local">
+
+            <div class="title" id="tipo">
+                GUICHÊ
             </div>
-            <!-- <div class="box logo-box">
-              <div class="logo-text">
-                <div class="logo">
-                  <img src="/frontend/css/favicon(2).png" alt=""> 
-                </div>
-                <div class="name-logo">
-                  GOD IS GOOD
-                </div>
-                <img src="/frontend/css/favicon(2).png" alt="">
-              </div>
-              </div> -->
-          </div>
+
+            <div class="numero" id="numero">
+                --
+            </div>
+
         </div>
+
+        <div class="box history">
+
+            <div class="title">
+                ÚLTIMAS CHAMADAS
+            </div>
+
+            <ul id="history"></ul>
+
+        </div>
+
+    </div>
+
+    <div class="col">
+
+        <div class="box patient">
+
+            <div class="title">
+                PACIENTE
+            </div>
+
+            <div class="nome" id="nome">
+                AGUARDANDO...
+            </div>
+
+        </div>
+
+        <div class="box logo">
+
+            <div class="logo-text">
+               <img src="/css/favicon(2).png" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
-let ultimoID = null;
-
-
-// ======================================================
-// ATUALIZAR TV
-// ======================================================
+let ultimoId = null;
 
 function atualizar() {
 
     fetch("/tv/chamada")
+    .then(r => r.json())
+    .then(data => {
 
-        .then(response => {
+        const c = data.chamada;
+        const h = data.historico || [];
 
-            if (!response.ok) {
-                throw new Error("Erro ao buscar chamada");
+        if (c) {
+
+            document.getElementById("tipo").innerText =
+                c.localTipo || "GUICHÊ";
+
+            document.getElementById("numero").innerText =
+                c.localNumero || "--";
+
+            document.getElementById("nome").innerText =
+                c.paciente || "AGUARDANDO...";
+
+            if (c.id !== ultimoId) {
+
+                ultimoId = c.id;
+
+                const box =
+                    document.querySelector(".patient");
+
+                box.classList.remove("flash");
+
+                void box.offsetWidth;
+
+                box.classList.add("flash");
             }
+        }
 
-            return response.json();
+        const lista =
+            document.getElementById("history");
 
-        })
+        lista.innerHTML = "";
 
-        .then(data => {
+        h.slice(0,5).forEach(x => {
 
-            const chamada =
-                data.chamada;
+            const li = document.createElement("li");
 
-            const historico =
-                data.historico || [];
+            li.innerText =
+                `${x.localTipo || "GUICHÊ"} ${x.localNumero || "--"} - ${x.paciente || "---"}`;
 
-
-            // ==================================================
-            // CHAMADA ATUAL
-            // ==================================================
-
-            if (chamada) {
-
-                document.getElementById(
-                    "local-tipo"
-                ).innerText =
-                    chamada.localTipo || "GUICHÊ";
-
-
-                document.getElementById(
-                    "local-numero"
-                ).innerText =
-                    chamada.localNumero || "--";
-
-
-                document.getElementById(
-                    "patient-name"
-                ).innerText =
-                    chamada.paciente || "AGUARDANDO...";
-
-
-                // ==================================================
-                // EFEITO DE FLASH
-                // ==================================================
-
-                if (chamada.id !== ultimoID) {
-
-                    ultimoID =
-                        chamada.id;
-
-
-                    const patientBox =
-                        document.querySelector(
-                            ".patient-box"
-                        );
-
-
-                    if (patientBox) {
-
-                        patientBox.classList.remove(
-                            "flash"
-                        );
-
-
-                        // Força atualização visual
-                        void patientBox.offsetWidth;
-
-
-                        patientBox.classList.add(
-                            "flash"
-                        );
-
-                    }
-
-                }
-
-            } else {
-
-                // Nenhuma chamada
-                document.getElementById(
-                    "local-tipo"
-                ).innerText =
-                    "GUICHÊ";
-
-
-                document.getElementById(
-                    "local-numero"
-                ).innerText =
-                    "--";
-
-
-                document.getElementById(
-                    "patient-name"
-                ).innerText =
-                    "AGUARDANDO...";
-
-            }
-
-
-            // ==================================================
-            // HISTÓRICO
-            // ==================================================
-
-            const list =
-                document.getElementById(
-                    "history-list"
-                );
-
-
-            list.innerHTML = "";
-
-
-            historico
-                .slice(0, 4)
-                .forEach(h => {
-
-                    const li =
-                        document.createElement("li");
-
-
-                    const tipo =
-                        h.localTipo
-                            ? h.localTipo.substring(0, 4)
-                            : "GUIC";
-
-
-                    li.innerText =
-                        `${tipo}. ${h.localNumero} - ${h.paciente}`;
-
-
-                    list.appendChild(li);
-
-                });
-
-        })
-
-        .catch(error => {
-
-            console.log(
-                "Erro ao buscar chamada:",
-                error
-            );
-
+            lista.appendChild(li);
         });
 
+    })
+    .catch(e => console.log("TV:",e));
 }
-
-
-// ======================================================
-// ATUALIZA IMEDIATAMENTE
-// ======================================================
 
 atualizar();
 
-
-// ======================================================
-// ATUALIZA A CADA 2 SEGUNDOS
-// ======================================================
-
-setInterval(
-    atualizar,
-    2000
-);
+setInterval(atualizar,2000);
 
 </script>
+
 </body>
 </html>
