@@ -2,317 +2,296 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+
+    <title>Sistema - Hospitalar</title>
 
-<meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="512x512" href="css/favicon.png">
 
-<title>Sistema - Hospitalar</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap"
+        rel="stylesheet"
+    >
 
-<link rel="icon" type="image/png" sizes="512x512" href="css/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Cinzel', serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-<style>
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.491),
+                    rgba(0, 0, 0, 0.582)
+                ),
+                url("css/fundo.png");
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
 
-body{
-    font-family:'Cinzel',serif;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+            overflow: hidden;
+        }
 
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.491), rgba(0, 0, 0, 0.582)),
-        url("css/fundo.png");
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+            background: linear-gradient(
+                rgba(255, 255, 255, .03),
+                rgba(0, 0, 0, .15)
+            );
 
-    overflow:hidden;
-}
+            backdrop-filter: blur(2px);
+            pointer-events: none;
+        }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
+        .container {
+            position: relative;
+            z-index: 2;
 
-    background:linear-gradient(
-        rgba(255,255,255,.03),
-        rgba(0,0,0,.15)
-    );
+            width: 420px;
+            padding: 45px;
 
-    backdrop-filter:blur(2px);
-    pointer-events:none;
-}
+            text-align: center;
 
-.container{
+            background: rgba(18, 18, 18, .90);
 
-    position:relative;
+            border: 2px solid #9c7a3d;
+            border-radius: 14px;
 
-    z-index:2;
+            box-shadow:
+                0 0 40px black,
+                inset 0 0 20px rgba(255, 255, 255, .05);
+        }
 
-    width:420px;
+        .logo {
+            width: 130px;
+            height: 130px;
 
-    padding:45px;
+            object-fit: contain;
+            display: block;
 
-    text-align:center;
+            margin: 0 auto 15px;
 
-    background:rgba(18,18,18,.90);
+            filter:
+                drop-shadow(0 0 10px #FFD700)
+                drop-shadow(0 0 25px rgba(255, 215, 0, .6));
 
-    border:2px solid #9c7a3d;
+            transition: .3s;
+        }
 
-    border-radius:14px;
+        h1 {
+            margin-bottom: 10px;
+        }
 
-    box-shadow:
-    0 0 40px black,
-    inset 0 0 20px rgba(255,255,255,.05);
+        h2 {
+            color: #efe3c1;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
 
-}
+        input {
+            width: 100%;
 
-/* Logo */
+            padding: 15px;
+            margin: 12px 0;
 
-.logo{
+            background: #2d2d2d;
+            color: white;
 
-    width:130px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
 
-    height:130px;
+            font-size: 16px;
+            transition: .3s;
+        }
 
-    object-fit:contain;
+        input::placeholder {
+            color: #bdbdbd;
+        }
 
-    display:block;
+        input:focus {
+            background: #3c3c3c;
+            box-shadow: 0 0 15px #b48a39;
+        }
 
-    margin:0 auto 15px;
+        button {
+            width: 100%;
 
-    filter:
-        drop-shadow(0 0 10px #FFD700)
-        drop-shadow(0 0 25px rgba(255,215,0,.6));
+            margin-top: 20px;
+            padding: 15px;
 
-    transition:.3s;
+            border: none;
+            border-radius: 8px;
 
-}
+            cursor: pointer;
 
-/* .logo:hover{
+            font-size: 18px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
 
-    transform:scale(1.08);
+            color: #111;
 
-} */
+            background: linear-gradient(
+                #e3c77f,
+                #9f7635
+            );
 
-/* Remove o estilo antigo do emoji */
+            transition: .3s;
+        }
 
-h1{
+        button:hover {
+            background: linear-gradient(
+                #9f7635,
+                #e3c77f
+            );
+        }
 
-    margin-bottom:10px;
+        button:active {
+            transform: scale(.98);
+        }
 
-}
+        .footer {
+            margin-top: 25px;
 
-h1 img{
+            color: #8d8d8d;
 
-    width: 50%;
-    
-}
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
 
-p{
+        .mensagem {
+            margin-top: 15px;
 
-    color:#cba85d;
+            color: #ff6b6b;
 
-    letter-spacing:6px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
 
-    margin-bottom:10px;
-
-    font-size:14px;
-
-}
-
-h2{
-
-    color:#efe3c1;
-
-    margin-bottom:30px;
-
-    font-size:28px;
-
-}
-
-input{
-
-    width:100%;
-
-    padding:15px;
-
-    margin:12px 0;
-
-    background:#2d2d2d;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-size:16px;
-
-    transition:.3s;
-
-}
-
-input::placeholder{
-
-    color:#bdbdbd;
-
-}
-
-input:focus{
-
-    background:#3c3c3c;
-
-    box-shadow:0 0 15px #b48a39;
-
-}
-
-button{
-
-    width:100%;
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    font-family:'Cinzel',serif;
-
-    font-weight:bold;
-
-    color:#111;
-
-    background:linear-gradient(#e3c77f,#9f7635);
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    /* transform:scale(1.02); */
-
-    /* box-shadow:
-    0 0 15px #d6b15d; */
-
-    background:linear-gradient(#9f7635, #e3c77f);
-
-}
-
-button:active{
-
-    transform:scale(.98);
-
-}
-
-.footer{
-
-    margin-top:25px;
-
-    color:#8d8d8d;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-}
-
-</style>
-
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<h1>
+        <h1>
+            <img
+                src="css/favicon.png"
+                alt="Logo do Sistema"
+                class="logo"
+            >
+        </h1>
 
-<img src="css/favicon.png"
-     alt="Logo do Sistema"
-     class="logo">
+        <h2>Sistema Hospitalar</h2>
 
-</h1>
+        <input
+            id="usuario"
+            type="text"
+            placeholder="Usuário"
+            autocomplete="username"
+        >
 
-<!-- <p>GOD IS GOOD</p> -->
+        <input
+            id="senha"
+            type="password"
+            placeholder="Senha"
+            autocomplete="current-password"
+        >
 
-<h2>Sistema Hospitalar</h2>
+        <button id="btnEntrar" onclick="login()">
+            Entrar
+        </button>
 
-<input id="usuario" placeholder="Usuário">
+        <div id="mensagem" class="mensagem"></div>
 
-<input id="senha" type="password" placeholder="Senha">
+        <div class="footer">
+            🩺 Medical System 🩺
+        </div>
 
-<button onclick="login()">
-Entrar
-</button>
+    </div>
 
-<div class="footer">
-🩺 Medical System 🩺
-</div>
+    <script>
 
-</div>
+        async function login() {
 
-<script>
-function login(){
-    
-fetch("/login",{
+            const usuario = document.getElementById("usuario").value.trim();
+            const senha = document.getElementById("senha").value;
 
-method:"POST",
+            const mensagem = document.getElementById("mensagem");
+            const botao = document.getElementById("btnEntrar");
 
-headers:{
-"Content-Type":"application/json"
-},
+            mensagem.style.display = "none";
+            mensagem.textContent = "";
 
-body:JSON.stringify({
+            if (!usuario || !senha) {
 
-usuario:usuario.value,
+                mensagem.textContent = "Preencha o usuário e a senha.";
+                mensagem.style.display = "block";
+                
+                return;
+            }
 
-senha:senha.value
+            botao.disabled = true;
+            botao.textContent = "Entrando...";
 
-})
+            try {
 
-})
+                const resposta = await fetch("/login", {
 
-.then(r=>r.json())
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        usuario: usuario,
+                        senha: senha
+                    })
 
-.then(data=>{
+                });
 
-if(data.tipo==="triagem")
-location.href="triagem.html";
+                const data = await resposta.json();
 
-if(data.tipo==="medico")
-location.href="medico.html";
+                if (!resposta.ok) {
+                    throw new Error(
+                        data.mensagem || "Usuário ou senha incorretos."
+                    );
+                }
 
-if(data.tipo==="atendimento")
-location.href="atendimento.html";
+                if (data.tipo === "triagem") {
+                    window.location.href = "triagem.html";
+                } else if (data.tipo === "medico") {
+                    window.location.href = "medico.html";
+                } else if (data.tipo === "atendimento") {
+                    window.location.href = "atendimento.html";
+                } else {
+                    throw new Error("Tipo de usuário inválido.");
+                }
 
-});
-
-}
-
-</script>
+            } catch (erro) {
+                console.error("Erro no login:", erro);
+                mensagem.textContent = erro.message || "Erro ao realizar login.";
+                mensagem.style.display = "block";
+                botao.disabled = false;
+                botao.textContent = "Entrar";
+            }
+        }
+    </script>
 
 </body>
 
 </html>
-
-
-
-

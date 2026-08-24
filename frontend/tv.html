@@ -3,72 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="shortcut icon" href="./css/favicon.png" type="image/x-icon">
 
 <title>TV Hospital</title>
 
     <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background: #eef7fa;
     width: 100vw;
     height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.78),
+            rgba(0, 0, 0, 0.88)
+        ),
+        url("css/fundo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* CONTAINER PRINCIPAL */
+
+/* =========================================
+   PAINEL PRINCIPAL
+========================================= */
 
 .tv {
     width: 94vw;
     height: 92vh;
+
     display: grid;
-    grid-template-columns: 32% 68%;
+
+    grid-template-columns: 30% 70%;
+
     gap: 18px;
 }
 
-/* COLUNAS */
+
+/* =========================================
+   COLUNAS
+========================================= */
 
 .col {
     display: flex;
+
     flex-direction: column;
+
     gap: 18px;
+
     min-width: 0;
 }
 
-/* CAIXAS */
+
+/* =========================================
+   CAIXAS
+========================================= */
 
 .box {
-    background: #ffffff;
-    border: 3px solid #c5e4ee;
-    border-radius: 20px;
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 28, 28, 0.97),
+            rgba(14, 14, 14, 0.97)
+        );
+
+    border: 2px solid #80632f;
+
+    border-radius: 18px;
+
     padding: 25px;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
     overflow: hidden;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.65),
+        inset 0 0 25px rgba(255, 215, 0, 0.025);
+
+    transition: 0.3s;
 }
 
-/* ÁREAS */
+
+/* brilho interno */
+
+.box::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 18px;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.035),
+            transparent 40%
+        );
+}
+
+
+/* =========================================
+   TAMANHOS
+========================================= */
 
 .local {
     flex: 1;
 }
 
 .history {
-    flex: 1;
+    flex: 1.5;
+
     justify-content: flex-start;
+
     padding-top: 25px;
 }
 
@@ -77,92 +154,207 @@ body {
 }
 
 .logo {
-    flex: 1;
+    flex: 0.65;
 }
 
-/* TÍTULOS */
+
+/* =========================================
+   TÍTULOS
+========================================= */
 
 .title {
-    color: #175c78;
-    font-size: clamp(20px, 2.2vw, 38px);
+    position: relative;
+
+    color: #e3c77f;
+
+    font-size: clamp(
+        18px,
+        2vw,
+        34px
+    );
+
     font-weight: bold;
+
+    letter-spacing: 2px;
+
     margin-bottom: 18px;
-    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 12px rgba(227, 199, 127, 0.25);
 }
 
-/* NÚMERO DO GUICHÊ */
+
+/* =========================================
+   NÚMERO DO GUICHÊ
+========================================= */
 
 .numero {
-    color: #087ca8;
-    font-size: clamp(60px, 7vw, 130px);
+    position: relative;
+
+    color: #f2d68d;
+
+    font-size: clamp(
+        65px,
+        8vw,
+        150px
+    );
+
     font-weight: bold;
+
     line-height: 1;
+
+    text-shadow:
+        0 0 15px rgba(255, 215, 0, 0.35),
+        0 0 40px rgba(255, 215, 0, 0.12);
 }
 
-/* NOME DO PACIENTE */
+
+/* =========================================
+   NOME DO PACIENTE
+========================================= */
 
 .nome {
+    position: relative;
+
     width: 100%;
-    color: #123f50;
-    font-size: clamp(35px, 5vw, 90px);
+
+    color: #f4e6c6;
+
+    font-size: clamp(
+        38px,
+        5vw,
+        90px
+    );
+
     font-weight: bold;
+
     line-height: 1.1;
+
     overflow-wrap: anywhere;
+
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.12);
 }
 
-/* HISTÓRICO */
+
+/* =========================================
+   HISTÓRICO
+========================================= */
 
 #history {
+    position: relative;
+
     width: 100%;
+
     list-style: none;
+
     text-align: left;
-    font-size: clamp(16px, 1.5vw, 28px);
-    color: #174c61;
+
+    font-size: clamp(
+        15px,
+        1.4vw,
+        25px
+    );
+
+    color: #ddd;
+
     overflow: hidden;
 }
 
 #history li {
-    padding: 10px 5px;
-    border-bottom: 1px solid #d5d5d5;
+    padding: 12px 8px;
+
+    border-bottom: 1px solid #403820;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
+    transition: 0.2s;
 }
 
-/* LOGO */
+#history li:first-child {
+    color: #e3c77f;
 
-.logo-text {
-    color: #175c78;
-    font-size: clamp(22px, 3vw, 50px);
     font-weight: bold;
 }
 
-/* ANIMAÇÃO DA NOVA CHAMADA */
+
+/* =========================================
+   LOGO / NOME DO SISTEMA
+========================================= */
+
+.logo-text {
+    position: relative;
+
+    display: flex;
+
+    color: #cba85d;
+
+    font-size: clamp(
+        20px,
+        2.5vw,
+        42px
+    );
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 15px rgba(203, 168, 93, 0.2);
+}
+
+
+/* =========================================
+   ANIMAÇÃO DA NOVA CHAMADA
+========================================= */
 
 @keyframes piscar {
-    0%, 100% {
-        opacity: 1;
+
+    0%,
+    100% {
         transform: scale(1);
+
+        border-color: #80632f;
+
+        box-shadow:
+            0 10px 35px rgba(0, 0, 0, 0.65),
+            inset 0 0 25px rgba(255, 215, 0, 0.025);
     }
 
     50% {
-        opacity: 0.35;
-        transform: scale(1.02);
+        transform: scale(1.015);
+
+        border-color: #e3c77f;
+
+        box-shadow:
+            0 0 30px rgba(227, 199, 127, 0.45),
+            0 0 70px rgba(227, 199, 127, 0.15),
+            inset 0 0 30px rgba(227, 199, 127, 0.08);
     }
 }
 
 .flash {
-    animation: piscar 0.5s ease-in-out 4;
+    animation:
+        piscar 0.6s ease-in-out 3;
 }
 
-/* RESPONSIVIDADE */
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
 
 @media (max-width: 900px) {
 
     .tv {
         width: 96vw;
         height: 94vh;
+
         grid-template-columns: 35% 65%;
+
         gap: 10px;
     }
 
@@ -172,17 +364,25 @@ body {
 
     .box {
         padding: 15px;
-        border-radius: 15px;
+
+        border-radius: 14px;
     }
 
     .title {
         margin-bottom: 10px;
+
+        letter-spacing: 1px;
     }
 
     #history li {
-        padding: 7px 2px;
+        padding: 8px 3px;
     }
 }
+
+
+/* =========================================
+   TELAS BAIXAS
+========================================= */
 
 @media (max-height: 600px) {
 
@@ -195,10 +395,78 @@ body {
     }
 
     .title {
-        margin-bottom: 8px;
+        margin-bottom: 7px;
+    }
+
+    .history {
+        padding-top: 15px;
+    }
+
+    #history li {
+        padding: 5px;
     }
 }
 
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media (max-width: 600px) {
+
+    .tv {
+        width: 96vw;
+        height: 94vh;
+
+        grid-template-columns: 1fr 1.8fr;
+
+        gap: 8px;
+    }
+
+    .col {
+        gap: 8px;
+    }
+
+    .box {
+        padding: 10px;
+
+        border-radius: 12px;
+    }
+
+    .title {
+        font-size: 14px;
+
+        letter-spacing: 1px;
+    }
+
+    .numero {
+        font-size: clamp(
+            45px,
+            12vw,
+            80px
+        );
+    }
+
+    .nome {
+        font-size: clamp(
+            25px,
+            7vw,
+            55px
+        );
+    }
+
+    #history {
+        font-size: 12px;
+    }
+
+    #history li {
+        padding: 6px 2px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+}
 </style>
 </head>
 
@@ -249,7 +517,8 @@ body {
         <div class="box logo">
 
             <div class="logo-text">
-                🏥 Sistema Hospitalar
+                <img style="width: 5.1rem; height: auto;" src="./css/favicon(2).png" alt="logo do Hospital">
+                <h2>GOD IS GOOD</h2>
             </div>
 
         </div>

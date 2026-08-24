@@ -41,17 +41,41 @@ function writeDB(db) {
 
 /* LOGIN */
 app.post("/login", (req, res) => {
-    const db = readDB();
+    try {
+        const db = readDB();
 
-    const user = db.usuarios.find(u =>
-        u.usuario === req.body.usuario &&
-        u.senha === req.body.senha
-    );
+        const { usuario, senha } = req.body;
 
-    if (!user)
-        return res.status(401).json({ erro: "Login inválido" });
+        if (!usuario || !senha) {
+            return res.status(400).json({
+                erro: "Usuário e senha são obrigatórios"
+            });
+        }
 
-    res.json(user);
+        const user = db.usuarios.find(u =>
+            u.usuario === usuario &&
+            u.senha === senha
+        );
+
+        if (!user) {
+            return res.status(401).json({
+                erro: "Usuário ou senha incorretos"
+            });
+        }
+
+        return res.status(200).json({
+            sucesso: true,
+            tipo: user.tipo,
+            usuario: user.usuario
+        });
+
+    } catch (error) {
+        console.error("Erro no login:", error);
+
+        return res.status(500).json({
+            erro: "Erro interno do servidor"
+        });
+    }
 });
 
 /* CADASTRAR PACIENTE */

@@ -458,5 +458,56 @@
       "createdAt": "2026-08-20T14:25:24.540Z"
     }
   ],
-  "chamadas": []
+  "chamadas": [],
+  "historicoTV": [
+    {
+      "id": 1787528116503,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "adriana",
+      "criadaEm": "2026-08-23T23:35:16.503Z"
+    },
+    {
+      "id": 1787528111067,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "adriana",
+      "criadaEm": "2026-08-23T23:35:11.067Z"
+    },
+    {
+      "id": 1787528106571,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "adriana",
+      "criadaEm": "2026-08-23T23:35:06.571Z"
+    },
+    {
+      "id": 1787528094416,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "jesus",
+      "criadaEm": "2026-08-23T23:34:54.416Z"
+    },
+    {
+      "id": 1787528029915,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "jesus",
+      "criadaEm": "2026-08-23T23:33:49.915Z"
+    },
+    {
+      "id": 1787528011562,
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "jesus",
+      "criadaEm": "2026-08-23T23:33:31.562Z"
+    }
+  ],
+  "tv": {
+    "id": 1787528116503,
+    "localTipo": "GUICHÊ",
+    "localNumero": "01",
+    "paciente": "adriana",
+    "criadaEm": "2026-08-23T23:35:16.503Z"
+  }
 }
