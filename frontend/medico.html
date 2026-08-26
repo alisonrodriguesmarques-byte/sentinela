@@ -21,28 +21,33 @@
 
 body{
     font-family:'Cinzel',serif;
-    height:100vh;
+    min-height:100vh;
+
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
+
+    padding:30px 20px;
 
     background:
-        linear-gradient(rgba(0, 0, 0, 0.701), rgba(0, 0, 0, 0.632)),
+        linear-gradient(
+            rgba(0,0,0,.75),
+            rgba(0,0,0,.70)
+        ),
         url("css/fundo.png");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
-.container{
 
-    max-width:100%;
+.container{
+    width:100%;
+    max-width:1400px;
 
     margin:auto;
 
-    background:rgba(18,18,18,.92);
+    background:rgba(18,18,18,.94);
 
     border:2px solid #9c7a3d;
 
@@ -51,89 +56,64 @@ body{
     padding:35px;
 
     box-shadow:
-    0 0 40px #000,
-    inset 0 0 20px rgba(255,255,255,.05);
-
+        0 0 40px #000,
+        inset 0 0 20px rgba(255,255,255,.05);
 }
-/* Logo */
+
+/* =========================
+   LOGO
+========================= */
 
 .logo{
-
     width:130px;
-
     height:130px;
 
     object-fit:contain;
 
     display:block;
 
-    margin:0 auto 15px;
+    margin:15px auto;
 
     filter:
         drop-shadow(0 0 10px #FFD700)
         drop-shadow(0 0 25px rgba(255,215,0,.6));
-
-    transition:.3s;
-
 }
 
 h1{
-
     text-align:center;
-
-    font-size:70px;
-
-    text-shadow:0 0 20px gold;
-
-}
-
-h1 img{
-
-    width: 30%;
-    
-}
-
-p{
-
-    text-align:center;
-
-    color:#c9a34f;
-
-    letter-spacing:5px;
-
 }
 
 h2{
-
     text-align:center;
 
     color:#f2e6c6;
 
     margin:15px 0 35px;
 
+    font-size:32px;
 }
 
-h3{
+/* =========================
+   TOPO
+========================= */
 
-    color:#d8b46a;
+.topo{
+    display:flex;
 
-    margin-bottom:15px;
+    justify-content:space-between;
 
-}
+    align-items:center;
 
-#triagens{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    margin-bottom:20px;
 
     gap:20px;
-
-    margin-bottom:35px;
-
 }
 
-.card{
+/* =========================
+   CONSULTÓRIO
+========================= */
+
+.consultorio-input{
 
     background:#242424;
 
@@ -143,22 +123,241 @@ h3{
 
     padding:20px;
 
+    margin-bottom:25px;
+}
+
+.consultorio-input label{
+
+    font-weight:bold;
+
+    color:#ffe6a3;
+
+    margin-right:10px;
+}
+
+.consultorio-input input{
+
+    width:70px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    padding:7px;
+
+    border:1px solid #9c7a3d;
+
+    border-radius:6px;
+
+    background:#181818;
+
+    color:#fff;
+}
+
+.consultorio-input span{
+
+    color:#777;
+
+    font-size:13px;
+
+    margin-left:10px;
+}
+
+/* =========================
+   RESUMO DAS PRIORIDADES
+========================= */
+
+.resumo-prioridades{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:35px;
+}
+
+.resumo{
+
+    padding:18px;
+
+    border-radius:10px;
+
+    background:#242424;
+
+    border:1px solid #555;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.resumo:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 15px rgba(212,175,55,.25);
+}
+
+.resumo .numero{
+
+    display:block;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    margin-bottom:5px;
+}
+
+.resumo .texto{
+
+    font-size:13px;
+
+    color:#ccc;
+
+    letter-spacing:1px;
+}
+
+.resumo-p1{
+
+    border-color:#9b1c1c;
+}
+
+.resumo-p1 .numero{
+
+    color:#ff3333;
+}
+
+.resumo-p2{
+
+    border-color:#b8860b;
+}
+
+.resumo-p2 .numero{
+
+    color:#ffd43b;
+}
+
+.resumo-p3{
+
+    border-color:#1d6d2d;
+}
+
+.resumo-p3 .numero{
+
+    color:#4fd46a;
+}
+
+/* =========================
+   TÍTULO DA PRIORIDADE
+========================= */
+
+.prioridade-titulo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:30px 0 15px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #4c3b20;
+
+}
+
+.prioridade-titulo h3{
+
+    margin:0;
+
+    color:#f2e6c6;
+
+    font-size:20px;
+}
+
+.prioridade-titulo span{
+
+    font-size:13px;
+
+    color:#999;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.lista-prioridade{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:20px;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    position:relative;
+
+    background:#242424;
+
+    border:1px solid #555;
+
+    border-radius:12px;
+
+    padding:20px;
+
     transition:.3s;
 
+    overflow:hidden;
 }
 
 .card:hover{
 
     transform:translateY(-5px);
 
-    box-shadow:0 0 20px rgba(212,175,55,.5);
+    box-shadow:
+        0 0 20px rgba(212,175,55,.35);
+}
 
+/* Barra lateral da prioridade */
+
+.card.p1{
+
+    border-left:5px solid #c40000;
+}
+
+.card.p2{
+
+    border-left:5px solid #d4a017;
+}
+
+.card.p3{
+
+    border-left:5px solid #2e8b3c;
 }
 
 .card h3{
 
     color:#ffe6a3;
 
+    margin-bottom:15px;
+
+    font-size:21px;
 }
 
 .card p{
@@ -171,49 +370,103 @@ h3{
 
     letter-spacing:0;
 
+    font-family:'Cinzel',serif;
 }
 
-.vermelho{
+/* =========================
+   BADGES
+========================= */
 
-    background:#7d0000;
+.prioridade-badge{
 
-    color:white;
+    display:inline-flex;
 
-    padding:5px 10px;
+    align-items:center;
+
+    gap:6px;
+
+    padding:7px 12px;
 
     border-radius:6px;
 
     font-weight:bold;
 
+    font-size:13px;
+
+    margin-bottom:12px;
 }
 
-.amarelo{
+.p1-badge{
+
+    background:#8b0000;
+
+    color:#fff;
+}
+
+.p2-badge{
 
     background:#b8860b;
 
-    color:white;
-
-    padding:5px 10px;
-
-    border-radius:6px;
-
-    font-weight:bold;
-
+    color:#fff;
 }
 
-.verde{
+.p3-badge{
 
     background:#1d6d2d;
 
-    color:white;
+    color:#fff;
+}
 
-    padding:5px 10px;
+/* =========================
+   BOTÕES
+========================= */
 
-    border-radius:6px;
+button{
+
+    background:
+        linear-gradient(
+            #e0c17a,
+            #9f7635
+        );
+
+    color:#111;
+
+    border:none;
+
+    padding:13px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-family:'Cinzel',serif;
 
     font-weight:bold;
 
+    transition:.3s;
 }
+
+button:hover{
+
+    background:
+        linear-gradient(
+            #9f7635,
+            #e3c77f
+        );
+
+    transform:translateY(-2px);
+}
+
+.btn-abrir-tv{
+
+    white-space:nowrap;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
 
 input,
 textarea,
@@ -236,7 +489,6 @@ select{
     font-size:15px;
 
     font-family:'Cinzel',serif;
-
 }
 
 input:focus,
@@ -248,7 +500,6 @@ select:focus{
     background:#393939;
 
     box-shadow:0 0 12px #b48a39;
-
 }
 
 textarea{
@@ -256,51 +507,22 @@ textarea{
     resize:none;
 
     height:120px;
-
 }
 
-button{
-
-    background:linear-gradient(#e0c17a,#9f7635);
-
-    color:#111;
-
-    border:none;
-
-    padding:13px 25px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-family:'Cinzel',serif;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    /* transform:scale(1.02); */
-
-    /* box-shadow:
-    0 0 15px #d6b15d; */
-
-    background:linear-gradient(#9f7635, #e3c77f);
-
-}
+/* =========================
+   LINHA
+========================= */
 
 hr{
 
     border:1px solid #7d6230;
 
     margin:35px 0;
-
 }
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
 
@@ -311,68 +533,37 @@ hr{
     margin-top:30px;
 
     letter-spacing:3px;
-
 }
 
-/* new style */
-.btn-tv {
-    background: greenyellow;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 8px;
-}
-.btn-tv:hover {background: #1d6d2d;}
-.btn-abrir-tv{
-   background:linear-gradient(#e0c17a,#9f7635);
+/* =========================
+   RESPONSIVIDADE
+========================= */
 
-    color:#111;
+@media(max-width:800px){
 
-    border:none;
+    .container{
 
-    padding:13px 25px;
+        padding:20px;
+    }
 
-    border-radius:8px;
+    .topo{
 
-    cursor:pointer;
+        flex-direction:column;
 
-    font-size:16px;
+        align-items:stretch;
+    }
 
-    font-family:'Cinzel',serif;
+    .resumo-prioridades{
 
-    font-weight:bold;
+        grid-template-columns:1fr;
+    }
 
-    transition:.3s;
-}
-.btn-abrir-tv:hover {background:linear-gradient(#9f7635, #e3c77f);}
-.consultorio-input{
-    background:#242424;
+    h2{
 
-    border:1px solid #9c7a3d;
-
-    border-radius:12px;
-
-    padding:20px;
-
-    transition:.3s;
+        font-size:25px;
+    }
 
 }
-
-.consultorio-input label { font-weight: bold; color: #ffe6a3;}
-.consultorio-input input { 
-    width: 60px;
-    text-align:  center;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 4px 8px;
-    border: 1px solid #9c7a3d;
-    border-radius: 4px;
-    color: #bbb;
-}
-
 
 </style>
 
@@ -408,6 +599,8 @@ hr{
 
 <h2>🩺 Painel Médico</h2>
 
+<div id="resumo-prioridades" class="resumo-prioridades"></div>
+
 <div id="triagens"></div>
 
 <hr>
@@ -436,163 +629,648 @@ Salvar Consulta
 
 <script>
 
-let triagensCarregadas=[];
+let triagensCarregadas = [];
+
+
+/* =========================================
+   CONVERTER RISCO EM PRIORIDADE
+========================================= */
+
+function obterPrioridade(risco){
+
+    risco = String(risco || "").toLowerCase();
+
+    if(risco === "vermelho"){
+
+        return {
+            codigo:"P1",
+            titulo:"EMERGÊNCIA",
+            descricao:"Atendimento imediato",
+            classe:"p1"
+        };
+
+    }
+
+    if(risco === "amarelo"){
+
+        return {
+            codigo:"P2",
+            titulo:"MUITO URGENTE",
+            descricao:"Atendimento prioritário",
+            classe:"p2"
+        };
+
+    }
+
+    return {
+
+        codigo:"P3",
+        titulo:"URGENTE",
+        descricao:"Menor prioridade",
+        classe:"p3"
+
+    };
+
+}
+
+
+/* =========================================
+   CARREGAR PACIENTES
+========================================= */
 
 function carregar(){
 
-fetch("/triagens")
+    fetch("/triagens")
 
-.then(r=>r.json())
+    .then(r => r.json())
 
-.then(data=>{
+    .then(data => {
 
-triagensCarregadas=data;
+        triagensCarregadas = data;
 
-const div=document.getElementById("triagens");
+        /*
+         * IMPORTANTE:
+         * Ordena os pacientes pela prioridade.
+         *
+         * P1 = vermelho
+         * P2 = amarelo
+         * P3 = verde
+         */
 
-div.innerHTML="";
+        const ordem = {
 
-data.forEach((t,index)=>{
+            vermelho:1,
 
-div.innerHTML+=`
+            amarelo:2,
 
-<div class="card">
+            verde:3
 
-<h3>${t.nome}</h3>
+        };
 
-<p><b>Sintoma:</b> ${t.sintoma||"Não informado"}</p>
+        data.sort((a,b)=>{
 
-<p><b>Temperatura:</b> ${t.temperatura||"-"}°C</p>
+            const prioridadeA =
+                ordem[String(a.risco || "").toLowerCase()] || 3;
 
-<p><span class="${t.risco}">${t.risco.toUpperCase()}</span></p>
+            const prioridadeB =
+                ordem[String(b.risco || "").toLowerCase()] || 3;
 
-<p><b>Alergia:</b> ${t.alergia||"Nenhuma"}</p>
+            return prioridadeA - prioridadeB;
 
-<p><b>Observação:</b> ${t.observacao||"Nenhuma"}</p>
+        });
 
-<button onclick="selecionar(${index})">
-Atender
-</button>
 
-</div>
+        atualizarResumo(data);
 
-`;
+        const div =
+            document.getElementById("triagens");
 
-});
+        div.innerHTML = "";
 
-});
+
+        /*
+         * Separar pacientes por prioridade
+         */
+
+        const grupos = {
+
+            vermelho:[],
+
+            amarelo:[],
+
+            verde:[]
+
+        };
+
+
+        data.forEach((t,index)=>{
+
+            const risco =
+                String(t.risco || "verde").toLowerCase();
+
+            if(grupos[risco]){
+
+                grupos[risco].push({
+                    paciente:t,
+                    index:index
+                });
+
+            }
+
+        });
+
+
+        criarGrupo(
+
+            div,
+
+            "P1",
+
+            "EMERGÊNCIA",
+
+            "Atendimento imediato",
+
+            "p1",
+
+            grupos.vermelho
+
+        );
+
+
+        criarGrupo(
+
+            div,
+
+            "P2",
+
+            "MUITO URGENTE",
+
+            "Atendimento prioritário",
+
+            "p2",
+
+            grupos.amarelo
+
+        );
+
+
+        criarGrupo(
+
+            div,
+
+            "P3",
+
+            "URGENTE",
+
+            "Menor prioridade",
+
+            "p3",
+
+            grupos.verde
+
+        );
+
+    })
+
+    .catch(error=>{
+
+        console.error(
+            "Erro ao carregar triagens:",
+            error
+        );
+
+    });
 
 }
+
+
+/* =========================================
+   CRIAR GRUPO DE PRIORIDADE
+========================================= */
+
+function criarGrupo(
+    container,
+    codigo,
+    titulo,
+    descricao,
+    classe,
+    pacientes
+){
+
+    if(pacientes.length === 0){
+
+        return;
+
+    }
+
+
+    const tituloDiv =
+        document.createElement("div");
+
+    tituloDiv.className =
+        "prioridade-titulo";
+
+
+    tituloDiv.innerHTML = `
+
+        <h3>
+            ${codigo} — ${titulo}
+        </h3>
+
+        <span>
+            ${descricao} •
+            ${pacientes.length} paciente(s)
+        </span>
+
+    `;
+
+
+    container.appendChild(tituloDiv);
+
+
+    const lista =
+        document.createElement("div");
+
+    lista.className =
+        "lista-prioridade";
+
+
+    pacientes.forEach(item=>{
+
+        const t =
+            item.paciente;
+
+        const index =
+            item.index;
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            `card ${classe}`;
+
+
+        let badge = "";
+
+        if(classe === "p1"){
+
+            badge =
+                "🔴 P1 — EMERGÊNCIA";
+
+        }
+
+        else if(classe === "p2"){
+
+            badge =
+                "🟡 P2 — MUITO URGENTE";
+
+        }
+
+        else{
+
+            badge =
+                "🟢 P3 — URGENTE";
+
+        }
+
+
+        card.innerHTML = `
+
+            <div class="prioridade-badge ${classe}-badge">
+
+                ${badge}
+
+            </div>
+
+
+            <h3>
+                ${t.nome || "Paciente"}
+            </h3>
+
+
+            <p>
+                <b>Sintoma:</b>
+                ${t.sintoma || "Não informado"}
+            </p>
+
+
+            <p>
+                <b>Temperatura:</b>
+                ${t.temperatura || "-"}°C
+            </p>
+
+
+            <p>
+                <b>Alergia:</b>
+                ${t.alergia || "Nenhuma"}
+            </p>
+
+
+            <p>
+                <b>Observação:</b>
+                ${t.observacao || "Nenhuma"}
+            </p>
+
+
+            <button onclick="selecionar(${index})">
+
+                Atender
+
+            </button>
+
+        `;
+
+
+        lista.appendChild(card);
+
+    });
+
+
+    container.appendChild(lista);
+
+}
+
+
+/* =========================================
+   RESUMO
+========================================= */
+
+function atualizarResumo(data){
+
+    let p1 = 0;
+
+    let p2 = 0;
+
+    let p3 = 0;
+
+
+    data.forEach(t=>{
+
+        const risco =
+            String(t.risco || "").toLowerCase();
+
+
+        if(risco === "vermelho"){
+
+            p1++;
+
+        }
+
+        else if(risco === "amarelo"){
+
+            p2++;
+
+        }
+
+        else{
+
+            p3++;
+
+        }
+
+    });
+
+
+    const resumo =
+        document.getElementById("resumo-prioridades");
+
+
+    if(!resumo){
+
+        return;
+
+    }
+
+
+    resumo.innerHTML = `
+
+        <div class="resumo resumo-p1">
+
+            <span class="numero">
+                ${p1}
+            </span>
+
+            <span class="texto">
+                🔴 P1 — EMERGÊNCIA
+            </span>
+
+        </div>
+
+
+        <div class="resumo resumo-p2">
+
+            <span class="numero">
+                ${p2}
+            </span>
+
+            <span class="texto">
+                🟡 P2 — MUITO URGENTE
+            </span>
+
+        </div>
+
+
+        <div class="resumo resumo-p3">
+
+            <span class="numero">
+                ${p3}
+            </span>
+
+            <span class="texto">
+                🟢 P3 — URGENTE
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================
+   SELECIONAR PACIENTE
+========================================= */
 
 function selecionar(index){
 
-const t=triagensCarregadas[index];
+    const t =
+        triagensCarregadas[index];
 
-paciente.value=t.nome;
 
-obs.value=t.observacao||"";
+    document.getElementById("paciente").value =
+        t.nome || "";
 
-if(t.alergia && t.alergia!="Nenhuma"){
 
-alert("⚠️ Paciente possui alergia: "+t.alergia);
+    document.getElementById("obs").value =
+        t.observacao || "";
+
+
+    if(
+        t.alergia &&
+        t.alergia !== "Nenhuma"
+    ){
+
+        alert(
+            "⚠️ ATENÇÃO!\n\n" +
+            "Paciente possui alergia:\n" +
+            t.alergia
+        );
+
+    }
 
 }
 
-}
+
+/* =========================================
+   MEDICAÇÕES
+========================================= */
 
 function carregarMedicacoes(){
 
-fetch("/lista-medicacoes")
+    fetch("/lista-medicacoes")
 
-.then(r=>r.json())
+    .then(r => r.json())
 
-.then(data=>{
+    .then(data => {
 
-const select=document.getElementById("medicacao");
+        const select =
+            document.getElementById("medicacao");
 
-select.innerHTML="<option value=''>Selecione a medicação</option>";
 
-data.forEach(m=>{
+        select.innerHTML =
+            "<option value=''>" +
+            "Selecione a medicação" +
+            "</option>";
 
-const option=document.createElement("option");
 
-option.value=m;
+        data.forEach(m=>{
 
-option.textContent=m;
+            const option =
+                document.createElement("option");
 
-select.appendChild(option);
 
-});
+            option.value = m;
 
-});
+            option.textContent = m;
+
+
+            select.appendChild(option);
+
+        });
+
+    })
+
+    .catch(error=>{
+
+        console.error(
+            "Erro ao carregar medicações:",
+            error
+        );
+
+    });
 
 }
+
+
+/* =========================================
+   SALVAR CONSULTA
+========================================= */
 
 function salvar(){
 
-const paciente=document.getElementById("paciente").value;
+    const pacienteInput =
+        document.getElementById("paciente");
 
-const diagnostico=document.getElementById("diagnostico").value;
+    const diagnosticoInput =
+        document.getElementById("diagnostico");
 
-const medicacao=document.getElementById("medicacao").value;
+    const medicacaoInput =
+        document.getElementById("medicacao");
 
-const obs=document.getElementById("obs").value;
+    const obsInput =
+        document.getElementById("obs");
 
-if(!paciente){
 
-alert("Selecione um paciente.");
+    const paciente =
+        pacienteInput.value;
 
-return;
+    const diagnostico =
+        diagnosticoInput.value;
+
+    const medicacao =
+        medicacaoInput.value;
+
+    const obs =
+        obsInput.value;
+
+
+    if(!paciente){
+
+        alert(
+            "Selecione um paciente."
+        );
+
+        return;
+
+    }
+
+
+    if(!medicacao){
+
+        alert(
+            "Selecione uma medicação."
+        );
+
+        return;
+
+    }
+
+
+    fetch("/consulta",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":
+            "application/json"
+        },
+
+        body:JSON.stringify({
+
+            paciente,
+
+            diagnostico,
+
+            medicacao,
+
+            obs
+
+        })
+
+    })
+
+    .then(r=>r.json())
+
+    .then(()=>{
+
+        alert(
+            "Consulta salva com sucesso."
+        );
+
+
+        diagnosticoInput.value = "";
+
+        medicacaoInput.value = "";
+
+        obsInput.value = "";
+
+        pacienteInput.value = "";
+
+
+        carregar();
+
+    })
+
+    .catch(error=>{
+
+        console.error(
+            "Erro ao salvar consulta:",
+            error
+        );
+
+        alert(
+            "Erro ao salvar a consulta."
+        );
+
+    });
 
 }
 
-if(!medicacao){
 
-alert("Selecione uma medicação.");
-
-return;
-
-}
-
-fetch("/consulta",{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-paciente,
-
-diagnostico,
-
-medicacao,
-
-obs
-
-})
-
-})
-
-.then(r=>r.json())
-
-.then(()=>{
-
-alert("Consulta salva com sucesso.");
-
-diagnostico.value="";
-
-medicacao.value="";
-
-obs.value="";
-
-});
-
-}
+/* =========================================
+   INICIAR
+========================================= */
 
 carregar();
 
