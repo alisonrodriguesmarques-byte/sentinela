@@ -18,11 +18,15 @@ function readDB() {
       usuarios: [],
       pacientes: [],
       triagens: [],
-      consultas: []
+      consultas: [],
+      tv_chamada: null,
+      tv_historico: []
     };
   }
-
-  return JSON.parse(fs.readFileSync(DB_FILE));
+  const db = JSON.parse(fs.readFileSync(DB_FILE));
+  if (!db.tv_chamada) db.tv_chamada = null;
+  if (!db.tv_historico) db.tv_historico = [];
+  return db;
 }
 
 function writeDB(data) {
@@ -39,15 +43,67 @@ app.post("/login", (req, res) => {
   );
 
   if (!user) {
-    return res.status(401).json({
-      erro: "Login inválido"
-    });
+    return res.status(401).json({ erro: "Login inválido" });
   }
 
   res.json(user);
 });
 
-// ATENDIMENTO
+// ============ GERENCIAMENTO DE USUÁRIOS (ADMIN) ============
+app.get("/usuarios", (req, res) => {
+  const db = readDB();
+  res.json(db.usuarios || []);
+});
+
+app.post("/usuarios", (req, res) => {
+  const db = readDB();
+  const { usuario, senha, tipo, nome } = req.body;
+
+  if (!usuario || !senha || !tipo) {
+    return res.status(400).json({ erro: "Usuário, senha e setor são obrigatórios." });
+  }
+
+  const jaExiste = (db.usuarios || []).some(u => u.usuario && u.usuario.toLowerCase() === usuario.trim().toLowerCase());
+  if (jaExiste) {
+    return res.status(400).json({ erro: "Já existe um usuário com este login." });
+  }
+
+  const novoUsuario = {
+    id: Date.now(),
+    usuario: usuario.trim(),
+    senha: senha,
+    tipo: tipo,
+    nome: nome && nome.trim() ? nome.trim() : usuario.trim(),
+    createdAt: new Date()
+  };
+
+  if (!db.usuarios) db.usuarios = [];
+  db.usuarios.push(novoUsuario);
+  writeDB(db);
+
+  res.status(201).json(novoUsuario);
+});
+
+app.delete("/usuarios/:login", (req, res) => {
+  const db = readDB();
+  const login = req.params.login;
+
+  if (login.toLowerCase() === "admin") {
+    return res.status(400).json({ erro: "O usuário admin principal não pode ser removido." });
+  }
+
+  const index = (db.usuarios || []).findIndex(u => u.usuario && u.usuario.toLowerCase() === login.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({ erro: "Usuário não encontrado." });
+  }
+
+  const removido = db.usuarios.splice(index, 1);
+  writeDB(db);
+
+  res.json({ mensagem: "Usuário removido com sucesso.", usuario: removido[0] });
+});
+
+// ATENDIMENTO - cadastrar paciente
 app.post("/atendimento", (req, res) => {
   const db = readDB();
 
@@ -64,6 +120,12 @@ app.post("/atendimento", (req, res) => {
   writeDB(db);
 
   res.json(paciente);
+});
+
+// LISTAR PACIENTES (triagem busca quem foi cadastrado no atendimento)
+app.get("/pacientes", (req, res) => {
+  const db = readDB();
+  res.json(db.pacientes);
 });
 
 // TRIAGEM
@@ -104,7 +166,40 @@ app.get("/triagens", (req, res) => {
   res.json(db.triagens);
 });
 
-// IMPLEMENTADO: rota com lista fixa de medicações
+// ============ MÍDIA INDOOR - TV ============
+
+// Função criada para enviar a chamada do paciente para a tela da TV.
+// Serve para triagem chamar o paciente no guichê e para o médico chamar no consultório.
+app.post("/tv/chamar", (req, res) => {
+  const db = readDB();
+
+  const chamada = {
+    id: Date.now().toString(),
+    localTipo: req.body.localTipo,
+    localNumero: req.body.localNumero,
+    paciente: req.body.paciente,
+    hora: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+  };
+
+  db.tv_chamada = chamada;
+  db.tv_historico.unshift(chamada);
+  if (db.tv_historico.length > 5) db.tv_historico.pop();
+
+  writeDB(db);
+  res.json(chamada);
+});
+
+// Função criada para consultar a chamada atual e o histórico que será exibido na TV.
+// Essa rota é usada para atualizar a tela automaticamente a cada poucos segundos.
+app.get("/tv/chamada", (req, res) => {
+  const db = readDB();
+  res.json({
+    chamada: db.tv_chamada,
+    historico: db.tv_historico
+  });
+});
+
+// LISTA DE MEDICAÇÕES
 app.get("/lista-medicacoes", (req, res) => {
   res.json([
     "Dipirona",
@@ -145,7 +240,7 @@ app.get("/medicacoes", (req, res) => {
   res.json(db.consultas);
 });
 
-// START
-app.listen(3000, () => {
-  console.log("🏥 Hospital Pro rodando em http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🏥 Hospital Pro rodando em: http://localhost:${PORT}`);
 });

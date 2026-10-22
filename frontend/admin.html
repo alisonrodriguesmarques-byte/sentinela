@@ -1,269 +1,981 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuários</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Pro - Gestão de Acessos & Usuários</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --white: #ffffff;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-    <link rel="stylesheet" href="/frontend/css/style.css">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    body {
+      font-family: var(--font);
+      background: #f8fafc;
+      color: var(--slate-700);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
+    /* Top Navbar */
+    .navbar {
+      background: var(--dark);
+      color: var(--white);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
 
-        .conteiner {
-            width: 100%;
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
 
-        h2, h3 {
-            color: #2c3e50;
-        }
+    .nav-brand .logo-icon {
+      font-size: 26px;
+      background: rgba(255,255,255,0.12);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        input, select, button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border-radius: 6px;
-            font-size: 15px;
-        }
+    .nav-brand h1 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
 
-        input, select {
-            border: 1px solid #ccc;
-        }
+    .nav-brand span {
+      font-size: 12px;
+      display: block;
+      color: var(--slate-400);
+      font-weight: 400;
+    }
 
-        button {
-            background: #3498db;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        button:hover {
-            background: #2980b9;
-        }
+    .btn-nav {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
 
-        button:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-        }
+    .btn-nav:hover {
+      background: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+    }
 
-        .card {
-            margin: 10px 0;
-            padding: 15px;
-            background: #f4f7f9;
-            border-left: 4px solid #3498db;
-            border-radius: 6px;
-            overflow-wrap: anywhere;
-        }
+    .btn-nav-danger {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
 
-        .mensagem {
-            margin-top: 12px;
-            color: #555;
-            overflow-wrap: anywhere;
-        }
+    .btn-nav-danger:hover {
+      background: rgba(239, 68, 68, 0.35);
+      color: #fee2e2;
+    }
 
-        .erro {
-            color: #c0392b;
-        }
-    </style>
+    /* Container */
+    .container {
+      max-width: 1280px;
+      width: 94%;
+      margin: 24px auto 40px;
+      flex: 1;
+    }
+
+    /* Quick Access Bar */
+    .quick-access-panel {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quick-access-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--slate-400);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sector-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sector-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .chip-atendimento { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .chip-atendimento:hover { background: #dbeafe; }
+    .chip-triagem     { background: #fef3c7; color: #b45309; border-color: #fde68a; }
+    .chip-triagem:hover     { background: #fde68a; }
+    .chip-medico      { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+    .chip-medico:hover      { background: #ede9fe; }
+    .chip-medicacoes  { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+    .chip-medicacoes:hover  { background: #d1fae5; }
+    .chip-tv          { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+    .chip-tv:hover          { background: #dcfce7; }
+
+    /* Dashboard Layout Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--slate-200);
+      background: #fafafa;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+
+    .form-group label small {
+      font-weight: 400;
+      color: var(--slate-400);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--dark);
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .input-password-wrapper {
+      position: relative;
+    }
+
+    .btn-toggle-pass {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--slate-400);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-toggle-pass:hover {
+      color: var(--dark);
+    }
+
+    /* Sector Select Preview Box */
+    .sector-preview-box {
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: var(--slate-100);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Users List Section */
+    .list-toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .count-badge {
+      background: var(--slate-100);
+      color: var(--slate-700);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* Users Table */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .users-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .users-table th {
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--slate-400);
+      border-bottom: 1.5px solid var(--slate-200);
+    }
+
+    .users-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--slate-100);
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    .users-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .user-avatar.admin-avatar {
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .user-handle {
+      font-size: 12px;
+      color: var(--slate-400);
+      font-family: monospace;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-atendimento { background: #dbeafe; color: #1e40af; }
+    .badge-triagem     { background: #fef3c7; color: #92400e; }
+    .badge-medico      { background: #ede9fe; color: #5b21b6; }
+    .badge-medicacoes  { background: #d1fae5; color: #065f46; }
+    .badge-tv          { background: #dcfce7; color: #166534; }
+    .badge-admin       { background: #fce7f3; color: #9d174d; }
+
+    /* Action Buttons in table */
+    .actions-cell {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .btn-action {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      color: var(--slate-700);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary-dark);
+    }
+
+    .btn-action-delete {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #dc2626;
+    }
+
+    .btn-action-delete:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+    }
+
+    .btn-action-delete:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: var(--slate-100);
+      border-color: var(--slate-200);
+      color: var(--slate-400);
+    }
+
+    /* Password Reveal Box */
+    .pass-reveal {
+      font-family: monospace;
+      font-size: 13px;
+      color: var(--slate-700);
+      background: var(--slate-100);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pass-masked {
+      letter-spacing: 2px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-success { background: #059669; }
+    .toast-error   { background: #dc2626; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--slate-400);
+    }
+
+    .empty-state-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="conteiner">
 
-        <a href="index.html"
-           style="text-decoration:none; color:#3498db; font-size:14px;">
-            ← Voltar para o Login
-        </a>
-
-        <h2>👤 Cadastrar Usuário</h2>
-
-        <form id="formUsuario">
-            <input
-                type="text"
-                id="usuario"
-                placeholder="Nome do usuário (login)"
-                autocomplete="username"
-                required
-            >
-
-            <input
-                type="password"
-                id="senha"
-                placeholder="Senha"
-                autocomplete="new-password"
-                required
-            >
-
-            <select id="tipo" required>
-                <option value="">Selecione o setor</option>
-                <option value="atendimento">Atendimento</option>
-                <option value="triagem">Triagem</option>
-                <option value="medico">Médico</option>
-            </select>
-
-            <button type="submit" id="btnCadastrar">
-                ➕ Cadastrar Usuário
-            </button>
-        </form>
-
-        <div id="mensagem" class="mensagem" role="status"></div>
-
-        <hr style="margin:20px 0; border:none; border-top:1px solid #ccc;">
-
-        <h3>📑 Usuários Cadastrados</h3>
-
-        <div id="listaUsuarios">
-            Carregando usuários...
-        </div>
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <a href="admin.html" class="nav-brand">
+      <div class="logo-icon">🛡️</div>
+      <div>
+        <h1>Hospital Pro — Painel do Administrador</h1>
+        <span>Gestão Centralizada de Acessos e Setores</span>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-nav">
+        🔑 Ir para Login
+      </a>
+      <a href="tv.html" target="_blank" class="btn-nav">
+        📺 Abrir TV
+      </a>
+      <button onclick="fazerLogout()" class="btn-nav btn-nav-danger">
+        🚪 Sair
+      </button>
     </div>
+  </header>
 
-    <script>
-        const form = document.getElementById("formUsuario");
-        const campoUsuario = document.getElementById("usuario");
-        const campoSenha = document.getElementById("senha");
-        const campoTipo = document.getElementById("tipo");
-        const botaoCadastrar = document.getElementById("btnCadastrar");
-        const listaUsuarios = document.getElementById("listaUsuarios");
-        const mensagem = document.getElementById("mensagem");
+  <div class="container">
 
-        // Endereço da API do servidor.
-        // Se o site estiver sendo servido por outra porta,
-        // ajuste este endereço para a porta do seu backend.
-        const API_URL = "http://localhost:3000/usuarios";
+    <!-- Quick Access Sector Bar -->
+    <section class="quick-access-panel">
+      <div class="quick-access-title">
+        <span>⚡ Acesso Rápido aos Setores do Hospital:</span>
+      </div>
+      <div class="sector-chips">
+        <a href="atendimento.html" target="_blank" class="sector-chip chip-atendimento">
+          <span>📋</span> Recepção / Atendimento
+        </a>
+        <a href="triagem.html" target="_blank" class="sector-chip chip-triagem">
+          <span>🌡️</span> Triagem / Enfermagem
+        </a>
+        <a href="medico.html" target="_blank" class="sector-chip chip-medico">
+          <span>🩺</span> Consultório Médico
+        </a>
+        <a href="medicacoes.html" target="_blank" class="sector-chip chip-medicacoes">
+          <span>💊</span> Farmácia / Medicações
+        </a>
+        <a href="tv.html" target="_blank" class="sector-chip chip-tv">
+          <span>📺</span> Painel de Chamada TV
+        </a>
+      </div>
+    </section>
 
-        // Cadastrar usuário
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault();
+    <!-- Main Grid -->
+    <div class="dashboard-grid">
 
-            const usuario = campoUsuario.value.trim();
-            const senha = campoSenha.value;
-            const tipo = campoTipo.value;
+      <!-- Left Column: Form to Create User -->
+      <section class="card">
+        <div class="card-header">
+          <h2><span>➕</span> Novo Acesso de Usuário</h2>
+        </div>
+        <div class="card-body">
+          <form id="formUsuario" onsubmit="criarUsuario(event)">
+            
+            <div class="form-group">
+              <label for="nome">Nome Completo / Identificação</label>
+              <input type="text" id="nome" class="form-control" placeholder="Ex: Dr. Roberto Silva ou Enf. Joana" required>
+            </div>
 
-            if (!usuario || !senha || !tipo) {
-                mensagem.textContent = "Preencha todos os campos.";
-                mensagem.className = "mensagem erro";
-                return;
-            }
+            <div class="form-group">
+              <label for="usuario">Usuário / Login <small>(Sem espaços)</small></label>
+              <input type="text" id="usuario" class="form-control" placeholder="Ex: roberto.medico" required autocomplete="off">
+            </div>
 
-            botaoCadastrar.disabled = true;
-            botaoCadastrar.textContent = "Cadastrando...";
-            mensagem.textContent = "";
+            <div class="form-group">
+              <label for="senha">Senha de Acesso</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="senha" class="form-control" placeholder="Digite uma senha segura" required autocomplete="new-password">
+                <button type="button" class="btn-toggle-pass" onclick="toggleSenhaInput()" title="Mostrar/Ocultar Senha">
+                  👁️
+                </button>
+              </div>
+            </div>
 
-            try {
-                const resposta = await fetch(API_URL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        usuario: usuario,
-                        senha: senha,
-                        tipo: tipo
-                    })
-                });
+            <div class="form-group">
+              <label for="tipo">Setor / Área de Acesso</label>
+              <select id="tipo" class="form-control" required onchange="atualizarInfoSetor()">
+                <option value="">Selecione o setor...</option>
+                <option value="medicacoes">💊 Farmácia & Medicações (medicacoes.html)</option>
+                <option value="medico">🩺 Consultório Médico (medico.html)</option>
+                <option value="triagem">🌡️ Triagem / Enfermagem (triagem.html)</option>
+                <option value="atendimento">📋 Recepção / Atendimento (atendimento.html)</option>
+                <option value="tv">📺 Painel TV de Chamadas (tv.html)</option>
+                <option value="admin">🛡️ Administrador do Sistema (admin.html)</option>
+              </select>
+              <div id="previewSetor" class="sector-preview-box">
+                ℹ️ Escolha o setor para visualizar o destino deste login.
+              </div>
+            </div>
 
-                const dados = await resposta.json();
+            <button type="submit" class="btn-submit" id="btnSalvar">
+              <span>💾</span> Cadastrar Novo Usuário
+            </button>
+          </form>
+        </div>
+      </section>
 
-                if (!resposta.ok || dados.erro) {
-                    throw new Error(
-                        dados.erro || "Não foi possível cadastrar o usuário."
-                    );
-                }
+      <!-- Right Column: Registered Users List -->
+      <section class="card">
+        <div class="card-header">
+          <h2><span>👥</span> Usuários e Acessos Cadastrados</h2>
+          <span class="count-badge" id="totalUsuarios">Carregando...</span>
+        </div>
+        <div class="card-body">
+          
+          <div class="list-toolbar">
+            <input type="text" id="buscaUsuario" class="search-input" placeholder="🔍 Filtrar por nome, usuário ou setor..." oninput="filtrarUsuarios()">
+            <button class="btn-action" onclick="carregarUsuarios()" title="Recarregar Lista">
+              🔄 Atualizar
+            </button>
+          </div>
 
-                mensagem.textContent = "Usuário cadastrado com sucesso!";
-                mensagem.className = "mensagem";
+          <div class="table-responsive">
+            <table class="users-table">
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Setor de Acesso</th>
+                  <th>Senha</th>
+                  <th style="text-align: right;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaUsuarios">
+                <!-- Inserido dinamicamente via JS -->
+              </tbody>
+            </table>
+          </div>
 
-                form.reset();
+          <div id="estadoVazio" class="empty-state" style="display: none;">
+            <div class="empty-state-icon">🔍</div>
+            <p>Nenhum usuário encontrado com os filtros atuais.</p>
+          </div>
 
-                // Atualiza a lista depois de cadastrar.
-                await carregarUsuarios();
+        </div>
+      </section>
 
-            } catch (erro) {
-                mensagem.textContent =
-                    "Erro ao cadastrar: " + erro.message;
-                mensagem.className = "mensagem erro";
+    </div>
+  </div>
 
-                console.error("Erro no cadastro:", erro);
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
 
-            } finally {
-                botaoCadastrar.disabled = false;
-                botaoCadastrar.textContent = "➕ Cadastrar Usuário";
-            }
+  <script>
+    // Configurações e metadados dos setores
+    const SETORES = {
+      atendimento: {
+        nome: "Recepção / Atendimento",
+        arquivo: "atendimento.html",
+        badgeClass: "badge-atendimento",
+        icone: "📋",
+        desc: "Cadastro de novos pacientes e envio para triagem."
+      },
+      triagem: {
+        nome: "Triagem / Enfermagem",
+        arquivo: "triagem.html",
+        badgeClass: "badge-triagem",
+        icone: "🌡️",
+        desc: "Classificação de risco, aferição de sinais vitais e chamada no guichê."
+      },
+      medico: {
+        nome: "Consultório Médico",
+        arquivo: "medico.html",
+        badgeClass: "badge-medico",
+        icone: "🩺",
+        desc: "Atendimento clínico, prescrição de medicamentos e chamada no consultório."
+      },
+      medicacoes: {
+        nome: "Farmácia / Medicações",
+        arquivo: "medicacoes.html",
+        badgeClass: "badge-medicacoes",
+        icone: "💊",
+        desc: "Visualização e dispensação de medicações prescritas pelos médicos."
+      },
+      tv: {
+        nome: "Painel TV",
+        arquivo: "tv.html",
+        badgeClass: "badge-tv",
+        icone: "📺",
+        desc: "Painel de exibição de senhas e chamadas sonoras na recepção."
+      },
+      admin: {
+        nome: "Administrador Geral",
+        arquivo: "admin.html",
+        badgeClass: "badge-admin",
+        icone: "🛡️",
+        desc: "Acesso total à gestão de usuários, senhas e configurações."
+      }
+    };
+
+    let listaUsuariosGlobal = [];
+    let senhasVisiveis = {};
+
+    // Notificação Toast
+    function showToast(mensagem, tipo = "success") {
+      const toast = document.getElementById("toast");
+      toast.innerText = mensagem;
+      toast.className = `toast toast-${tipo} show`;
+      setTimeout(() => {
+        toast.className = "toast";
+      }, 3500);
+    }
+
+    // Toggle visualização da senha no input do formulário
+    function toggleSenhaInput() {
+      const input = document.getElementById("senha");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    // Atualiza caixa informativa ao selecionar setor no form
+    function atualizarInfoSetor() {
+      const tipo = document.getElementById("tipo").value;
+      const preview = document.getElementById("previewSetor");
+      
+      if (!tipo || !SETORES[tipo]) {
+        preview.innerHTML = "ℹ️ Escolha o setor para visualizar o destino deste login.";
+        return;
+      }
+
+      const info = SETORES[tipo];
+      preview.innerHTML = `<strong>${info.icone} Página de Destino:</strong> ${info.arquivo} — <span style="color:#64748b">${info.desc}</span>`;
+    }
+
+    // Carregar usuários da API
+    function carregarUsuarios() {
+      fetch("/usuarios")
+        .then(res => {
+          if (!res.ok) throw new Error("Erro ao buscar usuários do servidor.");
+          return res.json();
+        })
+        .then(usuarios => {
+          listaUsuariosGlobal = usuarios;
+          renderizarTabela(usuarios);
+        })
+        .catch(err => {
+          console.error(err);
+          showToast("Não foi possível carregar a lista de usuários.", "error");
         });
+    }
 
-        // Buscar e mostrar usuários cadastrados
-        async function carregarUsuarios() {
-            listaUsuarios.textContent = "Carregando usuários...";
+    // Renderizar tabela de usuários
+    function renderizarTabela(usuarios) {
+      const tbody = document.getElementById("tabelaUsuarios");
+      const empty = document.getElementById("estadoVazio");
+      const totalBadge = document.getElementById("totalUsuarios");
 
-            try {
-                const resposta = await fetch(API_URL);
+      totalBadge.innerText = `${usuarios.length} ${usuarios.length === 1 ? "usuário" : "usuários"}`;
 
-                if (!resposta.ok) {
-                    throw new Error("Erro HTTP " + resposta.status);
-                }
+      if (usuarios.length === 0) {
+        tbody.innerHTML = "";
+        empty.style.display = "block";
+        return;
+      }
 
-                const dados = await resposta.json();
+      empty.style.display = "none";
+      tbody.innerHTML = usuarios.map(u => {
+        const infoSetor = SETORES[u.tipo] || {
+          nome: u.tipo || "Geral",
+          arquivo: (u.tipo || "index") + ".html",
+          badgeClass: "badge-atendimento",
+          icone: "📁"
+        };
 
-                // Aceita tanto uma lista direta quanto { usuarios: [...] }.
-                const usuarios = Array.isArray(dados)
-                    ? dados
-                    : dados.usuarios;
+        const isAdmin = u.usuario.toLowerCase() === "admin";
+        const passVisivel = !!senhasVisiveis[u.usuario];
+        const senhaExibida = passVisivel ? u.senha : "••••••";
+        const inicial = (u.nome || u.usuario || "U").charAt(0).toUpperCase();
 
-                if (!Array.isArray(usuarios)) {
-                    throw new Error(
-                        "O servidor não retornou uma lista de usuários."
-                    );
-                }
+        return `
+          <tr>
+            <td>
+              <div class="user-profile">
+                <div class="user-avatar ${isAdmin ? 'admin-avatar' : ''}">
+                  ${isAdmin ? '👑' : inicial}
+                </div>
+                <div>
+                  <div class="user-name">${u.nome || u.usuario}</div>
+                  <div class="user-handle">@${u.usuario}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="badge ${infoSetor.badgeClass}">
+                <span>${infoSetor.icone}</span> ${infoSetor.nome}
+              </span>
+            </td>
+            <td>
+              <div class="pass-reveal">
+                <span class="${passVisivel ? '' : 'pass-masked'}">${senhaExibida}</span>
+                <button type="button" style="background:none; border:none; cursor:pointer; font-size:12px;" onclick="toggleSenhaTabela('${u.usuario}')" title="Mostrar/Ocultar Senha">
+                  ${passVisivel ? '🔒' : '👁️'}
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="actions-cell" style="justify-content: flex-end;">
+                <a href="${infoSetor.arquivo}" target="_blank" class="btn-action" title="Abrir setor em nova aba">
+                  ↗️ Abrir Setor
+                </a>
+                <button 
+                  class="btn-action btn-action-delete" 
+                  onclick="excluirUsuario('${u.usuario}')" 
+                  ${isAdmin ? 'disabled title="Usuário admin principal não pode ser removido"' : 'title="Excluir este acesso"'}
+                >
+                  🗑️ Excluir
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
 
-                listaUsuarios.innerHTML = "";
+    // Toggle senha individual na tabela
+    function toggleSenhaTabela(login) {
+      senhasVisiveis[login] = !senhasVisiveis[login];
+      filtrarUsuarios();
+    }
 
-                if (usuarios.length === 0) {
-                    listaUsuarios.textContent =
-                        "Nenhum usuário cadastrado.";
-                    return;
-                }
+    // Filtrar usuários na busca
+    function filtrarUsuarios() {
+      const termo = document.getElementById("buscaUsuario").value.toLowerCase().trim();
+      if (!termo) {
+        renderizarTabela(listaUsuariosGlobal);
+        return;
+      }
 
-                usuarios.forEach(function(u) {
-                    const card = document.createElement("div");
-                    card.className = "card";
+      const filtrados = listaUsuariosGlobal.filter(u => {
+        const nome = (u.nome || "").toLowerCase();
+        const login = (u.usuario || "").toLowerCase();
+        const tipo = (u.tipo || "").toLowerCase();
+        const setorNome = (SETORES[u.tipo]?.nome || "").toLowerCase();
+        return nome.includes(termo) || login.includes(termo) || tipo.includes(termo) || setorNome.includes(termo);
+      });
 
-                    const nome = document.createElement("p");
-                    nome.textContent = "Usuário: " + u.usuario;
+      renderizarTabela(filtrados);
+    }
 
-                    const setor = document.createElement("p");
-                    setor.textContent = "Setor: " + u.tipo;
+    // Criar novo usuário
+    function criarUsuario(e) {
+      e.preventDefault();
+      const btn = document.getElementById("btnSalvar");
+      const nome = document.getElementById("nome").value.trim();
+      const usuario = document.getElementById("usuario").value.trim().toLowerCase();
+      const senha = document.getElementById("senha").value;
+      const tipo = document.getElementById("tipo").value;
 
-                    card.appendChild(nome);
-                    card.appendChild(setor);
+      if (!usuario || !senha || !tipo) {
+        showToast("Preencha usuário, senha e escolha o setor.", "error");
+        return;
+      }
 
-                    listaUsuarios.appendChild(card);
-                });
+      btn.disabled = true;
+      btn.innerHTML = "<span>⏳</span> Salvando...";
 
-            } catch (erro) {
-                listaUsuarios.textContent =
-                    "Não foi possível carregar os usuários. Verifique o servidor.";
-                console.error("Erro ao carregar usuários:", erro);
-            }
-        }
-
-        // Carregar a lista ao abrir a página.
+      fetch("/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, usuario, senha, tipo })
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.erro || "Falha ao criar usuário");
+        return data;
+      })
+      .then(novoUser => {
+        showToast(`Usuário @${novoUser.usuario} criado com sucesso!`, "success");
+        document.getElementById("formUsuario").reset();
+        atualizarInfoSetor();
         carregarUsuarios();
-    </script>
+      })
+      .catch(err => {
+        showToast(err.message, "error");
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = "<span>💾</span> Cadastrar Novo Usuário";
+      });
+    }
+
+    // Excluir usuário
+    function excluirUsuario(login) {
+      if (!confirm(`Tem certeza que deseja remover o acesso do usuário @${login}?`)) {
+        return;
+      }
+
+      fetch(`/usuarios/${encodeURIComponent(login)}`, {
+        method: "DELETE"
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.erro || "Erro ao remover usuário");
+        return data;
+      })
+      .then(() => {
+        showToast(`Acesso @${login} removido com sucesso.`, "success");
+        carregarUsuarios();
+      })
+      .catch(err => {
+        showToast(err.message, "error");
+      });
+    }
+
+    // Logout
+    function fazerLogout() {
+      localStorage.removeItem("hospital_user");
+      location.href = "index.html";
+    }
+
+    // Inicialização ao carregar página
+    document.addEventListener("DOMContentLoaded", () => {
+      carregarUsuarios();
+    });
+  </script>
 </body>
 </html>

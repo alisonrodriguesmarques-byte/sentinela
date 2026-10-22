@@ -1,200 +1,572 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Pro - Recepção & Atendimento</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --dark: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-100: #f8fafc;
+      --radius: 10px;
+    }
 
-<title>Atendimento</title>
+    body {
+      background: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--slate-700);
+    }
 
+    /* Container */
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 24px auto 40px;
+      background: #ffffff;
+      padding: 28px 32px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--slate-200);
+    }
 
-<style>
+    /* Header */
+    .atendimento-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1.5px solid var(--slate-200);
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    .header-title-group h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    .header-title-group p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: var(--slate-500);
+    }
 
-    font-family:'Cinzel',serif;
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
-    background:
-    linear-gradient(rgba(20,10,0,.75),rgba(20,10,0,.75)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+    .btn-abrir-tv {
+      background: #17a2b8;
+      color: white;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
 
-    background-size:cover;
-    background-position:center;
+    .btn-abrir-tv:hover {
+      background: #138496;
+    }
 
-    color:#f4d28c;
-}
+    .btn-logout {
+      background: #e2e8f0;
+      color: var(--slate-700);
+      border: none;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
 
-.container{
+    .btn-logout:hover {
+      background: #cbd5e1;
+    }
 
-    width:420px;
+    /* Grid Layout */
+    .atendimento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
 
-    background:rgba(35,18,8,.88);
+    @media (max-width: 860px) {
+      .atendimento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-    border:3px solid #8b5a2b;
+    /* Card Panels */
+    .panel {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
 
-    border-radius:8px;
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 0 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-    padding:35px;
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 16px;
+    }
 
-    box-shadow:
-    0 0 40px rgba(0,0,0,.7),
-    inset 0 0 20px rgba(255,180,80,.08);
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
 
-}
+    .form-group label small {
+      font-weight: 400;
+      color: var(--slate-400);
+    }
 
-h2{
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 0;
+      border-radius: 8px;
+      border: 1.5px solid var(--slate-200);
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--dark);
+      box-sizing: border-box;
+      background: #ffffff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-    text-align:center;
-    font-size:34px;
-    margin-bottom:25px;
-    letter-spacing:3px;
-    color:#f6d28d;
-    text-shadow:2px 2px 5px #000;
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
 
-}
+    /* File upload box */
+    .file-upload-box {
+      border: 1.5px dashed var(--slate-200);
+      background: var(--slate-100);
+      padding: 14px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-input,
-select{
+    .file-upload-box:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
 
-    width:100%;
-    padding:14px;
-    margin-bottom:18px;
+    .file-upload-box input[type="file"] {
+      border: none;
+      padding: 4px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+    }
 
-    background:#3c2616;
+    /* Submit Button */
+    .btn-cadastrar {
+      width: 100%;
+      padding: 14px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+    }
 
-    color:#f8e3b5;
+    .btn-cadastrar:hover {
+      background: #218838;
+      transform: translateY(-1px);
+    }
 
-    border:2px solid #8b5a2b;
+    .btn-cadastrar:active {
+      transform: translateY(0);
+    }
 
-    outline:none;
+    /* Alert Banner */
+    .alert-banner {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
 
-    font-size:15px;
+    .alert-banner.success {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
 
-    border-radius:5px;
+    /* Right column: Recent Patients */
+    .fila-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
 
-    font-family:inherit;
+    .btn-refresh {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
 
-}
+    .btn-refresh:hover {
+      background: #5a6268;
+    }
 
-input::placeholder{
-    color:#d8bb87;
-}
+    .pacientes-lista {
+      max-height: 440px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
 
-input:focus,
-select:focus{
+    .paciente-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
 
-    border-color:#d4af37;
+    .paciente-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
 
-    box-shadow:0 0 10px rgba(212,175,55,.5);
+    .paciente-info strong {
+      display: block;
+      color: var(--dark);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
 
-}
+    .paciente-meta {
+      font-size: 12px;
+      color: var(--slate-500);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
 
-input[type=file]{
+    .tag-tipo {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
 
-    padding:10px;
-    background:#2a1a10;
+    .tag-convenio {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
 
-}
+    .tag-particular {
+      background: #fef3c7;
+      color: #92400e;
+    }
 
-button{
+    .badge-status {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #dbeafe;
+      color: #1e40af;
+      white-space: nowrap;
+    }
 
-    width:100%;
-
-    padding:15px;
-
-    font-size:17px;
-
-    font-family:inherit;
-
-    letter-spacing:2px;
-
-    border:none;
-
-    cursor:pointer;
-
-    border-radius:6px;
-
-    background:linear-gradient(#c79a42,#8b5a2b);
-
-    color:#2b1607;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    transform:translateY(-2px);
-
-    background:linear-gradient(#d8b15a,#a06a31);
-
-    box-shadow:0 0 15px rgba(255,180,60,.5);
-
-}
-
-</style>
+    .empty-state {
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--slate-400);
+      font-size: 14px;
+    }
+  </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<h2>ATENDIMENTO</h2>
+  <!-- Header -->
+  <div class="atendimento-header">
+    <div class="header-title-group">
+      <h2><span>📋</span> Recepção & Atendimento</h2>
+      <p>Entrada e cadastro de pacientes para encaminhamento à triagem</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-abrir-tv" onclick="window.open('tv.html','_blank')">
+        📺 Abrir Tela da TV
+      </button>
+      <a href="index.html" class="btn-logout">
+        🚪 Sair
+      </a>
+    </div>
+  </div>
 
-<input id="nome" placeholder="Nome do Paciente">
+  <!-- Notificação de Sucesso -->
+  <div id="msgSucesso" class="alert-banner"></div>
 
-<input id="cpf" placeholder="CPF">
+  <!-- Grid Principal -->
+  <div class="atendimento-grid">
 
-<select id="tipo">
-    <option>Convênio</option>
-    <option>Particular</option>
-</select>
+    <!-- Coluna 1: Formulário de Cadastro -->
+    <div class="panel">
+      <h3 class="panel-title">
+        <span>👤</span> Dados do Paciente
+      </h3>
 
-<input type="file" id="foto">
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input id="nome" placeholder="Digite o nome completo do paciente" autocomplete="off" autofocus>
+      </div>
 
-<button onclick="cadastrar()">
-Cadastrar
-</button>
+      <div class="form-group">
+        <label for="cpf">CPF <small>(Com ou sem pontuação)</small></label>
+        <input id="cpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo de Atendimento / Plano</label>
+        <select id="tipo">
+          <option value="Convenio">Convênio</option>
+          <option value="Particular">Particular</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="foto">Foto do Documento ou Paciente <small>(Opcional)</small></label>
+        <div class="file-upload-box">
+          <input type="file" id="foto" accept="image/*">
+        </div>
+      </div>
+
+      <button id="btnCadastrar" class="btn-cadastrar" onclick="cadastrar()">
+        <span>✅</span> Cadastrar Paciente
+      </button>
+    </div>
+
+    <!-- Coluna 2: Fila Recente de Atendimento -->
+    <div class="panel">
+      <div class="fila-header">
+        <h3 class="panel-title" style="margin: 0;">
+          <span>🕒</span> Cadastrados Recentemente
+        </h3>
+        <button class="btn-refresh" onclick="carregarPacientes()" title="Atualizar lista">
+          🔄 Atualizar
+        </button>
+      </div>
+
+      <div id="listaPacientes" class="pacientes-lista">
+        <div class="empty-state">Carregando pacientes cadastrados...</div>
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
 <script>
+// Máscara dinâmica para o campo de CPF
+document.getElementById("cpf").addEventListener("input", function (e) {
+  let v = e.target.value.replace(/\D/g, "");
+  if (v.length > 11) v = v.slice(0, 11);
+  if (v.length > 9) {
+    v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+  } else if (v.length > 6) {
+    v = v.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+  } else if (v.length > 3) {
+    v = v.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+  }
+  e.target.value = v;
+});
 
-function cadastrar(){
+// Envio do formulário de atendimento
+function cadastrar() {
+  const nomeInput = document.getElementById("nome");
+  const cpfInput = document.getElementById("cpf");
+  const tipoInput = document.getElementById("tipo");
+  const btn = document.getElementById("btnCadastrar");
+  const msgSucesso = document.getElementById("msgSucesso");
 
- fetch("http://localhost:3000/atendimento",{
+  const nomeVal = nomeInput.value.trim();
+  const cpfVal = cpfInput.value.trim();
+  const tipoVal = tipoInput.value;
 
-  method:"POST",
+  if (!nomeVal) {
+    alert("Por favor, preencha o nome do paciente.");
+    nomeInput.focus();
+    return;
+  }
 
-  headers:{
-    "Content-Type":"application/json"
-  },
+  btn.disabled = true;
+  btn.innerText = "Cadastrando...";
 
-  body:JSON.stringify({
-
-    nome:nome.value,
-    cpf:cpf.value,
-    tipo:tipo.value
-
+  fetch("/atendimento", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nome: nomeVal,
+      cpf: cpfVal,
+      tipo: tipoVal
+    })
   })
+  .then(res => res.json())
+  .then(data => {
+    // Alerta visual moderno
+    msgSucesso.className = "alert-banner success";
+    msgSucesso.innerHTML = `<span>✅</span> Paciente <strong>${data.nome}</strong> cadastrado com sucesso e encaminhado para a Triagem!`;
+    msgSucesso.style.display = "flex";
 
- });
+    // Limpa campos do formulário
+    nomeInput.value = "";
+    cpfInput.value = "";
+    tipoInput.selectedIndex = 0;
+    document.getElementById("foto").value = "";
+    nomeInput.focus();
 
- alert("Paciente enviado para triagem");
+    // Atualiza a listagem de pacientes
+    carregarPacientes();
 
+    // Remove a mensagem após 4 segundos
+    setTimeout(() => {
+      msgSucesso.style.display = "none";
+    }, 4000);
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Erro ao cadastrar paciente. Verifique se o servidor está ativo.");
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.innerHTML = "<span>✅</span> Cadastrar Paciente";
+  });
 }
 
+// Carregar lista de pacientes cadastrados no Atendimento
+function carregarPacientes() {
+  const lista = document.getElementById("listaPacientes");
+
+  fetch("/pacientes")
+    .then(res => res.json())
+    .then(pacientes => {
+      if (!pacientes || pacientes.length === 0) {
+        lista.innerHTML = '<div class="empty-state">Nenhum paciente cadastrado até o momento.</div>';
+        return;
+      }
+
+      // Ordena pelos mais recentes
+      const ordenados = [...pacientes].reverse();
+
+      lista.innerHTML = ordenados.map(p => {
+        const tagClass = (p.tipo || "").toLowerCase() === "particular" ? "tag-particular" : "tag-convenio";
+        return `
+          <div class="paciente-item">
+            <div class="paciente-info">
+              <strong>${p.nome}</strong>
+              <div class="paciente-meta">
+                <span>CPF: ${p.cpf || "Não informado"}</span>
+                <span class="tag-tipo ${tagClass}">${p.tipo || "Convênio"}</span>
+              </div>
+            </div>
+            <div>
+              <span class="badge-status">
+                ⏳ Aguardando Triagem
+              </span>
+            </div>
+          </div>
+        `;
+      }).join("");
+    })
+    .catch(err => {
+      console.error(err);
+      lista.innerHTML = '<div class="empty-state">Não foi possível carregar a lista de pacientes.</div>';
+    });
+}
+
+// Permite envio ao pressionar Enter no campo de CPF
+document.getElementById("cpf").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    cadastrar();
+  }
+});
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+  carregarPacientes();
+});
 </script>
 
 </body>

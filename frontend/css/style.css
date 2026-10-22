@@ -1,8 +1,7 @@
 body{
   font-family: Arial;
-  background:#ffff;
+  background:#f4f6f9;
   margin:0;
-
 }
 
 .container{
@@ -13,9 +12,6 @@ body{
   padding:20px;
   border-radius:12px;
   box-shadow:0 5px 20px rgba(0,0,0,0.1);
- position: relative;
- top: 300px;
- text-align: center;
 }
 
 input,
@@ -23,7 +19,7 @@ select,
 textarea,
 button{
   width:100%;
-  padding: 12px;
+  padding:12px;
   margin-top:10px;
   border-radius:8px;
   border:1px solid #ccc;
@@ -36,7 +32,7 @@ textarea{
 }
 
 button{
-  background:#0fafa4;
+  background:#3498db;
   color:white;
   border:none;
   cursor:pointer;
@@ -74,4 +70,3 @@ button:hover{
   padding:5px 10px;
   border-radius:6px;
 }
-
