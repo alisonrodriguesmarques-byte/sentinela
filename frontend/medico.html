@@ -4,23 +4,16 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Painel Médico</title>
 
-<link rel="icon" type="image/png" href="css/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap"
-    rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     margin:0;
@@ -28,1901 +21,417 @@
     box-sizing:border-box;
 }
 
-
-/* =====================================================
-   BODY
-===================================================== */
-
 body{
 
     font-family:'Cinzel',serif;
 
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-start;
-
-    padding:30px 20px;
-
     background:
-        linear-gradient(
-            rgba(0,0,0,.75),
-            rgba(0,0,0,.70)
-        ),
-        url("css/fundo.png");
+    linear-gradient(rgba(15,8,0,.82),rgba(15,8,0,.82)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
 
     background-size:cover;
-
     background-position:center;
-
-    background-repeat:no-repeat;
-
     background-attachment:fixed;
+
+    color:#f4deb0;
+
+    padding:40px;
 
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
 .container{
 
-    width:100%;
-
-    max-width:1400px;
+    max-width:1000px;
 
     margin:auto;
 
-    background:rgba(18,18,18,.94);
+    background:rgba(35,18,8,.92);
 
-    border:2px solid #9c7a3d;
+    border:3px solid #8b5a2b;
 
-    border-radius:15px;
+    border-radius:10px;
 
     padding:35px;
 
     box-shadow:
-        0 0 40px #000,
-        inset 0 0 20px rgba(255,255,255,.05);
+    0 0 40px rgba(0,0,0,.8),
+    inset 0 0 15px rgba(255,190,60,.08);
 
 }
 
-
-/* =====================================================
-   TOPO
-===================================================== */
-
-.topo{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-
-    margin-bottom:20px;
-
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo{
-
-    width:130px;
-
-    height:130px;
-
-    object-fit:contain;
-
-    display:block;
-
-    margin:15px auto;
-
-    filter:
-        drop-shadow(0 0 10px #FFD700)
-        drop-shadow(0 0 25px rgba(255,215,0,.6));
-
-}
-
-
-/* =====================================================
-   TÍTULOS
-===================================================== */
-
-h1{
+h2,h3{
 
     text-align:center;
-
-}
-
-
-h2{
-
-    text-align:center;
-
-    color:#f2e6c6;
-
-    margin:15px 0 35px;
-
-    font-size:32px;
-
-}
-
-
-h3{
-
-    color:#d8b46a;
-
-    margin-bottom:15px;
-
-}
-
-
-/* =====================================================
-   BOTÃO TV
-===================================================== */
-
-.btn-abrir-tv{
-
-    background:
-        linear-gradient(
-            #e0c17a,
-            #9f7635
-        );
-
-    color:#111;
-
-    border:none;
-
-    padding:13px 25px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-family:'Cinzel',serif;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-
-.btn-abrir-tv:hover{
-
-    background:
-        linear-gradient(
-            #9f7635,
-            #e3c77f
-        );
-
-    transform:translateY(-2px);
-
-}
-
-
-/* =====================================================
-   CONSULTÓRIO
-===================================================== */
-
-.consultorio-input{
-
-    background:#242424;
-
-    border:1px solid #9c7a3d;
-
-    border-radius:12px;
-
-    padding:20px;
 
     margin-bottom:25px;
 
-}
+    color:#f6d28d;
 
-
-.consultorio-input label{
-
-    font-weight:bold;
-
-    color:#ffe6a3;
-
-    margin-right:10px;
+    text-shadow:2px 2px 5px black;
 
 }
 
-
-.consultorio-input input{
-
-    width:70px;
-
-    text-align:center;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    padding:7px;
-
-    border:1px solid #9c7a3d;
-
-    border-radius:6px;
-
-    background:#181818;
-
-    color:#fff;
-
-}
-
-
-.consultorio-input span{
-
-    color:#777;
-
-    font-size:13px;
-
-    margin-left:10px;
-
-}
-
-
-/* =====================================================
-   RESUMO DAS PRIORIDADES
-===================================================== */
-
-.resumo-prioridades{
+#triagens{
 
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-    margin-bottom:40px;
-
-}
-
-
-.resumo{
-
-    padding:20px;
-
-    border-radius:10px;
-
-    background:#242424;
-
-    border:1px solid #555;
-
-    text-align:center;
-
-    transition:.3s;
-
-    cursor:pointer;
-
-    user-select:none;
-
-}
-
-
-.resumo:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:
-        0 0 20px rgba(212,175,55,.35);
-
-}
-
-
-/* =====================================================
-   CONTADOR
-===================================================== */
-
-.resumo .numero{
-
-    display:block;
-
-    font-size:32px;
-
-    font-weight:bold;
-
-    margin-bottom:7px;
-
-}
-
-
-.resumo .texto{
-
-    display:block;
-
-    font-size:14px;
-
-    color:#ccc;
-
-    letter-spacing:1px;
-
-}
-
-
-/* =====================================================
-   P1
-===================================================== */
-
-.resumo-p1{
-
-    border-color:#9b1c1c;
-
-}
-
-
-.resumo-p1 .numero{
-
-    color:#ff3333;
-
-}
-
-
-/* =====================================================
-   P2
-===================================================== */
-
-.resumo-p2{
-
-    border-color:#b8860b;
-
-}
-
-
-.resumo-p2 .numero{
-
-    color:#ffd43b;
-
-}
-
-
-/* =====================================================
-   P3
-===================================================== */
-
-.resumo-p3{
-
-    border-color:#1d6d2d;
-
-}
-
-
-.resumo-p3 .numero{
-
-    color:#4fd46a;
-
-}
-
-
-/* =====================================================
-   TÍTULO DA PRIORIDADE
-===================================================== */
-
-.prioridade-titulo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin:35px 0 18px;
-
-    padding:15px 0;
-
-    border-bottom:1px solid #4c3b20;
-
-    scroll-margin-top:20px;
-
-}
-
-
-.prioridade-titulo h3{
-
-    margin:0;
-
-    color:#f2e6c6;
-
-    font-size:21px;
-
-}
-
-
-.prioridade-titulo span{
-
-    font-size:13px;
-
-    color:#999;
-
-}
-
-
-/* =====================================================
-   GRID DOS PACIENTES
-===================================================== */
-
-.lista-prioridade{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 
     gap:20px;
 
-    margin-bottom:30px;
+    margin-bottom:35px;
 
 }
-
-
-/* =====================================================
-   CARD DO PACIENTE
-===================================================== */
 
 .card{
 
-    position:relative;
+    background:#3a2415;
 
-    background:#242424;
+    border-left:8px solid #b8860b;
 
-    border:1px solid #555;
-
-    border-radius:12px;
+    border-radius:8px;
 
     padding:20px;
 
+    box-shadow:0 5px 15px rgba(0,0,0,.5);
+
     transition:.3s;
 
-    overflow:hidden;
-
 }
 
-/* =====================================================
-   BARRA LATERAL P1
-===================================================== */
+.card:hover{
 
-.card.p1{
+    transform:translateY(-5px);
 
-    border-left:5px solid #c40000;
+    box-shadow:0 8px 18px rgba(255,190,60,.25);
 
 }
-
-
-/* =====================================================
-   BARRA LATERAL P2
-===================================================== */
-
-.card.p2{
-
-    border-left:5px solid #d4a017;
-
-}
-
-
-/* =====================================================
-   BARRA LATERAL P3
-===================================================== */
-
-.card.p3{
-
-    border-left:5px solid #2e8b3c;
-
-}
-
-
-/* =====================================================
-   NOME
-===================================================== */
 
 .card h3{
 
-    color:#ffe6a3;
+    text-align:left;
 
     margin-bottom:15px;
 
-    font-size:21px;
+    color:#ffd27a;
 
 }
-
-
-/* =====================================================
-   INFORMAÇÕES
-===================================================== */
 
 .card p{
 
-    text-align:left;
-
-    color:#ddd;
-
     margin:10px 0;
 
-    letter-spacing:0;
-
-    font-family:'Cinzel',serif;
+    line-height:1.5;
 
 }
 
+input,
+select,
+textarea{
 
-/* =====================================================
-   BADGE DE PRIORIDADE
-===================================================== */
+    width:100%;
 
-.prioridade-badge{
+    margin-bottom:18px;
 
-    display:inline-flex;
+    padding:14px;
 
-    align-items:center;
+    background:#3b2415;
 
-    gap:6px;
+    color:#f4deb0;
 
-    padding:7px 12px;
+    border:2px solid #8b5a2b;
 
     border-radius:6px;
 
-    font-weight:bold;
+    outline:none;
 
-    font-size:13px;
-
-    margin-bottom:12px;
+    font-family:inherit;
 
 }
 
+input::placeholder,
+textarea::placeholder{
 
-.p1-badge{
-
-    background:#8b0000;
-
-    color:#fff;
+    color:#d7b882;
 
 }
 
+input:focus,
+select:focus,
+textarea:focus{
 
-.p2-badge{
+    border-color:#d4af37;
 
-    background:#b8860b;
-
-    color:#fff;
-
-}
-
-
-.p3-badge{
-
-    background:#1d6d2d;
-
-    color:#fff;
+    box-shadow:0 0 10px rgba(212,175,55,.5);
 
 }
 
+textarea{
 
-/* =====================================================
-   BOTÕES
-===================================================== */
+    resize:vertical;
+
+    min-height:120px;
+
+}
 
 button{
 
-    background:
-        linear-gradient(
-            #e0c17a,
-            #9f7635
-        );
+    width:100%;
 
-    color:#111;
+    padding:15px;
 
     border:none;
 
-    padding:13px 25px;
-
-    border-radius:8px;
+    border-radius:6px;
 
     cursor:pointer;
 
-    font-size:16px;
+    background:linear-gradient(#cfa24c,#8b5a2b);
 
-    font-family:'Cinzel',serif;
+    color:#2b1708;
+
+    font-size:17px;
 
     font-weight:bold;
+
+    letter-spacing:2px;
+
+    font-family:inherit;
 
     transition:.3s;
 
 }
 
-
 button:hover{
 
-    background:
-        linear-gradient(
-            #9f7635,
-            #e3c77f
-        );
-}
+    transform:translateY(-2px);
 
+    background:linear-gradient(#deb562,#a06a31);
 
-/* =====================================================
-   FORMULÁRIO
-===================================================== */
-
-input,
-textarea,
-select{
-
-    width:100%;
-
-    padding:14px;
-
-    margin:12px 0;
-
-    background:#2d2d2d;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    font-size:15px;
-
-    font-family:'Cinzel',serif;
+    box-shadow:0 0 18px rgba(255,190,60,.4);
 
 }
 
+.verde{
 
-input:focus,
-textarea:focus,
-select:focus{
-
-    outline:none;
-
-    background:#393939;
-
-    box-shadow:
-        0 0 12px #b48a39;
+    color:#4caf50;
+    font-weight:bold;
 
 }
 
+.amarelo{
 
-textarea{
-
-    resize:none;
-
-    height:120px;
+    color:#ffd54f;
+    font-weight:bold;
 
 }
 
+.vermelho{
 
-/* =====================================================
-   LINHA
-===================================================== */
+    color:#ff4b4b;
+    font-weight:bold;
+
+}
 
 hr{
 
-    border:1px solid #7d6230;
+    border:1px solid #8b5a2b;
 
     margin:35px 0;
 
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer{
-
-    text-align:center;
-
-    color:#888;
-
-    margin-top:30px;
-
-    letter-spacing:3px;
-
-}
-
-
-/* =====================================================
-   RESPONSIVIDADE
-===================================================== */
-
-@media(max-width:800px){
-
-    .container{
-
-        padding:20px;
-
-    }
-
-
-    .topo{
-
-        flex-direction:column;
-
-        align-items:stretch;
-
-    }
-
-
-    .resumo-prioridades{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    h2{
-
-        font-size:25px;
-
-    }
-
-
-    .prioridade-titulo{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-    }
-
-}
-
-
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-    <!-- =================================================
-         LOGO
-    ================================================= -->
+<h2>🩺 Painel Médico</h2>
 
-    <h1>
+<div id="triagens"></div>
 
-        <img
-            src="css/favicon.png"
-            alt="Logo do Sistema"
-            class="logo"
-        >
+<hr>
 
-    </h1>
+<h3>Consulta Médica</h3>
 
+<input id="paciente" placeholder="Paciente" readonly>
 
-    <!-- =================================================
-         TÍTULO
-    ================================================= -->
+<input id="diagnostico" placeholder="Diagnóstico">
 
-    <h2>
-        🩺 Painel Médico
-    </h2>
+<select id="medicacao">
+<option value="">Selecione a medicação</option>
+</select>
 
+<textarea id="obs" placeholder="Observações"></textarea>
 
-    <!-- =================================================
-         TOPO
-    ================================================= -->
-
-    <section>
-
-        <div class="topo">
-
-            <div></div>
-
-            <button
-                class="btn-abrir-tv"
-                onclick="window.open('tv.html','_blank')"
-            >
-
-                📺 Abrir Tela da TV
-
-            </button>
-
-        </div>
-
-
-        <!-- CONSULTÓRIO -->
-
-        <div class="consultorio-input">
-
-            <label>
-                Meu consultório
-            </label>
-
-            <input
-                type="text"
-                id="consultorio-num"
-                value="01"
-            >
-
-            <span>
-
-                Este número será exibido na TV
-                ao chamar o paciente.
-
-            </span>
-
-        </div>
-
-    </section>
-
-    <!-- =================================================
-         RESUMO DAS PRIORIDADES
-    ================================================= -->
-
-    <div
-        id="resumo-prioridades"
-        class="resumo-prioridades"
-    >
-
-    </div>
-
-
-    <!-- =================================================
-         LISTA DE PACIENTES
-    ================================================= -->
-
-    <div id="triagens">
-
-    </div>
-
-
-    <!-- =================================================
-         CONSULTA
-    ================================================= -->
-
-    <hr>
-
-
-    <h3>
-        Consulta Médica
-    </h3>
-
-
-    <input
-        id="paciente"
-        placeholder="Paciente"
-        readonly
-    >
-
-
-    <input
-        id="diagnostico"
-        placeholder="Diagnóstico"
-    >
-
-
-    <select id="medicacao">
-
-        <option value="">
-            Selecione a medicação
-        </option>
-
-    </select>
-
-
-    <textarea
-        id="obs"
-        placeholder="Observações"
-    ></textarea>
-
-
-    <button onclick="salvar()">
-
-        Salvar Consulta
-
-    </button>
-
-
-    <!-- =================================================
-         FOOTER
-    ================================================= -->
-
-    <div class="footer">
-
-        🩺 Medical System 🩺
-
-    </div>
-
+<button onclick="salvar()">
+Salvar Consulta
+</button>
 
 </div>
 
-
 <script>
 
-
-/* =====================================================
-   VARIÁVEIS
-===================================================== */
-
-let triagensCarregadas = [];
-
-
-/* =====================================================
-   CONVERTER RISCO EM PRIORIDADE
-===================================================== */
-
-function obterPrioridade(risco){
-
-    risco =
-        String(risco || "").toLowerCase();
-
-
-    if(risco === "vermelho"){
-
-        return {
-
-            codigo:"P1",
-
-            titulo:"EMERGÊNCIA",
-
-            descricao:"Atendimento imediato",
-
-            classe:"p1"
-
-        };
-
-    }
-
-
-    if(risco === "amarelo"){
-
-        return {
-
-            codigo:"P2",
-
-            titulo:"MUITO URGENTE",
-
-            descricao:"Atendimento prioritário",
-
-            classe:"p2"
-
-        };
-
-    }
-
-
-    return {
-
-        codigo:"P3",
-
-        titulo:"URGENTE",
-
-        descricao:"Menor prioridade",
-
-        classe:"p3"
-
-    };
-
-}
-
-
-/* =====================================================
-   IR PARA UMA PRIORIDADE
-===================================================== */
-
-function irParaPrioridade(prioridade){
-
-    const elemento =
-        document.querySelector(
-            `.prioridade-titulo.${prioridade}`
-        );
-
-
-    if(elemento){
-
-        elemento.scrollIntoView({
-
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    }
-
-}
-
-
-/* =====================================================
-   CARREGAR PACIENTES
-===================================================== */
+let triagensCarregadas=[];
 
 function carregar(){
 
-    fetch("/triagens")
+fetch("/triagens")
 
-    .then(r => r.json())
+.then(r=>r.json())
 
-    .then(data => {
+.then(data=>{
 
+triagensCarregadas=data;
 
-        /* Guardar os pacientes */
+const div=document.getElementById("triagens");
 
-        triagensCarregadas = data;
+div.innerHTML="";
 
+data.forEach((t,index)=>{
 
-        /* =================================================
-           ORDEM DAS PRIORIDADES
-        ================================================= */
+div.innerHTML+=`
 
-        const ordem = {
+<div class="card">
 
-            vermelho:1,
+<h3>👤 ${t.nome}</h3>
 
-            amarelo:2,
+<p><b>🤒 Sintoma:</b> ${t.sintoma || "Não informado"}</p>
 
-            verde:3
+<p><b>🌡 Temperatura:</b> ${t.temperatura || "--"}°C</p>
 
-        };
+<p><b>⚠️ Risco:</b>
+<span class="${t.risco}">
+${t.risco}
+</span>
+</p>
 
+<p><b>💉 Alergia:</b> ${t.alergia || "Nenhuma"}</p>
 
-        /* =================================================
-           ORDENAR PACIENTES
-        ================================================= */
+<p><b>📝 Observação:</b> ${t.observacao || "Nenhuma"}</p>
 
-        data.sort((a,b)=>{
+<button onclick="selecionar(${index})">
+Atender
+</button>
 
-            const riscoA =
-                String(a.risco || "")
-                .toLowerCase();
+</div>
 
+`;
 
-            const riscoB =
-                String(b.risco || "")
-                .toLowerCase();
+});
 
-
-            const prioridadeA =
-                ordem[riscoA] || 3;
-
-
-            const prioridadeB =
-                ordem[riscoB] || 3;
-
-
-            return prioridadeA - prioridadeB;
-
-        });
-
-
-        /* Atualizar resumo */
-
-        atualizarResumo(data);
-
-
-        /* Limpar lista */
-
-        const div =
-            document.getElementById("triagens");
-
-
-        div.innerHTML = "";
-
-
-        /* =================================================
-           SEPARAR PACIENTES
-        ================================================= */
-
-        const grupos = {
-
-            vermelho:[],
-
-            amarelo:[],
-
-            verde:[]
-
-        };
-
-
-        data.forEach((t,index)=>{
-
-            const risco =
-                String(
-                    t.risco || "verde"
-                ).toLowerCase();
-
-
-            if(grupos[risco]){
-
-                grupos[risco].push({
-
-                    paciente:t,
-
-                    index:index
-
-                });
-
-            }
-
-        });
-
-
-        /* =================================================
-           CRIAR P1
-        ================================================= */
-
-        criarGrupo(
-
-            div,
-
-            "P1",
-
-            "EMERGÊNCIA",
-
-            "Atendimento imediato",
-
-            "p1",
-
-            grupos.vermelho
-
-        );
-
-
-        /* =================================================
-           CRIAR P2
-        ================================================= */
-
-        criarGrupo(
-
-            div,
-
-            "P2",
-
-            "MUITO URGENTE",
-
-            "Atendimento prioritário",
-
-            "p2",
-
-            grupos.amarelo
-
-        );
-
-
-        /* =================================================
-           CRIAR P3
-        ================================================= */
-
-        criarGrupo(
-
-            div,
-
-            "P3",
-
-            "URGENTE",
-
-            "Menor prioridade",
-
-            "p3",
-
-            grupos.verde
-
-        );
-
-    })
-
-    .catch(error=>{
-
-        console.error(
-            "Erro ao carregar triagens:",
-            error
-        );
-
-    });
+});
 
 }
-
-
-/* =====================================================
-   CRIAR GRUPO DE PRIORIDADE
-===================================================== */
-
-function criarGrupo(
-
-    container,
-
-    codigo,
-
-    titulo,
-
-    descricao,
-
-    classe,
-
-    pacientes
-
-){
-
-
-    /* Se não houver pacientes,
-       não cria a seção */
-
-    if(pacientes.length === 0){
-
-        return;
-
-    }
-
-
-    /* =================================================
-       TÍTULO DA PRIORIDADE
-    ================================================= */
-
-    const tituloDiv =
-        document.createElement("div");
-
-
-    /*
-     * IMPORTANTE:
-     * Aqui colocamos a classe p1, p2 ou p3.
-     *
-     * Isso permite que o clique no resumo
-     * encontre exatamente essa seção.
-     */
-
-    tituloDiv.className =
-        `prioridade-titulo ${classe}`;
-
-
-    tituloDiv.innerHTML = `
-
-        <h3>
-
-            ${codigo} — ${titulo}
-
-        </h3>
-
-
-        <span>
-
-            ${descricao}
-
-            •
-
-            ${pacientes.length}
-
-            paciente(s)
-
-        </span>
-
-    `;
-
-
-    container.appendChild(
-        tituloDiv
-    );
-
-
-    /* =================================================
-       LISTA
-    ================================================= */
-
-    const lista =
-        document.createElement("div");
-
-
-    lista.className =
-        "lista-prioridade";
-
-
-    /* =================================================
-       CRIAR CARDS
-    ================================================= */
-
-    pacientes.forEach(item=>{
-
-
-        const t =
-            item.paciente;
-
-
-        const index =
-            item.index;
-
-
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            `card ${classe}`;
-
-
-        /* =================================================
-           BADGE
-        ================================================= */
-
-        let badge = "";
-
-
-        if(classe === "p1"){
-
-            badge =
-                "🔴 P1 — EMERGÊNCIA";
-
-        }
-
-        else if(classe === "p2"){
-
-            badge =
-                "🟡 P2 — MUITO URGENTE";
-
-        }
-
-        else{
-
-            badge =
-                "🟢 P3 — URGENTE";
-
-        }
-
-
-        /* =================================================
-           CARD HTML
-        ================================================= */
-
-        card.innerHTML = `
-
-            <div
-                class="prioridade-badge
-                ${classe}-badge"
-            >
-
-                ${badge}
-
-            </div>
-
-
-            <h3>
-
-                ${t.nome || "Paciente"}
-
-            </h3>
-
-
-            <p>
-
-                <b>Sintoma:</b>
-
-                ${t.sintoma || "Não informado"}
-
-            </p>
-
-
-            <p>
-
-                <b>Temperatura:</b>
-
-                ${t.temperatura || "-"}°C
-
-            </p>
-
-
-            <p>
-
-                <b>Alergia:</b>
-
-                ${t.alergia || "Nenhuma"}
-
-            </p>
-
-
-            <p>
-
-                <b>Observação:</b>
-
-                ${t.observacao || "Nenhuma"}
-
-            </p>
-
-
-            <button
-                onclick="selecionar(${index})"
-            >
-
-                Atender
-
-            </button>
-
-        `;
-
-
-        lista.appendChild(card);
-
-    });
-
-
-    container.appendChild(lista);
-
-}
-
-
-/* =====================================================
-   ATUALIZAR RESUMO
-===================================================== */
-
-function atualizarResumo(data){
-
-
-    let p1 = 0;
-
-    let p2 = 0;
-
-    let p3 = 0;
-
-
-    /* Contar pacientes */
-
-    data.forEach(t=>{
-
-
-        const risco =
-            String(
-                t.risco || ""
-            ).toLowerCase();
-
-
-        if(risco === "vermelho"){
-
-            p1++;
-
-        }
-
-        else if(risco === "amarelo"){
-
-            p2++;
-
-        }
-
-        else{
-
-            p3++;
-
-        }
-
-    });
-
-
-    const resumo =
-        document.getElementById(
-            "resumo-prioridades"
-        );
-
-
-    if(!resumo){
-
-        return;
-
-    }
-
-
-    /* =================================================
-       CARDS CLICÁVEIS
-    ================================================= */
-
-    resumo.innerHTML = `
-
-
-        <!-- P1 -->
-
-        <div
-            class="resumo resumo-p1"
-            onclick="irParaPrioridade('p1')"
-            title="Ver pacientes P1"
-        >
-
-            <span class="numero">
-
-                ${p1}
-
-            </span>
-
-
-            <span class="texto">
-
-                🔴 P1 — EMERGÊNCIA
-
-            </span>
-
-        </div>
-
-
-        <!-- P2 -->
-
-        <div
-            class="resumo resumo-p2"
-            onclick="irParaPrioridade('p2')"
-            title="Ver pacientes P2"
-        >
-
-            <span class="numero">
-
-                ${p2}
-
-            </span>
-
-
-            <span class="texto">
-
-                🟡 P2 — MUITO URGENTE
-
-            </span>
-
-        </div>
-
-
-        <!-- P3 -->
-
-        <div
-            class="resumo resumo-p3"
-            onclick="irParaPrioridade('p3')"
-            title="Ver pacientes P3"
-        >
-
-            <span class="numero">
-
-                ${p3}
-
-            </span>
-
-
-            <span class="texto">
-
-                🟢 P3 — URGENTE
-
-            </span>
-
-        </div>
-
-
-    `;
-
-}
-
-
-/* =====================================================
-   SELECIONAR PACIENTE
-===================================================== */
 
 function selecionar(index){
 
+const t=triagensCarregadas[index];
 
-    const t =
-        triagensCarregadas[index];
+paciente.value=t.nome;
 
+obs.value=t.observacao || "";
 
-    if(!t){
+if(t.alergia && t.alergia!="Nenhuma"){
 
-        return;
-
-    }
-
-
-    /* Colocar paciente no formulário */
-
-    document.getElementById(
-        "paciente"
-    ).value =
-        t.nome || "";
-
-
-    /* Colocar observação */
-
-    document.getElementById(
-        "obs"
-    ).value =
-        t.observacao || "";
-
-
-    /* =================================================
-       ALERTA DE ALERGIA
-    ================================================= */
-
-    if(
-
-        t.alergia &&
-
-        t.alergia !== "Nenhuma"
-
-    ){
-
-        alert(
-
-            "⚠️ ATENÇÃO!\n\n" +
-
-            "Paciente possui alergia:\n\n" +
-
-            t.alergia
-
-        );
-
-    }
-
-
-    /* =================================================
-       LEVAR ATÉ A CONSULTA
-    ================================================= */
-
-    document.getElementById(
-        "paciente"
-    ).scrollIntoView({
-
-        behavior:"smooth",
-
-        block:"center"
-
-    });
+alert("⚠️ Paciente possui alergia: "+t.alergia);
 
 }
 
-
-/* =====================================================
-   CARREGAR MEDICAÇÕES
-===================================================== */
+}
 
 function carregarMedicacoes(){
 
+fetch("/lista-medicacoes")
 
-    fetch("/lista-medicacoes")
+.then(r=>r.json())
 
-    .then(r => r.json())
+.then(data=>{
 
-    .then(data=>{
+const select=document.getElementById("medicacao");
 
+select.innerHTML='<option value="">Selecione a medicação</option>';
 
-        const select =
-            document.getElementById(
-                "medicacao"
-            );
+data.forEach(m=>{
 
+const op=document.createElement("option");
 
-        select.innerHTML = `
+op.value=m;
 
-            <option value="">
+op.textContent=m;
 
-                Selecione a medicação
+select.appendChild(op);
 
-            </option>
+});
 
-        `;
-
-
-        data.forEach(m=>{
-
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value = m;
-
-
-            option.textContent = m;
-
-
-            select.appendChild(
-                option
-            );
-
-        });
-
-    })
-
-    .catch(error=>{
-
-        console.error(
-
-            "Erro ao carregar medicações:",
-
-            error
-
-        );
-
-    });
+});
 
 }
-
-
-/* =====================================================
-   SALVAR CONSULTA
-===================================================== */
 
 function salvar(){
 
+const paciente=document.getElementById("paciente").value;
+const diagnostico=document.getElementById("diagnostico").value;
+const medicacao=document.getElementById("medicacao").value;
+const obs=document.getElementById("obs").value;
 
-    /* =================================================
-       PEGAR ELEMENTOS
-    ================================================= */
+if(!paciente){
 
-    const pacienteInput =
-        document.getElementById(
-            "paciente"
-        );
+alert("Selecione um paciente.");
 
-
-    const diagnosticoInput =
-        document.getElementById(
-            "diagnostico"
-        );
-
-
-    const medicacaoInput =
-        document.getElementById(
-            "medicacao"
-        );
-
-
-    const obsInput =
-        document.getElementById(
-            "obs"
-        );
-
-
-    /* =================================================
-       PEGAR VALORES
-    ================================================= */
-
-    const paciente =
-        pacienteInput.value;
-
-
-    const diagnostico =
-        diagnosticoInput.value;
-
-
-    const medicacao =
-        medicacaoInput.value;
-
-
-    const obs =
-        obsInput.value;
-
-
-    /* =================================================
-       VALIDAÇÃO
-    ================================================= */
-
-    if(!paciente){
-
-        alert(
-            "Selecione um paciente."
-        );
-
-        return;
-
-    }
-
-
-    if(!medicacao){
-
-        alert(
-            "Selecione uma medicação."
-        );
-
-        return;
-
-    }
-
-
-    /* =================================================
-       ENVIAR PARA O BACKEND
-    ================================================= */
-
-    fetch("/consulta",{
-
-        method:"POST",
-
-        headers:{
-
-            "Content-Type":
-                "application/json"
-
-        },
-
-        body:JSON.stringify({
-
-            paciente,
-
-            diagnostico,
-
-            medicacao,
-
-            obs
-
-        })
-
-    })
-
-    .then(r=>{
-
-        if(!r.ok){
-
-            throw new Error(
-                "Erro na requisição"
-            );
-
-        }
-
-        return r.json();
-
-    })
-
-    .then(()=>{
-
-
-        alert(
-            "Consulta salva com sucesso."
-        );
-
-
-        /* Limpar formulário */
-
-        diagnosticoInput.value = "";
-
-        medicacaoInput.value = "";
-
-        obsInput.value = "";
-
-        pacienteInput.value = "";
-
-
-        /* Atualizar lista */
-
-        carregar();
-
-    })
-
-    .catch(error=>{
-
-        console.error(
-            "Erro ao salvar consulta:",
-            error
-        );
-
-
-        alert(
-            "Erro ao salvar a consulta."
-        );
-
-    });
+return;
 
 }
 
+if(!medicacao){
 
-/* =====================================================
-   INICIAR SISTEMA
-===================================================== */
+alert("Selecione uma medicação.");
+
+return;
+
+}
+
+fetch("/consulta",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+paciente,
+diagnostico,
+medicacao,
+obs
+
+})
+
+})
+
+.then(r=>r.json())
+
+.then(()=>{
+
+alert("Consulta salva com sucesso!");
+
+diagnostico.value="";
+medicacao.value="";
+obs.value="";
+
+});
+
+}
 
 carregar();
 
 carregarMedicacoes();
 
-
 </script>
 
-
 </body>
-
 </html>

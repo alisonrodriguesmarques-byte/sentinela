@@ -2,296 +2,261 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
 
-    <title>Sistema - Hospitalar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" sizes="512x512" href="css/favicon.png">
+<title>Hospital Valentine</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap"
-        rel="stylesheet"
-    >
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Cinzel', serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+<style>
 
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.491),
-                    rgba(0, 0, 0, 0.582)
-                ),
-                url("css/fundo.png");
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+body{
 
-            overflow: hidden;
-        }
+    height:100vh;
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
+    display:flex;
 
-            background: linear-gradient(
-                rgba(255, 255, 255, .03),
-                rgba(0, 0, 0, .15)
-            );
+    justify-content:center;
 
-            backdrop-filter: blur(2px);
-            pointer-events: none;
-        }
+    align-items:center;
 
-        .container {
-            position: relative;
-            z-index: 2;
+    font-family:'Cinzel',serif;
 
-            width: 420px;
-            padding: 45px;
+    background:
+    linear-gradient(rgba(15,8,0,.75),rgba(15,8,0,.75)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
 
-            text-align: center;
+    background-size:cover;
+    background-position:center;
 
-            background: rgba(18, 18, 18, .90);
+    color:#f3d08d;
 
-            border: 2px solid #9c7a3d;
-            border-radius: 14px;
+}
 
-            box-shadow:
-                0 0 40px black,
-                inset 0 0 20px rgba(255, 255, 255, .05);
-        }
+.container{
 
-        .logo {
-            width: 130px;
-            height: 130px;
+    width:430px;
 
-            object-fit: contain;
-            display: block;
+    background:rgba(35,18,8,.92);
 
-            margin: 0 auto 15px;
+    border:3px solid #8b5a2b;
 
-            filter:
-                drop-shadow(0 0 10px #FFD700)
-                drop-shadow(0 0 25px rgba(255, 215, 0, .6));
+    border-radius:10px;
 
-            transition: .3s;
-        }
+    padding:35px;
 
-        h1 {
-            margin-bottom: 10px;
-        }
+    text-align:center;
 
-        h2 {
-            color: #efe3c1;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
+    box-shadow:
+    0 0 35px rgba(0,0,0,.8),
+    inset 0 0 20px rgba(255,190,80,.08);
 
-        input {
-            width: 100%;
+}
 
-            padding: 15px;
-            margin: 12px 0;
+.logo{
 
-            background: #2d2d2d;
-            color: white;
+    width:120px;
 
-            border: none;
-            border-radius: 8px;
-            outline: none;
+    margin-bottom:20px;
 
-            font-size: 16px;
-            transition: .3s;
-        }
+    filter:drop-shadow(0 0 10px #000);
 
-        input::placeholder {
-            color: #bdbdbd;
-        }
+}
 
-        input:focus {
-            background: #3c3c3c;
-            box-shadow: 0 0 15px #b48a39;
-        }
+h1{
 
-        button {
-            width: 100%;
+    font-size:32px;
 
-            margin-top: 20px;
-            padding: 15px;
+    color:#f5d28d;
 
-            border: none;
-            border-radius: 8px;
+    text-shadow:3px 3px 5px black;
 
-            cursor: pointer;
+    letter-spacing:2px;
 
-            font-size: 18px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
+}
 
-            color: #111;
+.subtitulo{
 
-            background: linear-gradient(
-                #e3c77f,
-                #9f7635
-            );
+    margin:12px 0 28px;
 
-            transition: .3s;
-        }
+    color:#d6b477;
 
-        button:hover {
-            background: linear-gradient(
-                #9f7635,
-                #e3c77f
-            );
-        }
+    font-size:15px;
 
-        button:active {
-            transform: scale(.98);
-        }
+    letter-spacing:1px;
 
-        .footer {
-            margin-top: 25px;
+}
 
-            color: #8d8d8d;
+input{
 
-            font-size: 12px;
-            letter-spacing: 2px;
-        }
+    width:100%;
 
-        .mensagem {
-            margin-top: 15px;
+    padding:14px;
 
-            color: #ff6b6b;
+    margin-bottom:18px;
 
-            font-family: Arial, sans-serif;
-            font-size: 14px;
+    background:#3b2415;
 
-            display: none;
-        }
-    </style>
+    color:#f6e0b1;
+
+    border:2px solid #8b5a2b;
+
+    border-radius:5px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:15px;
+
+}
+
+input::placeholder{
+
+    color:#d8bf90;
+
+}
+
+input:focus{
+
+    border-color:#d4af37;
+
+    box-shadow:0 0 10px rgba(212,175,55,.5);
+
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:linear-gradient(#d0a24b,#8b5a2b);
+
+    color:#2d1808;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-family:inherit;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+    background:linear-gradient(#deb562,#9c6530);
+
+    box-shadow:0 0 18px rgba(255,190,60,.45);
+
+}
+
+footer{
+
+    margin-top:25px;
+
+    font-size:12px;
+
+    color:#9d8b6b;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>
-            <img
-                src="css/favicon.png"
-                alt="Logo do Sistema"
-                class="logo"
-            >
-        </h1>
+   
 
-        <h2>Sistema Hospitalar</h2>
+    <h1>Hospital Valentine</h1>
 
-        <input
-            id="usuario"
-            type="text"
-            placeholder="Usuário"
-            autocomplete="username"
-        >
+    <p class="subtitulo">
+        Sistema Hospitalar do Velho Oeste
+    </p>
 
-        <input
-            id="senha"
-            type="password"
-            placeholder="Senha"
-            autocomplete="current-password"
-        >
+    <input id="usuario" placeholder="Usuário">
 
-        <button id="btnEntrar" onclick="login()">
-            Entrar
-        </button>
+    <input
+        id="senha"
+        type="password"
+        placeholder="Senha">
 
-        <div id="mensagem" class="mensagem"></div>
+    <button onclick="login()">
+        Entrar
+    </button>
 
-        <div class="footer">
-            🩺 Medical System 🩺
-        </div>
+    <footer>
+        "Tenha sangue, tenha morte tenha redençao"
+    </footer>
 
-    </div>
+</div>
 
-    <script>
+<script>
 
-        async function login() {
+function login(){
 
-            const usuario = document.getElementById("usuario").value.trim();
-            const senha = document.getElementById("senha").value;
+fetch("http://localhost:3000/login",{
 
-            const mensagem = document.getElementById("mensagem");
-            const botao = document.getElementById("btnEntrar");
+method:"POST",
 
-            mensagem.style.display = "none";
-            mensagem.textContent = "";
+headers:{
+"Content-Type":"application/json"
+},
 
-            if (!usuario || !senha) {
+body:JSON.stringify({
 
-                mensagem.textContent = "Preencha o usuário e a senha.";
-                mensagem.style.display = "block";
-                
-                return;
-            }
+usuario:usuario.value,
+senha:senha.value
 
-            botao.disabled = true;
-            botao.textContent = "Entrando...";
+})
 
-            try {
+})
 
-                const resposta = await fetch("/login", {
+.then(r=>r.json())
 
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        usuario: usuario,
-                        senha: senha
-                    })
+.then(data=>{
 
-                });
+if(data.tipo==="triagem")
+location.href="triagem.html";
 
-                const data = await resposta.json();
+if(data.tipo==="medico")
+location.href="medico.html";
 
-                if (!resposta.ok) {
-                    throw new Error(
-                        data.mensagem || "Usuário ou senha incorretos."
-                    );
-                }
+if(data.tipo==="atendimento")
+location.href="atendimento.html";
 
-                if (data.tipo === "triagem") {
-                    window.location.href = "triagem.html";
-                } else if (data.tipo === "medico") {
-                    window.location.href = "medico.html";
-                } else if (data.tipo === "atendimento") {
-                    window.location.href = "atendimento.html";
-                } else {
-                    throw new Error("Tipo de usuário inválido.");
-                }
+})
 
-            } catch (erro) {
-                console.error("Erro no login:", erro);
-                mensagem.textContent = erro.message || "Erro ao realizar login.";
-                mensagem.style.display = "block";
-                botao.disabled = false;
-                botao.textContent = "Entrar";
-            }
-        }
-    </script>
+.catch(()=>{
+alert("Erro ao conectar ao servidor.");
+});
+
+}
+
+</script>
 
 </body>
-
 </html>

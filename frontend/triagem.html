@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
 
@@ -7,571 +7,287 @@
 
 <title>Triagem Hospitalar</title>
 
-<link rel="icon" type="image/png" href="css/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Cinzel', serif;
-    min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
 
-    padding: 30px 15px;
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+    font-family:'Cinzel',serif;
 
     background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.72),
-            rgba(0, 0, 0, 0.78)
-        ),
-        url("css/fundo.png");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    linear-gradient(
+    rgba(15,8,0,.82),
+    rgba(15,8,0,.82)
+    ),
 
-    color: #efe3c1;
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+
+    background-position:center;
+
+    color:#f5deb3;
+
 }
 
-.container {
-    position: relative;
-    z-index: 2;
 
-    width: 520px;
-    max-width: 100%;
+.container{
 
-    background: rgba(18, 18, 18, 0.94);
+    width:450px;
 
-    border: 2px solid #9c7a3d;
-    border-radius: 15px;
+    background:rgba(35,18,8,.92);
 
-    padding: 40px;
+    border:3px solid #8b5a2b;
 
-    text-align: center;
+    border-radius:10px;
+
+    padding:35px;
 
     box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.9),
-        inset 0 0 25px rgba(255, 255, 255, 0.04);
+
+    0 0 40px rgba(0,0,0,.8),
+
+    inset 0 0 20px rgba(255,190,60,.08);
+
 }
 
-.logo {
-    width: 130px;
-    height: 130px;
 
-    object-fit: contain;
-    display: block;
+h2{
 
-    margin: 0 auto 15px;
+    text-align:center;
 
-    filter:
-        drop-shadow(0 0 10px #ffd700)
-        drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
+    color:#f6d28d;
 
-    transition: 0.3s;
+    font-size:32px;
+
+    margin-bottom:25px;
+
+    text-shadow:2px 2px 5px black;
+
+    letter-spacing:2px;
+
 }
 
-h1 {
-    margin-bottom: 10px;
-}
-
-h1 img {
-    width: 50%;
-}
-
-h2 {
-    color: #efe3c1;
-
-    margin-bottom: 25px;
-
-    font-size: 27px;
-
-    text-shadow:
-        0 0 10px rgba(212, 175, 55, 0.15);
-}
-
-p {
-    color: #cba85d;
-
-    letter-spacing: 3px;
-
-    margin: 10px 0;
-}
 
 input,
 select,
-textarea {
-    width: 100%;
+textarea{
 
-    margin: 10px 0;
-    padding: 15px;
+    width:100%;
 
-    border: 1px solid transparent;
-    border-radius: 8px;
+    padding:14px;
 
-    background: #292929;
-    color: #fff;
+    margin-bottom:18px;
 
-    font-size: 15px;
-    font-family: 'Cinzel', serif;
+    background:#3b2415;
 
-    outline: none;
+    color:#f6dfb0;
 
-    transition: 0.3s;
+    border:2px solid #8b5a2b;
+
+    border-radius:6px;
+
+    font-family:inherit;
+
+    outline:none;
+
 }
+
 
 input::placeholder,
-textarea::placeholder {
-    color: #aaa;
+textarea::placeholder{
+
+    color:#d8bc88;
+
 }
 
-select {
-    cursor: pointer;
-}
-
-select option {
-    background: #292929;
-    color: #fff;
-}
 
 input:focus,
 select:focus,
-textarea:focus {
-    background: #353535;
+textarea:focus{
 
-    border-color: #b48a39;
+    border-color:#d4af37;
+
+    box-shadow:0 0 10px rgba(212,175,55,.5);
+
+}
+
+
+textarea{
+
+    height:120px;
+
+    resize:none;
+
+}
+
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:
+
+    linear-gradient(
+    #d4aa55,
+    #8b5a2b
+    );
+
+    color:#2b1608;
+
+    font-family:inherit;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    transform:translateY(-3px);
 
     box-shadow:
-        0 0 12px rgba(180, 138, 57, 0.45);
+
+    0 0 20px rgba(255,190,60,.5);
+
 }
 
-textarea {
-    height: 120px;
-    resize: vertical;
+
+#resultado{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    padding:15px;
+
+    border-radius:6px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    display:none;
+
 }
 
-#resultado {
-    margin-top: 20px;
 
-    padding: 15px;
+/* Classificação de risco */
 
-    border-radius: 8px;
+.verde{
 
-    font-size: 18px;
-    font-weight: bold;
+    display:block !important;
 
-    display: none;
+    background:#245c2a;
 
-    text-align: center;
+    color:#a8ffb0;
+
+    border:2px solid #4caf50;
+
 }
 
-.vermelho {
-    display: block;
 
-    background: rgba(120, 0, 0, 0.75);
+.amarelo{
 
-    color: #fff;
+    display:block !important;
 
-    border: 2px solid #ff3b3b;
+    background:#6b5200;
 
-    box-shadow:
-        0 0 15px rgba(255, 0, 0, 0.25);
+    color:#ffe98a;
+
+    border:2px solid #ffd740;
+
 }
 
-.amarelo {
-    display: block;
 
-    background: rgba(125, 99, 0, 0.75);
+.vermelho{
 
-    color: #fff;
+    display:block !important;
 
-    border: 2px solid #e5c100;
+    background:#641b1b;
 
-    box-shadow:
-        0 0 15px rgba(255, 215, 0, 0.2);
+    color:#ffb0b0;
+
+    border:2px solid #ff5252;
+
+    animation:pulsar .8s infinite alternate;
+
 }
 
-.verde {
-    display: block;
 
-    background: rgba(18, 77, 22, 0.75);
+@keyframes pulsar{
 
-    color: #fff;
+from{
 
-    border: 2px solid #4caf50;
+    box-shadow:0 0 5px red;
 
-    box-shadow:
-        0 0 15px rgba(76, 175, 80, 0.2);
 }
 
-button {
-    width: 100%;
+to{
 
-    margin-top: 20px;
-    padding: 15px;
+    box-shadow:0 0 20px red;
 
-    border: none;
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 17px;
-
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-
-    color: #111;
-
-    background:
-        linear-gradient(
-            #e3c77f,
-            #9f7635
-        );
-
-    transition: 0.25s;
 }
 
-button:hover {
-    background:
-        linear-gradient(
-            #f0d994,
-            #b88b40
-        );
-
-    box-shadow:
-        0 0 15px rgba(214, 177, 93, 0.35);
 }
 
-button:active {
-    transform: scale(0.98);
-}
 
-hr {
-    border: none;
-
-    border-top: 1px solid #7d6230;
-
-    margin: 35px 0;
-}
-
-.btn-abrir-tv {
-    width: auto;
-
-    margin: 0 auto;
-
-    padding: 13px 25px;
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            #e0c17a,
-            #9f7635
-        );
-
-    color: #111;
-
-    font-size: 16px;
-
-    font-family: 'Cinzel', serif;
-    font-weight: bold;
-}
-
-.btn-abrir-tv:hover {
-    background:
-        linear-gradient(
-            #f0d994,
-            #b88b40
-        );
-}
-
-.pacientes-fila {
-    margin-top: 20px;
-
-    padding: 18px;
-
-    background: rgba(30, 30, 30, 0.95);
-
-    border: 1px solid #80632f;
-
-    border-radius: 10px;
-
-    text-align: left;
-
-    box-shadow:
-        inset 0 0 15px rgba(255, 255, 255, 0.02);
-}
-
-.pacientes-fila h3 {
-    margin: 0 0 18px;
-
-    color: #e3c77f;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 15px;
-}
-
-.pacientes-fila h3 span {
-    font-size: 11px;
-
-    font-weight: normal;
-
-    color: #999;
-
-    letter-spacing: 0;
-}
-
-.fila {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    padding: 13px 14px;
-
-    margin-bottom: 10px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #292929,
-            #202020
-        );
-
-    border: 1px solid #51401f;
-
-    border-radius: 8px;
-
-    color: #eee;
-
-    transition: 0.25s;
-}
-
-.fila:hover {
-    border-color: #a9853e;
-
-    box-shadow:
-        0 0 10px rgba(180, 138, 57, 0.15);
-}
-
-.fila strong {
-    display: block;
-
-    color: #e3c77f;
-
-    font-size: 14px;
-
-    margin-bottom: 4px;
-}
-
-.fila small {
-    color: #999;
-
-    font-size: 11px;
-
-    font-family: Arial, sans-serif;
-}
-
-.fila .btn {
-    width: auto;
-
-    margin: 0 0 0 5px;
-
-    padding: 8px 12px;
-
-    border-radius: 6px;
-
-    font-family: 'Cinzel', serif;
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-.fila .btn.azul {
-    background:
-        linear-gradient(
-            #e3c77f,
-            #9f7635
-        );
-
-    color: #111;
-}
-
-.fila .btn.azul:hover {
-    background:
-        linear-gradient(
-            #f0d994,
-            #b88b40
-        );
-}
-
-.fila .btn.verde-btn {
-    background:
-        linear-gradient(
-            #7ec5ff,
-            #008cff
-        );
-
-    color: #fff;
-}
-
-.fila .btn.verde-btn:hover {
-    background:
-        linear-gradient(
-            #008cff,
-            #7ec5ff
-        );
-}
-
-#fila-pacientes + button {
-    width: auto;
-
-    margin-top: 8px;
-
-    padding: 7px 12px;
-
-    background: #3b3b3b;
-
-    color: #ddd;
-
-    border: 1px solid #666;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 12px;
-}
-
-#fila-pacientes + button:hover {
-    background: #4b4b4b;
-
-    box-shadow: none;
-}
-
-#fila-pacientes > p {
-    color: #888 !important;
-
-    text-align: center;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-
-    letter-spacing: 0;
-
-    padding: 10px;
-}
-
-.footer {
-    margin-top: 20px;
-
-    color: #888;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 15px;
-        align-items: flex-start;
-
-        overflow-y: auto;
-    }
-
-    .container {
-        width: 100%;
-
-        padding: 25px 20px;
-
-        margin: 20px 0;
-    }
-
-    .logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    h2 {
-        font-size: 22px;
-    }
-
-    .fila {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .fila > div:last-child {
-        display: flex;
-
-        gap: 8px;
-    }
-
-    .fila .btn {
-        flex: 1;
-
-        margin: 0;
-    }
-
-    .pacientes-fila h3 {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .btn-abrir-tv {
-        width: 100%;
-    }
-}
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-    
 
-<h1>
+<h2>🏥 Triagem Frontier</h2>
 
-<img src="css/favicon.png"
-     alt="Logo do Sistema"
-     class="logo">
-
-</h1>
-
-<!-- <p>GOD IS GOOD</p> -->
-
-<h2>Triagem Hospitalar</h2>
 
 <input id="nome" placeholder="Nome do Paciente">
 
+
 <select id="sintoma">
 
-<option value="">Selecione o Sintoma</option>
+<option value="">Selecione o sintoma</option>
 
 <option value="dor_leve">Dor leve</option>
 
@@ -601,228 +317,183 @@ hr {
 
 </select>
 
-<input
+
+<input 
 id="temp"
 type="number"
-placeholder="Temperatura (°C)"
->
+placeholder="Temperatura °C">
+
 
 <input
 id="alergia"
-placeholder="Alergias"
->
+placeholder="Alergias">
+
 
 <textarea
 id="observacao"
-placeholder="Observações da Triagem"
-></textarea>
+placeholder="Observações médicas"></textarea>
+
 
 <div id="resultado"></div>
 
+
 <button onclick="salvar()">
-Salvar Triagem
+
+Registrar Triagem
+
 </button>
 
-<div class="footer">
-🩺 Medical System 🩺
-</div>
-
-<hr>
-
-<!-- cabeçalho com botão da Tv -->
-     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <!-- <h2 style="margin: 0;">🏥 Triagem Hospitalar</h2> -->
-        <button class="btn-abrir-tv" onclick="window.open('tv.html', '_blank')">📺 Abrir Tela da Tv</button>
-     </div>
-
-<!-- Fila de paciente do Atendimento criada para mostrar quem pode ser chamado tv -->
-     <div class="pacientes-fila">
-        <h3>
-             Paciente cadastrado no Atendimento
-                <span>Cliquem em Chamar na "TV" para chamar ao guichê</span>
-        </h3>
-        <div id="fila-pacientes">
-            <p style="color: #888; text-align: center;">Carregar...</p>
-        </div>
-        <button onclick="carregarPacientes()" style="margin-top: 8px; background: #6c757b; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;">🔁 Atualizar lista</button>
-     </div>
 
 </div>
+
+
 
 <script>
 
-let pacienteSelecionado = null;
 
-function carregarPacientes() {
+function classificarRisco(sintoma,temperatura){
 
-    fetch("/pacientes")
-    .then(r => r.json())
-    .then(pacientes => {
 
-        const fila = pacientes.filter(
-            p => p.status === "triagem"
-        );
+const vermelhos=[
 
-        const div = document.getElementById(
-            "fila-pacientes"
-        );
+"infarto",
+"avc",
+"convulsao",
+"hemorragia",
+"falta_ar_grave"
 
-        if (!fila.length) {
-            div.innerHTML =
-                "<p>Nenhum paciente aguardando.</p>";
-            return;
-        }
+];
 
-        div.innerHTML = "";
 
-        fila.forEach(p => {
+const amarelos=[
 
-            const item = document.createElement("div");
-            item.className = "fila";
+"febre",
+"vomito",
+"diarreia",
+"falta_ar_moderada"
 
-            item.innerHTML = `
-                <div>
-                    <strong>${p.nome}</strong><br>
-                    <small>CPF: ${p.cpf || "-"}</small>
-                </div>
+];
 
-                <div>
-                    <button class="btn azul"
-                    onclick='selecionar(${JSON.stringify(p)})'>
-                    Selecionar
-                    </button>
 
-                    <button class="btn verde-btn"
-                    onclick='chamarTV(${JSON.stringify(p)})'>
-                    📺 TV
-                    </button>
-                </div>
-            `;
+if(temperatura>=39){
 
-            div.appendChild(item);
-        });
-    })
-    .catch(() => {
-        document.getElementById("fila-pacientes").innerHTML =
-            "<p style='color:red'>Erro ao carregar pacientes.</p>";
-    });
+return "vermelho";
+
 }
 
-function selecionar(p) {
 
-    pacienteSelecionado = p;
+if(vermelhos.includes(sintoma)){
 
-    document.getElementById("nome").value = p.nome || "";
+return "vermelho";
 
-    alert("Paciente selecionado: " + p.nome);
 }
 
-function chamarTV(p) {
 
-    fetch("/tv/chamar", {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            localTipo:"GUICHÊ",
-            localNumero:"01",
-            paciente:p.nome
-        })
-    })
-    .then(r => r.json())
-    .then(() => {
-        alert("📺 " + p.nome + " chamado no guichê 01!");
-    })
-    .catch(() => {
-        alert("Erro ao chamar paciente.");
-    });
+if(amarelos.includes(sintoma)){
+
+return "amarelo";
+
 }
 
-function risco(sintoma,temp) {
 
-    if (
-        temp >= 39 ||
-        ["infarto","avc","convulsao",
-         "hemorragia","falta_ar_grave"].includes(sintoma)
-    )
-        return "vermelho";
+return "verde";
 
-    if (
-        temp >= 38 ||
-        ["febre","vomito","diarreia",
-         "falta_ar_moderada"].includes(sintoma)
-    )
-        return "amarelo";
 
-    return "verde";
 }
 
-function salvar() {
 
-    const nome = document.getElementById("nome").value.trim();
-    const sintoma = document.getElementById("sintoma").value;
-    const temp = Number(document.getElementById("temp").value);
 
-    if (!nome)
-        return alert("Informe o nome.");
+function salvar(){
 
-    if (!sintoma)
-        return alert("Selecione o sintoma.");
 
-    const dados = {
-        pacienteId: pacienteSelecionado?.id || null,
-        nome,
-        idade: document.getElementById("idade").value,
-        sexo: document.getElementById("sexo").value,
-        peso: document.getElementById("peso").value,
-        altura: document.getElementById("altura").value,
-        sintoma,
-        temperatura:temp,
-        pressao:document.getElementById("pressao").value,
-        frequencia:document.getElementById("frequencia").value,
-        saturacao:document.getElementById("saturacao").value,
-        alergia:document.getElementById("alergia").value,
-        medicamentos:document.getElementById("medicamentos").value,
-        doencas:document.getElementById("doencas").value,
-        observacao:document.getElementById("observacao").value,
-        risco:risco(sintoma,temp)
-    };
+const nome=document.getElementById("nome").value;
 
-    fetch("/triagem", {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(dados)
-    })
-    .then(r => r.json())
-    .then(data => {
 
-        document.getElementById("resultado").innerText =
-            "Classificação: " + data.risco.toUpperCase();
+const sintoma=document.getElementById("sintoma").value;
 
-        pacienteSelecionado = null;
 
-        document.querySelectorAll(
-            "input,textarea"
-        ).forEach(e => e.value = "");
+const temperatura=
 
-        document.getElementById("sexo").value = "";
-        document.getElementById("sintoma").value = "";
+Number(
+document.getElementById("temp").value
+);
 
-        carregarPacientes();
 
-        alert("✅ Triagem salva!");
-    })
-    .catch(() => alert("❌ Erro ao salvar."));
+const alergia=document.getElementById("alergia").value;
+
+
+const observacao=document.getElementById("observacao").value;
+
+
+const risco=
+
+classificarRisco(
+sintoma,
+temperatura
+);
+
+
+
+fetch("http://localhost:3000/triagem",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+nome,
+
+sintoma,
+
+temperatura,
+
+alergia,
+
+observacao,
+
+risco
+
+})
+
+})
+
+
+.then(r=>r.json())
+
+
+.then(()=>{
+
+
+const resultado=document.getElementById("resultado");
+
+
+resultado.className=risco;
+
+
+resultado.innerHTML=
+
+"Classificação: "+
+
+risco.toUpperCase();
+
+
+alert("Triagem salva com sucesso");
+
+
+});
+
+
 }
 
-carregarPacientes();
-
-setInterval(carregarPacientes,5000);
 
 </script>
+
+
 </body>
 
 </html>

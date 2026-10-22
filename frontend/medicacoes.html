@@ -4,12 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Medicações Prescritas</title>
 
-<link rel="icon" type="image/png" href="css/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,90 +22,40 @@
 }
 
 body{
+
     font-family:'Cinzel',serif;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 
     background:
-        linear-gradient(rgba(0, 0, 0, 0.701), rgba(0, 0, 0, 0.632)),
-        url("css/fundo.png");
+    linear-gradient(rgba(18,10,0,.80),rgba(18,10,0,.80)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 
-    overflow:hidden;
+    color:#f5deb3;
+
+    padding:40px;
+
 }
 
 .container{
 
-    max-width:1100px;
+    max-width:900px;
 
     margin:auto;
 
-    background:rgba(18,18,18,.92);
+    background:rgba(35,18,8,.92);
 
-    border:2px solid #9c7a3d;
+    border:3px solid #8b5a2b;
 
-    border-radius:15px;
+    border-radius:10px;
 
     padding:35px;
 
     box-shadow:
-    0 0 40px #000,
-    inset 0 0 20px rgba(255,255,255,.05);
-
-}
-/* Logo */
-
-.logo{
-
-    width:130px;
-
-    height:130px;
-
-    object-fit:contain;
-
-    display:block;
-
-    margin:0 auto 15px;
-
-    filter:
-        drop-shadow(0 0 10px #FFD700)
-        drop-shadow(0 0 25px rgba(255,215,0,.6));
-
-    transition:.3s;
-
-}
-
-h1{
-
-    text-align:center;
-
-    font-size:70px;
-
-    text-shadow:0 0 20px gold;
-
-}
-
-h1 img{
-
-    width: 30%;
-    
-}
-
-p.logo{
-
-    text-align:center;
-
-    color:#c9a34f;
-
-    letter-spacing:6px;
-
-    margin:10px 0;
+    0 0 40px rgba(0,0,0,.7),
+    inset 0 0 15px rgba(255,180,60,.08);
 
 }
 
@@ -111,99 +63,79 @@ h2{
 
     text-align:center;
 
-    color:#f4e6c6;
+    font-size:34px;
 
-    margin-bottom:35px;
+    margin-bottom:30px;
 
-}
+    letter-spacing:2px;
 
-#listaMedicacoes{
+    color:#f5d28d;
 
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-    gap:25px;
+    text-shadow:2px 2px 5px #000;
 
 }
 
 .card{
 
-    background:#242424;
+    background:#3a2415;
 
-    border:2px solid #8f6f33;
+    border-left:8px solid #b8860b;
 
-    border-radius:12px;
+    border-radius:8px;
 
-    padding:22px;
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.45);
 
     transition:.3s;
-
-    box-shadow:0 0 12px rgba(0,0,0,.4);
 
 }
 
 .card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-4px);
 
-    box-shadow:0 0 22px rgba(212,175,55,.55);
+    box-shadow:0 8px 20px rgba(255,180,60,.2);
 
 }
 
 .card h3{
 
-    color:#ffd98a;
+    color:#ffd27a;
 
     margin-bottom:15px;
 
-    text-align:center;
+    font-size:24px;
 
 }
 
 .card p{
 
-    color:#ddd;
+    margin:10px 0;
 
-    line-height:1.8;
+    line-height:1.6;
 
-    letter-spacing:.5px;
-
-}
-
-.card b{
-
-    color:#d6b15d;
+    color:#f0d9a8;
 
 }
 
-.vazio{
+b{
+
+    color:#ffcf6d;
+
+}
+
+.sem{
 
     text-align:center;
 
-    font-size:20px;
+    color:#d7b882;
 
-    color:#c8c8c8;
+    font-size:18px;
 
-    padding:40px;
-
-    border:2px dashed #8f6f33;
-
-    border-radius:10px;
-
-}
-
-.footer{
-
-    margin-top:35px;
-
-    text-align:center;
-
-    color:#888;
-
-    letter-spacing:3px;
-
-    font-size:13px;
+    padding:30px;
 
 }
 
@@ -215,23 +147,9 @@ h2{
 
 <div class="container">
 
-<h1>
-
-<img src="css/favicon.png"
-     alt="Logo do Sistema"
-     class="logo">
-
-</h1>
-
-<!-- <p class="logo">GOD IS GOOD</p> -->
-
 <h2>💊 Medicações Prescritas</h2>
 
 <div id="listaMedicacoes"></div>
-
-<div class="footer">
-🩺 Medical System 🩺
-</div>
 
 </div>
 
@@ -251,7 +169,7 @@ div.innerHTML="";
 
 if(data.length===0){
 
-div.innerHTML='<div class="vazio">📜 Nenhuma medicação prescrita.</div>';
+div.innerHTML='<div class="sem">Nenhuma medicação prescrita.</div>';
 
 return;
 
@@ -263,13 +181,13 @@ div.innerHTML+=`
 
 <div class="card">
 
-<h3>${c.paciente}</h3>
+<h3>👤 ${c.paciente}</h3>
 
-<p><b>💊 Medicação:</b><br>${c.medicacao}</p>
+<p><b>💊 Medicação:</b> ${c.medicacao}</p>
 
-<p><b>🩺 Diagnóstico:</b><br>${c.diagnostico}</p>
+<p><b>🩺 Diagnóstico:</b> ${c.diagnostico}</p>
 
-<p><b>📝 Observações:</b><br>${c.obs || "Nenhuma"}</p>
+<p><b>📝 Observações:</b> ${c.obs || "Nenhuma observação."}</p>
 
 </div>
 
@@ -286,5 +204,4 @@ carregarMedicacoesPrescritas();
 </script>
 
 </body>
-
 </html>

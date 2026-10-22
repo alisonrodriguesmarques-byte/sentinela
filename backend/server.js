@@ -5,236 +5,147 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-const DB = path.join(__dirname, "db.json");
+const DB_FILE = path.join(__dirname, "db.json");
 
 function readDB() {
-    if (!fs.existsSync(DB)) {
-        return {
-            usuarios: [],
-            pacientes: [],
-            triagens: [],
-            consultas: [],
-            tv: null,
-            historicoTV: []
-        };
-    }
+  if (!fs.existsSync(DB_FILE)) {
+    return {
+      usuarios: [],
+      pacientes: [],
+      triagens: [],
+      consultas: []
+    };
+  }
 
-    const db = JSON.parse(fs.readFileSync(DB, "utf8"));
-
-    db.usuarios ||= [];
-    db.pacientes ||= [];
-    db.triagens ||= [];
-    db.consultas ||= [];
-    db.historicoTV ||= [];
-    db.tv ||= null;
-
-    return db;
+  return JSON.parse(fs.readFileSync(DB_FILE));
 }
 
-function writeDB(db) {
-    fs.writeFileSync(DB, JSON.stringify(db, null, 2));
+function writeDB(data) {
+  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 }
 
-/* LOGIN */
+// LOGIN
 app.post("/login", (req, res) => {
-    try {
-        const db = readDB();
+  const db = readDB();
 
-        const { usuario, senha } = req.body;
+  const user = db.usuarios.find(u =>
+    u.usuario === req.body.usuario &&
+    u.senha === req.body.senha
+  );
 
-        if (!usuario || !senha) {
-            return res.status(400).json({
-                erro: "Usuário e senha são obrigatórios"
-            });
-        }
+  if (!user) {
+    return res.status(401).json({
+      erro: "Login inválido"
+    });
+  }
 
-        const user = db.usuarios.find(u =>
-            u.usuario === usuario &&
-            u.senha === senha
-        );
-
-        if (!user) {
-            return res.status(401).json({
-                erro: "Usuário ou senha incorretos"
-            });
-        }
-
-        return res.status(200).json({
-            sucesso: true,
-            tipo: user.tipo,
-            usuario: user.usuario
-        });
-
-    } catch (error) {
-        console.error("Erro no login:", error);
-
-        return res.status(500).json({
-            erro: "Erro interno do servidor"
-        });
-    }
+  res.json(user);
 });
 
-/* CADASTRAR PACIENTE */
+// ATENDIMENTO
 app.post("/atendimento", (req, res) => {
-    const db = readDB();
+  const db = readDB();
 
-    const paciente = {
-        id: Date.now(),
-        nome: req.body.nome,
-        cpf: req.body.cpf || "",
-        tipo: req.body.tipo || "",
-        status: "triagem",
-        createdAt: new Date().toISOString()
-    };
+  const paciente = {
+    id: Date.now(),
+    nome: req.body.nome,
+    cpf: req.body.cpf,
+    tipo: req.body.tipo,
+    status: "triagem",
+    createdAt: new Date()
+  };
 
-    db.pacientes.push(paciente);
-    writeDB(db);
+  db.pacientes.push(paciente);
+  writeDB(db);
 
-    res.json(paciente);
+  res.json(paciente);
 });
 
-/* LISTAR PACIENTES */
-app.get("/pacientes", (req, res) => {
-    res.json(readDB().pacientes);
-});
-
-/* SALVAR TRIAGEM */
+// TRIAGEM
 app.post("/triagem", (req, res) => {
-    const db = readDB();
+  const db = readDB();
 
-    const pacienteId = req.body.pacienteId || null;
-    const temperatura = Number(req.body.temperatura) || 0;
+  let risco = req.body.risco;
 
-    let risco = req.body.risco || "verde";
+  if (req.body.temperatura >= 39) {
+    risco = "vermelho";
+  } else if (req.body.temperatura >= 38) {
+    risco = "amarelo";
+  } else if (!risco) {
+    risco = "verde";
+  }
 
-    if (temperatura >= 39) risco = "vermelho";
-    else if (temperatura >= 38) risco = "amarelo";
+  const triagem = {
+    id: Date.now(),
+    nome: req.body.nome,
+    sintoma: req.body.sintoma,
+    temperatura: req.body.temperatura,
+    alergia: req.body.alergia,
+    observacao: req.body.observacao,
+    risco,
+    status: "aguardando_medico",
+    createdAt: new Date()
+  };
 
-    const triagem = {
-        id: Date.now(),
-        pacienteId,
-        nome: req.body.nome,
-        idade: req.body.idade,
-        sexo: req.body.sexo,
-        peso: req.body.peso,
-        altura: req.body.altura,
-        sintoma: req.body.sintoma,
-        temperatura,
-        pressao: req.body.pressao,
-        frequencia: req.body.frequencia,
-        saturacao: req.body.saturacao,
-        alergia: req.body.alergia,
-        medicamentos: req.body.medicamentos,
-        doencas: req.body.doencas,
-        observacao: req.body.observacao,
-        risco,
-        status: "aguardando_medico",
-        createdAt: new Date().toISOString()
-    };
+  db.triagens.push(triagem);
+  writeDB(db);
 
-    db.triagens.push(triagem);
-
-    const paciente = db.pacientes.find(p =>
-        pacienteId
-            ? String(p.id) === String(pacienteId)
-            : p.nome?.toLowerCase() === req.body.nome?.toLowerCase()
-              && p.status === "triagem"
-    );
-
-    if (paciente) {
-        paciente.status = "aguardando_medico";
-        paciente.triagemId = triagem.id;
-    }
-
-    writeDB(db);
-    res.json(triagem);
+  res.json(triagem);
 });
 
-/* TRIAGENS */
+// LISTAR TRIAGENS
 app.get("/triagens", (req, res) => {
-    res.json(readDB().triagens);
+  const db = readDB();
+  res.json(db.triagens);
 });
 
-/* CONSULTA */
+// IMPLEMENTADO: rota com lista fixa de medicações
+app.get("/lista-medicacoes", (req, res) => {
+  res.json([
+    "Dipirona",
+    "Paracetamol",
+    "Ibuprofeno",
+    "Amoxicilina",
+    "Azitromicina",
+    "Loratadina",
+    "Omeprazol",
+    "Buscopan",
+    "Dramin",
+    "Soro fisiológico"
+  ]);
+});
+
+// CONSULTA
 app.post("/consulta", (req, res) => {
-    const db = readDB();
+  const db = readDB();
 
-    const consulta = {
-        id: Date.now(),
-        pacienteId: req.body.pacienteId || null,
-        paciente: req.body.paciente,
-        diagnostico: req.body.diagnostico,
-        medicacao: req.body.medicacao,
-        obs: req.body.obs,
-        createdAt: new Date().toISOString()
-    };
+  const consulta = {
+    id: Date.now(),
+    paciente: req.body.paciente,
+    diagnostico: req.body.diagnostico,
+    medicacao: req.body.medicacao,
+    obs: req.body.obs,
+    createdAt: new Date()
+  };
 
-    db.consultas.push(consulta);
+  db.consultas.push(consulta);
+  writeDB(db);
 
-    const paciente = db.pacientes.find(p =>
-        String(p.id) === String(consulta.pacienteId)
-    );
-
-    if (paciente) {
-        paciente.status = "atendido";
-        paciente.consultaId = consulta.id;
-    }
-
-    writeDB(db);
-    res.json(consulta);
+  res.json(consulta);
 });
 
-/* CHAMAR NA TV */
-app.post("/tv/chamar", (req, res) => {
-    const db = readDB();
-
-    const chamada = {
-        id: Date.now(),
-        localTipo: req.body.localTipo || "GUICHÊ",
-        localNumero: req.body.localNumero || "01",
-        paciente: req.body.paciente || "",
-        criadaEm: new Date().toISOString()
-    };
-
-    db.tv = chamada;
-    db.historicoTV.unshift(chamada);
-    db.historicoTV = db.historicoTV.slice(0, 10);
-
-    writeDB(db);
-
-    res.json({
-        sucesso: true,
-        chamada
-    });
+// MEDICAÇÕES
+app.get("/medicacoes", (req, res) => {
+  const db = readDB();
+  res.json(db.consultas);
 });
 
-/* TV - ATUAL */
-app.get("/tv/chamada", (req, res) => {
-    const db = readDB();
-
-    res.json({
-        chamada: db.tv,
-        historico: db.historicoTV
-    });
-});
-
-/* LIMPAR TV */
-app.post("/tv/limpar", (req, res) => {
-    const db = readDB();
-
-    db.tv = null;
-
-    writeDB(db);
-
-    res.json({ sucesso: true });
-});
-
-const POST = process.env.POST || 3000;
-
-app.listen(POST, () => {
-  console.log(`🏥 Hospital Pro rodando em ${POST}`);
+// START
+app.listen(3000, () => {
+  console.log("🏥 Hospital Pro rodando em http://localhost:3000");
 });
