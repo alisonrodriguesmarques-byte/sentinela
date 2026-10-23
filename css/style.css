@@ -1,76 +1,38 @@
-body{
-  font-family: Arial;
-  background:#ffff;
-  margin:0;
-
-}
-
-.container{
-  width:90%;
-  max-width:900px;
-  margin:20px auto;
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
- position: relative;
- top: 300px;
- text-align: center;
-}
-
-input,
-select,
-textarea,
-button{
-  width:100%;
-  padding: 12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  font-size:16px;
-}
-
-textarea{
-  min-height:100px;
-  resize:none;
-}
-
-button{
-  background:#0fafa4;
-  color:white;
-  border:none;
-  cursor:pointer;
-}
-
-button:hover{
-  background:#2980b9;
-}
-
-.card{
-  border:1px solid #ddd;
-  padding:15px;
-  margin:15px 0;
-  border-radius:10px;
-  background:white;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
-
-.verde{
-  background:#2ecc71;
-  color:white;
-  padding:5px 10px;
-  border-radius:6px;
-}
-
-.amarelo{
-  background:#f1c40f;
-  padding:5px 10px;
-  border-radius:6px;
-}
-
-.vermelho{
-  background:#e74c3c;
-  color:white;
-  padding:5px 10px;
-  border-radius:6px;
-}
+/* SENTINELA • Identidade visual hospitalar profissional */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--hospital-navy:#12304a;--hospital-blue:#176b87;--hospital-teal:#13a89e;--hospital-bg:#f3f7fa;--hospital-text:#243746;--hospital-muted:#687d8c;--hospital-border:#dce6ec;--hospital-white:#fff;--hospital-shadow:0 12px 34px rgba(20,55,75,.09)}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body:not(:has(.tv-container)){font-family:Inter,'Segoe UI',Arial,sans-serif!important;background:linear-gradient(145deg,#f5f9fc 0%,#edf4f7 100%)!important;color:var(--hospital-text)!important;margin:0!important;min-height:100vh;line-height:1.5}
+body:not(:has(.tv-container)) h1,body:not(:has(.tv-container)) h2,body:not(:has(.tv-container)) h3{color:var(--hospital-navy);letter-spacing:-.025em}
+body:not(:has(.tv-container)) .container{width:min(94%,1180px)!important;max-width:1180px!important;margin:28px auto!important;padding:clamp(20px,3vw,36px)!important;background:#fff!important;border:1px solid rgba(210,225,234,.9)!important;border-radius:18px!important;box-shadow:var(--hospital-shadow)!important;position:static!important;top:auto!important;text-align:left}
+body:not(:has(.tv-container)) .login-card{width:min(92%,440px)!important;margin:auto!important;padding:38px!important;background:#fff!important;border:1px solid var(--hospital-border)!important;border-radius:22px!important;box-shadow:0 24px 65px rgba(18,48,74,.16)!important}
+body:not(:has(.tv-container)) .login-header{text-align:center;margin-bottom:26px}
+body:not(:has(.tv-container)) input,body:not(:has(.tv-container)) select,body:not(:has(.tv-container)) textarea{font:inherit!important;color:var(--hospital-text)!important;background:#fbfdfe!important;border:1px solid #cddbe3!important;border-radius:10px!important;padding:12px 14px!important;max-width:100%;transition:border-color .18s,box-shadow .18s}
+body:not(:has(.tv-container)) input:focus,body:not(:has(.tv-container)) select:focus,body:not(:has(.tv-container)) textarea:focus{outline:none!important;border-color:var(--hospital-teal)!important;box-shadow:0 0 0 3px rgba(19,168,158,.14)!important;background:#fff!important}
+body:not(:has(.tv-container)) button,body:not(:has(.tv-container)) .btn-submit,body:not(:has(.tv-container)) .btn-cadastrar{font:600 15px Inter,'Segoe UI',sans-serif!important;background:linear-gradient(135deg,var(--hospital-blue),var(--hospital-teal))!important;color:white!important;border:0!important;border-radius:10px!important;padding:12px 18px!important;cursor:pointer;box-shadow:0 5px 12px rgba(23,107,135,.15);transition:transform .18s,filter .18s,box-shadow .18s}
+body:not(:has(.tv-container)) button:hover,body:not(:has(.tv-container)) .btn-submit:hover,body:not(:has(.tv-container)) .btn-cadastrar:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 8px 18px rgba(23,107,135,.2)}
+body:not(:has(.tv-container)) a{color:var(--hospital-blue)}
+body:not(:has(.tv-container)) .card,body:not(:has(.tv-container)) .panel,body:not(:has(.tv-container)) .quick-access-panel,body:not(:has(.tv-container)) .dashboard-grid>section{background:#fff!important;border:1px solid var(--hospital-border)!important;border-radius:14px!important;box-shadow:0 5px 18px rgba(20,55,75,.055)!important}
+body:not(:has(.tv-container)) .card{padding:20px!important;margin:14px 0!important}
+body:not(:has(.tv-container)) .panel{padding:22px!important}
+body:not(:has(.tv-container)) .panel-title,body:not(:has(.tv-container)) .card-header,body:not(:has(.tv-container)) .quick-access-title{color:var(--hospital-navy)!important;font-weight:700!important}
+body:not(:has(.tv-container)) .verde{background:#d9f6e9!important;color:#14764c!important;border-radius:999px!important;padding:5px 11px!important;font-weight:700}
+body:not(:has(.tv-container)) .amarelo{background:#fff0c2!important;color:#8a5a00!important;border-radius:999px!important;padding:5px 11px!important;font-weight:700}
+body:not(:has(.tv-container)) .vermelho{background:#ffe1e1!important;color:#a62828!important;border-radius:999px!important;padding:5px 11px!important;font-weight:700}
+body:not(:has(.tv-container)) .btn-tv,body:not(:has(.tv-container)) .btn-abrir-tv{background:#e6f6f5!important;color:#087c78!important;border:1px solid #b8e6e2!important;box-shadow:none!important}
+body:not(:has(.tv-container)) .btn-logout,body:not(:has(.tv-container)) .btn-nav{border-radius:9px!important}
+body:not(:has(.tv-container)) .alert-banner,body:not(:has(.tv-container)) .error-msg{border-radius:10px!important}
+body:not(:has(.tv-container)) .atendimento-grid{gap:22px!important}
+body:not(:has(.tv-container)) .form-group{margin-bottom:16px!important}
+body:not(:has(.tv-container)) label{display:block;color:#40596a;font-size:14px;font-weight:600;margin-bottom:6px}
+/* Painel de chamada: alto contraste e leitura à distância */
+body:has(.tv-container){background:#edf4f7!important;color:var(--hospital-text)!important;font-family:Inter,'Segoe UI',Arial,sans-serif!important}
+.tv-container{gap:20px!important}
+.tv-container .box{border:1px solid rgba(255,255,255,.18)!important;border-radius:20px!important;box-shadow:0 14px 35px rgba(10,40,60,.18)!important;overflow:hidden}
+.tv-container .local-box,.tv-container .history-box{background:linear-gradient(145deg,#12304a,#176b87)!important;color:#fff!important}
+.tv-container .patient-box{background:linear-gradient(135deg,#087f8c,#13a89e)!important;color:#fff!important}
+.tv-container .logo-box{background:#fff!important;color:#12304a!important;border:1px solid #dce6ec!important}
+.tv-container .box-title{letter-spacing:.08em!important;font-weight:800!important}
+.tv-container .local-number,.tv-container .patient-name{font-weight:800!important}
+@media(max-width:760px){body:not(:has(.tv-container)) .container{width:94%!important;margin:14px auto!important;padding:18px!important;border-radius:14px!important}body:not(:has(.tv-container)) .login-card{padding:25px!important}.tv-container{width:96vw!important;gap:10px!important}}
