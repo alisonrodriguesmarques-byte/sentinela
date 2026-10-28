@@ -6,355 +6,170 @@
   <title>Hospital Pro - Recepção & Atendimento</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #eff6ff;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --dark: #0f172a;
-      --slate-700: #334155;
-      --slate-500: #64748b;
-      --slate-400: #94a3b8;
-      --slate-200: #e2e8f0;
-      --slate-100: #f8fafc;
-      --radius: 10px;
-    }
 
-    body {
-      background: #f1f5f9;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: var(--slate-700);
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    /* Container */
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: 24px auto 40px;
-      background: #ffffff;
-      padding: 28px 32px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      border: 1px solid var(--slate-200);
-    }
+body{
+    font-family:'Cinzel',serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    /* Header */
-    .atendimento-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 24px;
-      padding-bottom: 18px;
-      border-bottom: 1.5px solid var(--slate-200);
-    }
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.701), rgba(0, 0, 0, 0.632)),
+        url("css/fundo.png");
 
-    .header-title-group h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
-    .header-title-group p {
-      margin: 4px 0 0;
-      font-size: 14px;
-      color: var(--slate-500);
-    }
+    overflow:hidden;
+}
 
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+.container{
+    width:430px;
+    padding:40px;
+    text-align:center;
+    background:rgba(20,20,20,.88);
+    border:2px solid #9c7a3d;
+    border-radius:12px;
+    box-shadow:
+    0 0 30px #000,
+    inset 0 0 20px rgba(255,255,255,.05);
+}
 
-    .btn-abrir-tv {
-      background: #17a2b8;
-      color: white;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
+/* Logo */
 
-    .btn-abrir-tv:hover {
-      background: #138496;
-    }
+.logo{
+    width:130px;
+    height:130px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
+    filter:
+        drop-shadow(0 0 10px #FFD700)
+        drop-shadow(0 0 25px rgba(255,215,0,.6));
+    transition:.3s;
+}
 
-    .btn-logout {
-      background: #e2e8f0;
-      color: var(--slate-700);
-      border: none;
-      padding: 9px 14px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
+h1{
+    font-size:70px;
+    margin: 0px;
+    text-shadow:0 0 20px gold;
+}
 
-    .btn-logout:hover {
-      background: #cbd5e1;
-    }
+h1 img{
+    width: 50%;
+}
 
-    /* Grid Layout */
-    .atendimento-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      align-items: start;
-    }
+p{
+    color:#c9a34f;
+    letter-spacing:5px;
+    margin-bottom:10px;
+}
 
-    @media (max-width: 860px) {
-      .atendimento-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+h2{
+    color:#f4ead0;
+    margin-bottom:30px;
+}
 
-    /* Card Panels */
-    .panel {
-      background: #ffffff;
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
+input,
+select{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    background:#2d2d2d;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+    transition:.3s;
+}
 
-    .panel-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--dark);
-      margin: 0 0 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+input:focus,
+select:focus{
+    background:#3d3d3d;
+    box-shadow:0 0 12px #b48a39;
+}
 
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 16px;
-    }
+.upload{
+    border:2px dashed #9c7a3d;
+    padding:18px;
+    border-radius:10px;
+    margin:15px 0;
+    background:rgba(255,255,255,.03);
+}
 
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--slate-700);
-      margin-bottom: 6px;
-    }
+.upload label{
+    display:block;
+    color:#d9c28d;
+    margin-bottom:10px;
+}
 
-    .form-group label small {
-      font-weight: 400;
-      color: var(--slate-400);
-    }
+input[type=file]{
+    background:none;
+    padding:5px;
+}
 
-    input, select {
-      width: 100%;
-      padding: 12px 14px;
-      margin-top: 0;
-      border-radius: 8px;
-      border: 1.5px solid var(--slate-200);
-      font-size: 15px;
-      font-family: inherit;
-      color: var(--dark);
-      box-sizing: border-box;
-      background: #ffffff;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+input[type=file]::file-selector-button{
+    background:linear-gradient(#e0c17a,#9f7635);
+    color:#111;
+    border:none;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    font-family:'Cinzel',serif;
+    font-weight:bold;
+}
 
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
+input[type=file]::file-selector-button:hover{
+    box-shadow:0 0 15px #d6b15d;
+}
 
-    /* File upload box */
-    .file-upload-box {
-      border: 1.5px dashed var(--slate-200);
-      background: var(--slate-100);
-      padding: 14px;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    font-size:18px;
+    font-family:'Cinzel',serif;
+    font-weight:bold;
+    color:#111;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:linear-gradient(#e0c17a,#9f7635);
+    transition:.3s;
+}
 
-    .file-upload-box:hover {
-      border-color: var(--primary);
-      background: var(--primary-light);
-    }
+button:hover{
 
-    .file-upload-box input[type="file"] {
-      border: none;
-      padding: 4px;
-      background: transparent;
-      cursor: pointer;
-      font-size: 13px;
-    }
+    /* transform:scale(1.02); */
 
-    /* Submit Button */
-    .btn-cadastrar {
-      width: 100%;
-      padding: 14px;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
-    }
+    /* box-shadow:
+    0 0 15px #d6b15d; */
 
-    .btn-cadastrar:hover {
-      background: #218838;
-      transform: translateY(-1px);
-    }
+    background:linear-gradient(#9f7635, #e3c77f);
+    
+}
 
-    .btn-cadastrar:active {
-      transform: translateY(0);
-    }
+button:active{
+    transform:scale(.98);
+}
 
-    /* Alert Banner */
-    .alert-banner {
-      display: none;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-bottom: 18px;
-      font-weight: 500;
-    }
-
-    .alert-banner.success {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      color: #065f46;
-    }
-
-    /* Right column: Recent Patients */
-    .fila-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .btn-refresh {
-      background: #6c757d;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 0.2s;
-    }
-
-    .btn-refresh:hover {
-      background: #5a6268;
-    }
-
-    .pacientes-lista {
-      max-height: 440px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .paciente-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--slate-100);
-      border: 1px solid var(--slate-200);
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      transition: all 0.2s;
-    }
-
-    .paciente-item:hover {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
-    }
-
-    .paciente-info strong {
-      display: block;
-      color: var(--dark);
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-
-    .paciente-meta {
-      font-size: 12px;
-      color: var(--slate-500);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .tag-tipo {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-    }
-
-    .tag-convenio {
-      background: #e0e7ff;
-      color: #3730a3;
-    }
-
-    .tag-particular {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .badge-status {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: #dbeafe;
-      color: #1e40af;
-      white-space: nowrap;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 30px 10px;
-      color: var(--slate-400);
-      font-size: 14px;
-    }
-  </style>
+.footer{
+    margin-top:25px;
+    color:#8d8d8d;
+    font-size:12px;
+    letter-spacing:2px;
+}
+</style>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
