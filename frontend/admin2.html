@@ -5,6 +5,229 @@
   <title>Admin - Cadastro Simples</title>
   <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Cinzel', serif;
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        background:
+            linear-gradient(
+                rgba(0, 0, 0, 0.491),
+                rgba(0, 0, 0, 0.582)
+            ),
+            url("css/fundo.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+
+        background: linear-gradient(
+            rgba(255, 255, 255, .03),
+            rgba(0, 0, 0, .15)
+        );
+
+        backdrop-filter: blur(2px);
+        pointer-events: none;
+    }
+
+    .conteiner {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 45px;
+
+        background: rgba(18, 18, 18, .90);
+
+        border: 2px solid #9c7a3d;
+        border-radius: 14px;
+
+        box-shadow:
+            0 0 40px black,
+            inset 0 0 20px rgba(255, 255, 255, .05);
+    }
+
+    .conteiner > a {
+        display: inline-block;
+        margin-bottom: 20px;
+
+        color: #b48a39;
+        text-decoration: none;
+        font-size: 14px;
+        letter-spacing: 1px;
+
+        transition: .3s;
+    }
+
+    .conteiner > a:hover {
+        color: #e3c77f;
+        text-shadow: 0 0 10px rgba(227, 199, 127, .6);
+    }
+
+    h2 {
+        color: #efe3c1;
+        margin-bottom: 30px;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    h3 {
+        color: #efe3c1;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    input,
+    select {
+        display: block;
+        width: 100%;
+
+        padding: 15px;
+        margin: 12px 0;
+
+        background: #2d2d2d;
+        color: white;
+
+        border: none;
+        border-radius: 8px;
+        outline: none;
+
+        font-size: 16px;
+        font-family: 'Cinzel', serif;
+        transition: .3s;
+    }
+
+    input::placeholder {
+        color: #bdbdbd;
+    }
+
+    input:focus,
+    select:focus {
+        background: #3c3c3c;
+        box-shadow: 0 0 15px #b48a39;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    select option {
+        background: #2d2d2d;
+        color: white;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+
+        margin-top: 20px;
+        padding: 15px;
+
+        border: none;
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        font-size: 18px;
+        font-family: 'Cinzel', serif;
+        font-weight: bold;
+
+        color: #111;
+
+        background: linear-gradient(
+            #e3c77f,
+            #9f7635
+        );
+
+        transition: .3s;
+    }
+
+    button:hover {
+        background: linear-gradient(
+            #9f7635,
+            #e3c77f
+        );
+    }
+
+    button:active {
+        transform: scale(.98);
+    }
+
+    button:disabled {
+        background: #4a4a4a;
+        color: #888;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    hr {
+        margin: 30px 0 !important;
+        border: none !important;
+        border-top: 1px solid #9c7a3d !important;
+        opacity: .6;
+    }
+
+    .card {
+        margin: 10px 0;
+        padding: 15px;
+
+        color: #efe3c1;
+        background: #2d2d2d;
+
+        border-left: 4px solid #b48a39;
+        border-radius: 8px;
+
+        overflow-wrap: anywhere;
+        transition: .3s;
+    }
+
+    .card:hover {
+        background: #3c3c3c;
+        box-shadow: 0 0 15px rgba(180, 138, 57, .4);
+    }
+
+    #listaUsuarios {
+        color: #bdbdbd;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    .mensagem {
+        margin-top: 15px;
+
+        color: #e3c77f;
+
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+    .erro {
+        color: #ff6b6b;
+    }
+</style>
 </head>
 <body>
 
