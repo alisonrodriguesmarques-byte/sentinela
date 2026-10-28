@@ -3,48 +3,774 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .btn-tv {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 8px;
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+    font-family:'Cinzel',serif;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:30px 20px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.75),
+            rgba(0,0,0,.70)
+        ),
+        url("css/fundo.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    background-attachment:fixed;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    background:rgba(18,18,18,.94);
+
+    border:2px solid #9c7a3d;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    box-shadow:
+        0 0 40px #000,
+        inset 0 0 20px rgba(255,255,255,.05);
+
+}
+
+
+/* =====================================================
+   TOPO
+===================================================== */
+
+.topo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo{
+
+    width:130px;
+
+    height:130px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:15px auto;
+
+    filter:
+        drop-shadow(0 0 10px #FFD700)
+        drop-shadow(0 0 25px rgba(255,215,0,.6));
+
+}
+
+
+/* =====================================================
+   TÍTULOS
+===================================================== */
+
+h1{
+
+    text-align:center;
+
+}
+
+
+h2{
+
+    text-align:center;
+
+    color:#f2e6c6;
+
+    margin:15px 0 35px;
+
+    font-size:32px;
+
+}
+
+
+h3{
+
+    color:#d8b46a;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =====================================================
+   BOTÃO TV
+===================================================== */
+
+.btn-abrir-tv{
+
+    background:
+        linear-gradient(
+            #e0c17a,
+            #9f7635
+        );
+
+    color:#111;
+
+    border:none;
+
+    padding:13px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-family:'Cinzel',serif;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+.btn-abrir-tv:hover{
+
+    background:
+        linear-gradient(
+            #9f7635,
+            #e3c77f
+        );
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =====================================================
+   CONSULTÓRIO
+===================================================== */
+
+.consultorio-input{
+
+    background:#242424;
+
+    border:1px solid #9c7a3d;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+.consultorio-input label{
+
+    font-weight:bold;
+
+    color:#ffe6a3;
+
+    margin-right:10px;
+
+}
+
+
+.consultorio-input input{
+
+    width:70px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    padding:7px;
+
+    border:1px solid #9c7a3d;
+
+    border-radius:6px;
+
+    background:#181818;
+
+    color:#fff;
+
+}
+
+
+.consultorio-input span{
+
+    color:#777;
+
+    font-size:13px;
+
+    margin-left:10px;
+
+}
+
+
+/* =====================================================
+   RESUMO DAS PRIORIDADES
+===================================================== */
+
+.resumo-prioridades{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:40px;
+
+}
+
+
+.resumo{
+
+    padding:20px;
+
+    border-radius:10px;
+
+    background:#242424;
+
+    border:1px solid #555;
+
+    text-align:center;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+
+.resumo:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 20px rgba(212,175,55,.35);
+
+}
+
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+
+.resumo .numero{
+
+    display:block;
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+}
+
+
+.resumo .texto{
+
+    display:block;
+
+    font-size:14px;
+
+    color:#ccc;
+
+    letter-spacing:1px;
+
+}
+
+
+/* =====================================================
+   P1
+===================================================== */
+
+.resumo-p1{
+
+    border-color:#9b1c1c;
+
+}
+
+
+.resumo-p1 .numero{
+
+    color:#ff3333;
+
+}
+
+
+/* =====================================================
+   P2
+===================================================== */
+
+.resumo-p2{
+
+    border-color:#b8860b;
+
+}
+
+
+.resumo-p2 .numero{
+
+    color:#ffd43b;
+
+}
+
+
+/* =====================================================
+   P3
+===================================================== */
+
+.resumo-p3{
+
+    border-color:#1d6d2d;
+
+}
+
+
+.resumo-p3 .numero{
+
+    color:#4fd46a;
+
+}
+
+
+/* =====================================================
+   TÍTULO DA PRIORIDADE
+===================================================== */
+
+.prioridade-titulo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:35px 0 18px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #4c3b20;
+
+    scroll-margin-top:20px;
+
+}
+
+
+.prioridade-titulo h3{
+
+    margin:0;
+
+    color:#f2e6c6;
+
+    font-size:21px;
+
+}
+
+
+.prioridade-titulo span{
+
+    font-size:13px;
+
+    color:#999;
+
+}
+
+
+/* =====================================================
+   GRID DOS PACIENTES
+===================================================== */
+
+.lista-prioridade{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* =====================================================
+   CARD DO PACIENTE
+===================================================== */
+
+.card{
+
+    position:relative;
+
+    background:#242424;
+
+    border:1px solid #555;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    transition:.3s;
+
+    overflow:hidden;
+
+}
+
+/* =====================================================
+   BARRA LATERAL P1
+===================================================== */
+
+.card.p1{
+
+    border-left:5px solid #c40000;
+
+}
+
+
+/* =====================================================
+   BARRA LATERAL P2
+===================================================== */
+
+.card.p2{
+
+    border-left:5px solid #d4a017;
+
+}
+
+
+/* =====================================================
+   BARRA LATERAL P3
+===================================================== */
+
+.card.p3{
+
+    border-left:5px solid #2e8b3c;
+
+}
+
+
+/* =====================================================
+   NOME
+===================================================== */
+
+.card h3{
+
+    color:#ffe6a3;
+
+    margin-bottom:15px;
+
+    font-size:21px;
+
+}
+
+
+/* =====================================================
+   INFORMAÇÕES
+===================================================== */
+
+.card p{
+
+    text-align:left;
+
+    color:#ddd;
+
+    margin:10px 0;
+
+    letter-spacing:0;
+
+    font-family:'Cinzel',serif;
+
+}
+
+
+/* =====================================================
+   BADGE DE PRIORIDADE
+===================================================== */
+
+.prioridade-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:7px 12px;
+
+    border-radius:6px;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+
+}
+
+
+.p1-badge{
+
+    background:#8b0000;
+
+    color:#fff;
+
+}
+
+
+.p2-badge{
+
+    background:#b8860b;
+
+    color:#fff;
+
+}
+
+
+.p3-badge{
+
+    background:#1d6d2d;
+
+    color:#fff;
+
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+button{
+
+    background:
+        linear-gradient(
+            #e0c17a,
+            #9f7635
+        );
+
+    color:#111;
+
+    border:none;
+
+    padding:13px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-family:'Cinzel',serif;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    background:
+        linear-gradient(
+            #9f7635,
+            #e3c77f
+        );
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+===================================================== */
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:12px 0;
+
+    background:#2d2d2d;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-family:'Cinzel',serif;
+
+}
+
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    outline:none;
+
+    background:#393939;
+
+    box-shadow:
+        0 0 12px #b48a39;
+
+}
+
+
+textarea{
+
+    resize:none;
+
+    height:120px;
+
+}
+
+
+/* =====================================================
+   LINHA
+===================================================== */
+
+hr{
+
+    border:1px solid #7d6230;
+
+    margin:35px 0;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#888;
+
+    margin-top:30px;
+
+    letter-spacing:3px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media(max-width:800px){
+
+    .container{
+
+        padding:20px;
+
     }
-    .btn-tv:hover { background: #1e7e34; }
-    .btn-abrir-tv {
-      background: #17a2b8;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      font-size: 14px;
-      cursor: pointer;
+
+
+    .topo{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
     }
-    .btn-abrir-tv:hover { background: #117a8b; }
-    .consultorio-input {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      background: #f0f4ff;
-      padding: 10px 14px;
-      border-radius: 6px;
-      border: 1px solid #d0d8f0;
+
+
+    .resumo-prioridades{
+
+        grid-template-columns:1fr;
+
     }
-    .consultorio-input label { font-weight: bold; }
-    .consultorio-input input {
-      width: 60px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 4px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+
+
+    h2{
+
+        font-size:25px;
+
     }
-  </style>
+
+
+    .prioridade-titulo{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+
+</style>
 <link rel="stylesheet" href="css/style.css">
 </head>
 
