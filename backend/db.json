@@ -124,13 +124,27 @@
     }
   ],
   "tv_chamada": {
-    "id": "1700000000301",
-    "localTipo": "GUICHÊ",
+    "id": "1793201694822",
+    "localTipo": "CONSULTÓRIO",
     "localNumero": "01",
-    "paciente": "Carlos Eduardo Santos",
-    "hora": "19:15"
+    "paciente": "João Pedro Souza",
+    "hora": "12:34"
   },
   "tv_historico": [
+    {
+      "id": "1793201694822",
+      "localTipo": "CONSULTÓRIO",
+      "localNumero": "01",
+      "paciente": "João Pedro Souza",
+      "hora": "12:34"
+    },
+    {
+      "id": "1793201692719",
+      "localTipo": "CONSULTÓRIO",
+      "localNumero": "01",
+      "paciente": "Ana Maria Silva",
+      "hora": "12:34"
+    },
     {
       "id": "1700000000301",
       "localTipo": "GUICHÊ",

@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Mídia Indoor - TV</title>
+  <title>YAHWEH — Painel de Chamadas</title>
+  <link rel="icon" type="image/svg+xml" href="css/brand-mark.svg">
   <style>
 * {
     box-sizing: border-box;
@@ -305,41 +306,6 @@ body {
 
 
 /* =========================================
-   ANIMAÇÃO DA NOVA CHAMADA
-========================================= */
-
-@keyframes piscar {
-
-    0%,
-    100% {
-        transform: scale(1);
-
-        border-color: #80632f;
-
-        box-shadow:
-            0 10px 35px rgba(0, 0, 0, 0.65),
-            inset 0 0 25px rgba(255, 215, 0, 0.025);
-    }
-
-    50% {
-        transform: scale(1.015);
-
-        border-color: #e3c77f;
-
-        box-shadow:
-            0 0 30px rgba(227, 199, 127, 0.45),
-            0 0 70px rgba(227, 199, 127, 0.15),
-            inset 0 0 30px rgba(227, 199, 127, 0.08);
-    }
-}
-
-.flash {
-    animation:
-        piscar 0.6s ease-in-out 3;
-}
-
-
-/* =========================================
    RESPONSIVIDADE
 ========================================= */
 
@@ -465,9 +431,9 @@ body {
 }
 </style>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portal.css">
 </head>
-<body>
+<body class="tv-page">
 
 <!-- Estrutura da tela da TV criada para exibir o local e o nome do paciente chamado -->
 <div class="tv-container">
@@ -487,7 +453,8 @@ body {
       <div class="patient-name" id="patient-name">AGUARDANDO...</div>
     </div>
     <div class="box logo-box">
-      <div class="logo-text">🏥 Sistema Hospitalar</div>
+      <img class="tv-logo" src="css/vitalis-logo.svg" alt="YAHWEH — Sistema Hospitalar">
+      <h2 class="logo-text">YAHWEH</h2>
     </div>
   </div>
 </div>

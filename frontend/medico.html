@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAHWEH — Painel Médico</title>
+  <link rel="icon" type="image/svg+xml" href="css/brand-mark.svg">
   <style>
 
 /* =====================================================
@@ -771,16 +775,20 @@ hr{
 
 </style>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portal.css">
 </head>
 
-<body>
+<body class="medico-page">
 
 <div class="container">
 
   <!-- Cabeçalho com botão da TV -->
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-    <h2 style="margin:0;">🩺 Painel Médico</h2>
-    <button class="btn-abrir-tv" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
+    <div class="medico-page-brand">
+      <img class="site-logo page-logo" src="css/brand-mark.svg" alt="YAHWEH">
+      <h2 style="margin:0;">YAHWEH — Painel Médico</h2>
+    </div>
+    <button class="btn-abrir-tv action-secondary" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
   </div>
 
   <!-- Campo criado para informar o consultório e chamar o paciente na TV -->
@@ -836,9 +844,9 @@ function carregar() {
             <p><span class="${t.risco}">${t.risco}</span></p>
             <p><b>Alergia:</b> ${t.alergia || "Nenhuma"}</p>
             <p><b>Observação:</b> ${t.observacao || "Nenhuma"}</p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button onclick="selecionar(${index})">Atender</button>
-              <button class="btn-tv" onclick="chamarNaTV('${t.nome}')">📺 Chamar na TV</button>
+            <div class="patient-actions">
+              <button class="action-primary" onclick="selecionar(${index})">Atender</button>
+              <button class="btn-tv action-secondary" onclick="chamarNaTV('${t.nome}')">📺 Chamar na TV</button>
             </div>
           </div>
         `;

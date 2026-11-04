@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Triagem</title>
+<title>YAHWEH — Triagem</title>
+<link rel="icon" type="image/svg+xml" href="css/brand-mark.svg">
 <style>
 * {
     margin: 0;
@@ -539,15 +540,19 @@ hr {
 }
 </style>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portal.css">
 </head>
 
-<body>
+<body class="triagem-page">
 <div class="container">
 
   <!-- Cabeçalho com botão da TV -->
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-    <h2 style="margin:0;">🏥 Triagem Hospitalar</h2>
-    <button class="btn-abrir-tv" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
+    <div class="triagem-page-brand">
+      <img class="site-logo page-logo" src="css/brand-mark.svg" alt="YAHWEH">
+      <h2 style="margin:0;">YAHWEH — Triagem Hospitalar</h2>
+    </div>
+    <button class="btn-abrir-tv action-secondary" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
   </div>
 
   <!-- Fila de pacientes do Atendimento criada para mostrar quem pode ser chamado na TV -->
@@ -559,7 +564,7 @@ hr {
     <div id="fila-pacientes">
       <p style="color:#888; text-align:center;">Carregando...</p>
     </div>
-    <button onclick="carregarPacientes()" style="margin-top:8px; background:#6c757d; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:13px;">🔄 Atualizar lista</button>
+    <button class="action-secondary refresh-patients" onclick="carregarPacientes()">🔄 Atualizar lista</button>
   </div>
 
   <hr>
@@ -613,13 +618,19 @@ function carregarPacientes() {
       div.innerHTML = "";
       fila.forEach(p => {
         const item = document.createElement("div");
-        item.className = "fila-item";
+        item.className = "fila";
         item.innerHTML = `
-          <div>
+          <div class="fila-paciente-info">
             <strong>${p.nome}</strong><br>
-            <small>CPF: ${p.cpf || "—"} | Tipo: ${p.tipo || "—"}</small>
+            <div class="fila-paciente-meta">
+              <span><b>CPF:</b> ${p.cpf || "—"}</span>
+              <span class="fila-paciente-tipo">${p.tipo || "—"}</span>
+            </div>
           </div>
-          <button class="btn-tv" onclick="chamarNaTV('${p.nome}')">📺 Chamar na TV</button>
+          <div class="fila-paciente-acoes">
+            <span class="fila-status">Aguardando triagem</span>
+            <button class="btn-tv" onclick="chamarNaTV('${p.nome}')">📺 Chamar na TV</button>
+          </div>
         `;
         div.appendChild(item);
       });

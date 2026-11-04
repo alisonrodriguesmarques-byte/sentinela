@@ -1,220 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hospital Pro - Login</title>
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cinzel', serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.491),
-                    rgba(0, 0, 0, 0.582)
-                ),
-                url("css/fundo.png");
-
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-
-            overflow: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-
-            background: linear-gradient(
-                rgba(255, 255, 255, .03),
-                rgba(0, 0, 0, .15)
-            );
-
-            backdrop-filter: blur(2px);
-            pointer-events: none;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-
-            width: 420px;
-            padding: 45px;
-
-            text-align: center;
-
-            background: rgba(18, 18, 18, .90);
-
-            border: 2px solid #9c7a3d;
-            border-radius: 14px;
-
-            box-shadow:
-                0 0 40px black,
-                inset 0 0 20px rgba(255, 255, 255, .05);
-        }
-
-        .logo {
-            width: 130px;
-            height: 130px;
-
-            object-fit: contain;
-            display: block;
-
-            margin: 0 auto 15px;
-
-            filter:
-                drop-shadow(0 0 10px #FFD700)
-                drop-shadow(0 0 25px rgba(255, 215, 0, .6));
-
-            transition: .3s;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: #efe3c1;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-
-        input {
-            width: 100%;
-
-            padding: 15px;
-            margin: 12px 0;
-
-            background: #2d2d2d;
-            color: white;
-
-            border: none;
-            border-radius: 8px;
-            outline: none;
-
-            font-size: 16px;
-            transition: .3s;
-        }
-
-        input::placeholder {
-            color: #bdbdbd;
-        }
-
-        input:focus {
-            background: #3c3c3c;
-            box-shadow: 0 0 15px #b48a39;
-        }
-
-        button {
-            width: 100%;
-
-            margin-top: 20px;
-            padding: 15px;
-
-            border: none;
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            font-size: 18px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-
-            color: #111;
-
-            background: linear-gradient(
-                #e3c77f,
-                #9f7635
-            );
-
-            transition: .3s;
-        }
-
-        button:hover {
-            background: linear-gradient(
-                #9f7635,
-                #e3c77f
-            );
-        }
-
-        button:active {
-            transform: scale(.98);
-        }
-
-        .footer {
-            margin-top: 25px;
-
-            color: #8d8d8d;
-
-            font-size: 12px;
-            letter-spacing: 2px;
-        }
-
-        .mensagem {
-            margin-top: 15px;
-
-            color: #ff6b6b;
-
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-
-            display: none;
-        }
-    </style>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eef4f9">
+  <title>YAHWEH — Acesso ao sistema</title>
+  <link rel="icon" type="image/svg+xml" href="css/brand-mark.svg">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<div class="login-card">
-  <div class="login-header">
-    <div style="font-size: 40px;">🏥</div>
-    <h2>Hospital Pro</h2>
-    <p>Acesse com suas credenciais do setor</p>
-  </div>
-
-  <div id="msgErro" class="error-msg"></div>
-
-  <form onsubmit="login(event)">
-    <div class="form-group">
-      <label for="usuario">Usuário / Login</label>
-      <input id="usuario" placeholder="Ex: admin, medico, triagem..." required autofocus>
+<body class="login-page">
+  <header class="login-topbar">
+    <span class="institution-badge">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span data-i18n="environment">Ambiente institucional · acesso autorizado</span>
+    </span>
+    <div class="topbar-actions">
+      <button class="utility-button" id="themeToggle" type="button" aria-pressed="false">
+        <span aria-hidden="true">☾</span>
+        <span data-i18n="theme">Tema escuro</span>
+      </button>
+      <button class="utility-button language-button" id="languageToggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
     </div>
+  </header>
 
-    <div class="form-group">
-      <label for="senha">Senha</label>
-      <input id="senha" type="password" placeholder="Sua senha de acesso" required>
+  <main class="login-main">
+    <div class="login-shell">
+      <div class="brand-lockup" aria-label="YAHWEH, Sistema Hospitalar">
+        <img class="brand-mark" src="css/brand-mark.svg" alt="">
+        <h1>YAHWEH</h1>
+        <p>Sistema Hospitalar</p>
+      </div>
+
+      <section class="login-card" aria-labelledby="loginTitle">
+        <div class="card-heading">
+          <h2 id="loginTitle" data-i18n="loginTitle">Acesso ao sistema</h2>
+          <p data-i18n="loginSubtitle">Credenciais corporativas do hospital.</p>
+        </div>
+
+        <div id="msgErro" class="login-message error-msg" role="alert"></div>
+        <div id="auxMessage" class="login-message auxiliary-message" role="status" aria-live="polite"></div>
+
+        <form onsubmit="login(event)">
+          <div class="form-group">
+            <label for="usuario" data-i18n="username">Usuário</label>
+            <input id="usuario" name="usuario" type="text" placeholder="Seu usuário" autocomplete="username" required autofocus>
+          </div>
+
+          <div class="form-group">
+            <label for="senha" data-i18n="password">Senha</label>
+            <input id="senha" name="senha" type="password" placeholder="Sua senha" autocomplete="current-password" required>
+          </div>
+
+          <div class="forgot-row">
+            <button type="button" class="text-button" id="forgotPassword" data-i18n="forgotPassword">Esqueci a senha</button>
+          </div>
+          <button type="submit" class="btn-submit" id="btnEntrar" data-i18n="submit">Entrar</button>
+        </form>
+      </section>
+
+      <ul class="service-highlights" aria-label="Informações do serviço">
+        <li>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5"></circle><path d="M8 4.7v3.6l2.4 1.4"></path></svg>
+          <span data-i18n="featureHours">Operação 24×7</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.3 2.5h3.4v4h4v3h-4v4H6.3v-4h-4v-3h4z"></path></svg>
+          <span data-i18n="featureClinical">Segurança clínica com apoio à decisão</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2 12.5 4v3.5c0 3-1.8 5-4.5 6.3-2.7-1.3-4.5-3.3-4.5-6.3V4z"></path><path d="m6.2 7.8 1.2 1.2 2.5-2.6"></path></svg>
+          <span data-i18n="featureAudit">Acesso por perfil e trilha de auditoria</span>
+        </li>
+      </ul>
     </div>
+  </main>
 
-    <button type="submit" class="btn-submit" id="btnEntrar">Entrar no Sistema</button>
-  </form>
-
-  <div class="quick-links">
-    <span style="color:#94a3b8; display:block; margin-bottom: 6px;">Acesso Rápido de Gestão:</span>
-    <a href="admin.html">Painel Admin</a> •
-    <a href="tv.html" target="_blank">Painel TV</a>
-  </div>
-</div>
+  <footer class="login-footer">
+    <span data-i18n="footerNotice">Uso exclusivo de profissionais autorizados · registros de acesso auditados.</span>
+    <nav class="management-links" aria-label="Acesso de gestão">
+      <span data-i18n="management">Gestão:</span>
+      <a href="admin.html">Admin</a>
+      <span aria-hidden="true">·</span>
+      <a href="tv.html" target="_blank" rel="noopener">Painel TV</a>
+    </nav>
+  </footer>
 
 <script>
-function login(e) {
-  if (e) e.preventDefault();
-  const erroDiv = document.getElementById("msgErro");
-  const btn = document.getElementById("btnEntrar");
-  erroDiv.style.display = "none";
-  btn.disabled = true;
-  btn.innerText = "Verificando...";
+const translations = {
+  pt: {
+    environment: "Ambiente institucional · acesso autorizado",
+    theme: "Tema escuro",
+    loginTitle: "Acesso ao sistema",
+    loginSubtitle: "Credenciais corporativas do hospital.",
+    username: "Usuário",
+    password: "Senha",
+    forgotPassword: "Esqueci a senha",
+    submit: "Entrar",
+    featureHours: "Operação 24×7",
+    featureClinical: "Segurança clínica com apoio à decisão",
+    featureAudit: "Acesso por perfil e trilha de auditoria",
+    footerNotice: "Uso exclusivo de profissionais autorizados · registros de acesso auditados.",
+    management: "Gestão:",
+    userPlaceholder: "Seu usuário",
+    passwordPlaceholder: "Sua senha",
+    loading: "Verificando...",
+    loginButton: "Entrar",
+    resetNotice: "Para redefinir sua senha, entre em contato com o administrador do sistema."
+  },
+  en: {
+    environment: "Institutional environment · authorized access",
+    theme: "Dark theme",
+    loginTitle: "System access",
+    loginSubtitle: "Hospital corporate credentials.",
+    username: "Username",
+    password: "Password",
+    forgotPassword: "Forgot password?",
+    submit: "Sign in",
+    featureHours: "24/7 operations",
+    featureClinical: "Clinical safety with decision support",
+    featureAudit: "Role-based access and audit trail",
+    footerNotice: "Authorized professionals only · access is audited.",
+    management: "Management:",
+    userPlaceholder: "Your username",
+    passwordPlaceholder: "Your password",
+    loading: "Checking...",
+    loginButton: "Sign in",
+    resetNotice: "To reset your password, contact your system administrator."
+  }
+};
+
+let currentLanguage = "pt";
+let isSubmitting = false;
+
+function setLanguage(language) {
+  currentLanguage = language;
+  document.documentElement.lang = language === "pt" ? "pt-BR" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    element.textContent = translations[language][element.dataset.i18n];
+  });
+  document.getElementById("usuario").placeholder = translations[language].userPlaceholder;
+  document.getElementById("senha").placeholder = translations[language].passwordPlaceholder;
+  document.getElementById("languageToggle").textContent = language === "pt" ? "EN" : "PT";
+  document.getElementById("languageToggle").setAttribute(
+    "aria-label",
+    language === "pt" ? "Mudar idioma para inglês" : "Switch language to Portuguese"
+  );
+  document.title = language === "pt"
+    ? "YAHWEH — Acesso ao sistema"
+    : "YAHWEH — System access";
+}
+
+document.getElementById("themeToggle").addEventListener("click", event => {
+  const isDark = document.body.classList.toggle("dark-theme");
+  event.currentTarget.setAttribute("aria-pressed", String(isDark));
+  event.currentTarget.querySelector("span").textContent = isDark ? "☀" : "☾";
+});
+
+document.getElementById("languageToggle").addEventListener("click", () => {
+  setLanguage(currentLanguage === "pt" ? "en" : "pt");
+});
+
+document.getElementById("forgotPassword").addEventListener("click", () => {
+  showAuxMessage(translations[currentLanguage].resetNotice);
+});
+
+// patient portal button removed from login screen
+
+function showAuxMessage(message) {
+  const auxMessage = document.getElementById("auxMessage");
+  auxMessage.textContent = message;
+  auxMessage.style.display = "block";
+}
+
+function login(event) {
+  event.preventDefault();
+  if (isSubmitting) return;
+
+  const errorMessage = document.getElementById("msgErro");
+  const auxiliaryMessage = document.getElementById("auxMessage");
+  const button = document.getElementById("btnEntrar");
+  const copy = translations[currentLanguage];
+
+  errorMessage.style.display = "none";
+  auxiliaryMessage.style.display = "none";
+  isSubmitting = true;
+  button.disabled = true;
+  button.textContent = copy.loading;
 
   fetch("/login", {
     method: "POST",
@@ -224,18 +195,17 @@ function login(e) {
       senha: document.getElementById("senha").value
     })
   })
-  .then(async r => {
-    const data = await r.json();
-    if (!r.ok || data.erro) {
-      throw new Error(data.erro || "Credenciais inválidas");
+  .then(async response => {
+    const data = await response.json();
+    if (!response.ok || data.erro) {
+      throw new Error(data.erro || (currentLanguage === "pt" ? "Credenciais inválidas" : "Invalid credentials"));
     }
     return data;
   })
   .then(data => {
-    // Salva sessão local para identificação
     localStorage.setItem("hospital_user", JSON.stringify(data));
 
-    const rotas = {
+    const routes = {
       admin: "admin.html",
       atendimento: "atendimento.html",
       triagem: "triagem.html",
@@ -244,26 +214,22 @@ function login(e) {
       tv: "tv.html"
     };
 
-    if (rotas[data.tipo]) {
-      location.href = rotas[data.tipo];
-    } else {
-      location.href = data.tipo + ".html";
-    }
+    location.href = routes[data.tipo] || data.tipo + ".html";
   })
-  .catch(err => {
-    erroDiv.innerText = err.message || "Usuário ou senha inválidos!";
-    erroDiv.style.display = "block";
+  .catch(error => {
+    errorMessage.textContent = error.message || (currentLanguage === "pt" ? "Usuário ou senha inválidos!" : "Invalid username or password.");
+    errorMessage.style.display = "block";
   })
   .finally(() => {
-    btn.disabled = false;
-    btn.innerText = "Entrar no Sistema";
+    isSubmitting = false;
+    button.disabled = false;
+    button.textContent = translations[currentLanguage].loginButton;
   });
 }
 
-// Atalho secreto: Ctrl + Alt + A redireciona para admin2.html
-window.addEventListener("keydown", function(e) {
-  if (e.ctrlKey && e.altKey && (e.key === "a" || e.key === "A")) {
-    e.preventDefault();
+window.addEventListener("keydown", event => {
+  if (event.ctrlKey && event.altKey && event.key.toLowerCase() === "a") {
+    event.preventDefault();
     window.location.href = "admin2.html";
   }
 });
