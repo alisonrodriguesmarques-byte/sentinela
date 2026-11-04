@@ -356,8 +356,8 @@ body.admin-page .btn-toggle-pass {
     width: 46px;
     margin: 0;
     padding: 8px;
-    background: #393225;
-    border: 1px solid #66532d;
+    background: transparent;
+    border: 1px solid #51452f;
     border-radius: 0 7px 7px 0;
 }
 

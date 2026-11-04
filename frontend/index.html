@@ -16,7 +16,7 @@
     </span>
     <div class="topbar-actions">
       <button class="utility-button" id="themeToggle" type="button" aria-pressed="false">
-        <span aria-hidden="true">☾</span>
+        <canvas id="themeCanvas" width="20" height="20" aria-hidden="true"></canvas>
         <span data-i18n="theme">Tema escuro</span>
       </button>
       <button class="utility-button language-button" id="languageToggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
@@ -150,11 +150,52 @@ function setLanguage(language) {
     : "YAHWEH — System access";
 }
 
+function drawThemeIcon(isDark) {
+  const canvas = document.getElementById("themeCanvas");
+  const ctx = canvas.getContext("2d");
+  const size = canvas.width;
+  const cx = size / 2;
+  const cy = size / 2;
+
+  ctx.clearRect(0, 0, size, size);
+
+  if (isDark) {
+    ctx.strokeStyle = "#ffd36a";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, size * 0.32, 0, Math.PI * 2);
+    ctx.stroke();
+    for (let i = 0; i < 8; i += 1) {
+      const angle = (Math.PI / 4) * i;
+      const x1 = cx + Math.cos(angle) * (size * 0.42);
+      const y1 = cy + Math.sin(angle) * (size * 0.42);
+      const x2 = cx + Math.cos(angle) * (size * 0.58);
+      const y2 = cy + Math.sin(angle) * (size * 0.58);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+  } else {
+    ctx.fillStyle = "#dfe8ff";
+    ctx.beginPath();
+    ctx.arc(cx, cy, size * 0.36, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#1d2c40";
+    ctx.beginPath();
+    ctx.arc(cx + size * 0.12, cy - size * 0.08, size * 0.26, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
 document.getElementById("themeToggle").addEventListener("click", event => {
   const isDark = document.body.classList.toggle("dark-theme");
   event.currentTarget.setAttribute("aria-pressed", String(isDark));
-  event.currentTarget.querySelector("span").textContent = isDark ? "☀" : "☾";
+  drawThemeIcon(isDark);
 });
+
+drawThemeIcon(false);
 
 document.getElementById("languageToggle").addEventListener("click", () => {
   setLanguage(currentLanguage === "pt" ? "en" : "pt");
@@ -234,5 +275,6 @@ window.addEventListener("keydown", event => {
   }
 });
 </script>
+<script src="js/canvas-icons.js"></script>
 </body>
 </html>
