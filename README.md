@@ -1,2 +1,0 @@
-# sentinela
-projeto hospitalar 
