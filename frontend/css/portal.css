@@ -1,0 +1,954 @@
+:root {
+    --portal-bg: #eef4f9;
+    --portal-surface: #fff;
+    --portal-surface-soft: #f7fafd;
+    --portal-ink: #1d2c40;
+    --portal-muted: #75869b;
+    --portal-border: #dce5ef;
+    --portal-primary: #386ce5;
+    --portal-primary-hover: #2e5fd1;
+    --portal-accent: #1b98ad;
+    --portal-shadow: 0 12px 32px rgba(34, 57, 82, 0.07);
+}
+
+body.admin-page,
+body.admin2-page,
+body.almoxarifado-page,
+body.atendimento-page,
+body.triagem-page,
+body.medico-page,
+body.medicacoes-page {
+    min-height: 100vh;
+    color: var(--portal-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(ellipse at 86% 9%, rgba(196, 230, 237, 0.42), transparent 25rem),
+        var(--portal-bg);
+}
+
+body.admin-page::before,
+body.admin2-page::before,
+body.almoxarifado-page::before,
+body.atendimento-page::before,
+body.triagem-page::before,
+body.medico-page::before,
+body.medicacoes-page::before {
+    display: none;
+}
+
+body.admin-page h1,
+body.admin-page h2,
+body.admin-page h3,
+body.admin2-page h1,
+body.admin2-page h2,
+body.admin2-page h3,
+body.almoxarifado-page h1,
+body.almoxarifado-page h2,
+body.almoxarifado-page h3,
+body.atendimento-page h1,
+body.atendimento-page h2,
+body.atendimento-page h3,
+body.triagem-page h1,
+body.triagem-page h2,
+body.triagem-page h3,
+body.medico-page h1,
+body.medico-page h2,
+body.medico-page h3,
+body.medicacoes-page h1,
+body.medicacoes-page h2,
+body.medicacoes-page h3 {
+    color: var(--portal-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -0.02em;
+    text-shadow: none;
+}
+
+body.admin-page p,
+body.admin2-page p,
+body.almoxarifado-page p,
+body.atendimento-page p,
+body.triagem-page p,
+body.medico-page p,
+body.medicacoes-page p {
+    color: var(--portal-muted);
+}
+
+body.admin-page a,
+body.admin2-page a,
+body.almoxarifado-page a,
+body.atendimento-page a,
+body.triagem-page a,
+body.medico-page a,
+body.medicacoes-page a {
+    color: var(--portal-primary);
+}
+
+body.admin-page a:hover,
+body.admin2-page a:hover,
+body.almoxarifado-page a:hover,
+body.atendimento-page a:hover,
+body.triagem-page a:hover,
+body.medico-page a:hover,
+body.medicacoes-page a:hover {
+    color: var(--portal-primary-hover);
+}
+
+body.admin-page .navbar,
+body.almoxarifado-page .navbar {
+    position: relative;
+    overflow: hidden;
+    padding: 14px clamp(18px, 4vw, 56px);
+    color: var(--portal-ink);
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid var(--portal-border);
+    box-shadow: 0 4px 16px rgba(34, 57, 82, 0.04);
+    backdrop-filter: blur(12px);
+}
+
+body.admin-page .navbar::after,
+body.almoxarifado-page .navbar::after {
+    position: absolute;
+    top: -50px;
+    right: 12%;
+    width: 210px;
+    height: 130px;
+    background: url("portal-art.svg") center / contain no-repeat;
+    content: "";
+    opacity: 0.18;
+    pointer-events: none;
+}
+
+body.admin-page .nav-brand,
+body.admin-page .nav-actions,
+body.almoxarifado-page .nav-brand,
+body.almoxarifado-page .nav-user {
+    position: relative;
+    z-index: 1;
+}
+
+body.admin-page .nav-brand h1,
+body.almoxarifado-page .nav-brand h1 {
+    color: var(--portal-ink);
+    font-size: clamp(16px, 2vw, 21px);
+}
+
+body.admin-page .nav-brand span,
+body.almoxarifado-page .nav-brand span {
+    color: var(--portal-muted);
+}
+
+body.admin-page .logo-icon,
+body.almoxarifado-page .logo-icon {
+    background: #e7f4f7;
+    border: 1px solid #d5e9ed;
+    border-radius: 12px;
+}
+
+body.admin-page .logo-icon img,
+body.almoxarifado-page .logo-icon img {
+    filter: none;
+}
+
+body.admin-page .btn-nav,
+body.almoxarifado-page .btn-nav {
+    color: var(--portal-ink);
+    background: var(--portal-surface-soft);
+    border: 1px solid var(--portal-border);
+    border-radius: 7px;
+}
+
+body.admin-page .btn-nav:hover,
+body.almoxarifado-page .btn-nav:hover {
+    color: var(--portal-primary);
+    background: #eef4ff;
+    border-color: #cbd9f4;
+}
+
+body.admin-page .btn-nav-danger {
+    color: #a63d49;
+    background: #fff7f7;
+    border-color: #f1d7d9;
+}
+
+body.almoxarifado-page .user-pill {
+    color: #287c8d;
+    background: #eef8fa;
+    border-color: #d3ebef;
+}
+
+body.admin-page .container,
+body.almoxarifado-page .container {
+    margin-top: 24px;
+}
+
+body.admin-page .quick-access-panel,
+body.admin-page .dashboard-grid > .card,
+body.almoxarifado-page .stat-card,
+body.almoxarifado-page .alerta-estoque,
+body.almoxarifado-page .main-grid .card {
+    color: var(--portal-ink);
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 12px;
+    box-shadow: var(--portal-shadow);
+}
+
+body.admin-page .quick-access-panel {
+    position: relative;
+    overflow: hidden;
+    background-image: url("portal-art.svg");
+    background-repeat: no-repeat;
+    background-position: right -34px center;
+    background-size: 210px auto;
+}
+
+body.admin-page .quick-access-title {
+    color: var(--portal-ink);
+}
+
+body.admin-page .sector-chip {
+    color: #40546d;
+    background: var(--portal-surface-soft);
+    border-color: var(--portal-border);
+    border-radius: 7px;
+}
+
+body.admin-page .sector-chip:hover {
+    color: var(--portal-primary);
+    background: #eef4ff;
+    border-color: #cbd9f4;
+}
+
+body.admin-page .dashboard-grid > .card:hover {
+    background: var(--portal-surface);
+    box-shadow: var(--portal-shadow);
+}
+
+body.admin-page .card-header {
+    background: #fbfcfe;
+    border-bottom-color: var(--portal-border);
+}
+
+body.admin-page .card-header h2 {
+    color: var(--portal-ink);
+}
+
+body.admin-page .form-group label,
+body.almoxarifado-page .form-group label {
+    color: #53677f;
+}
+
+body.admin-page .form-control,
+body.admin-page .search-input,
+body.admin2-page input,
+body.admin2-page select,
+body.almoxarifado-page .form-control,
+body.atendimento-page .form-group input,
+body.atendimento-page .form-group select,
+body.triagem-page input,
+body.triagem-page select,
+body.triagem-page textarea,
+body.medico-page input,
+body.medico-page select,
+body.medico-page textarea,
+body.medicacoes-page input,
+body.medicacoes-page select,
+body.medicacoes-page textarea {
+    color: var(--portal-ink);
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 7px;
+}
+
+body.admin-page .form-control::placeholder,
+body.admin-page .search-input::placeholder,
+body.admin2-page input::placeholder,
+body.atendimento-page input::placeholder,
+body.triagem-page input::placeholder,
+body.triagem-page textarea::placeholder,
+body.medico-page input::placeholder,
+body.medico-page textarea::placeholder {
+    color: #8a9aad;
+}
+
+body.admin-page .form-control:focus,
+body.admin-page .search-input:focus,
+body.admin2-page input:focus,
+body.admin2-page select:focus,
+body.almoxarifado-page .form-control:focus,
+body.atendimento-page .form-group input:focus,
+body.atendimento-page .form-group select:focus,
+body.triagem-page input:focus,
+body.triagem-page select:focus,
+body.triagem-page textarea:focus,
+body.medico-page input:focus,
+body.medico-page select:focus,
+body.medico-page textarea:focus {
+    border-color: var(--portal-primary);
+    box-shadow: 0 0 0 3px rgba(56, 108, 229, 0.12);
+}
+
+body.admin-page .sector-preview-box,
+body.admin-page .user-avatar,
+body.admin-page .count-badge,
+body.admin-page .badge,
+body.atendimento-page .tag-tipo,
+body.atendimento-page .badge-status,
+body.triagem-page .fila-paciente-tipo {
+    color: #287c8d;
+    background: #eef8fa;
+    border-color: #d3ebef;
+}
+
+body.admin-page .sector-preview-box {
+    background-image: url("portal-art.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 100px auto;
+}
+
+body.admin-page .users-table th,
+body.admin-page .users-table td {
+    border-bottom-color: #edf1f6;
+}
+
+body.admin-page .users-table th {
+    color: #61758d;
+    background: #f8fafc;
+}
+
+body.admin-page .users-table td,
+body.admin-page .user-name,
+body.admin-page .sector-preview-box {
+    color: #40546d;
+}
+
+body.admin-page .empty-state,
+body.admin2-page .card {
+    color: var(--portal-muted);
+    background: var(--portal-surface-soft);
+    border-color: var(--portal-border);
+}
+
+body.admin-page .empty-state-icon {
+    color: var(--portal-accent);
+}
+
+body.admin-page .btn-submit,
+body.admin2-page button,
+body.almoxarifado-page button,
+body.atendimento-page .btn-abrir-tv,
+body.atendimento-page .btn-cadastrar,
+body.atendimento-page .btn-refresh,
+body.triagem-page button,
+body.medico-page button,
+body.medicacoes-page button {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--portal-primary);
+    border: 1px solid var(--portal-primary);
+    border-radius: 7px;
+    box-shadow: none;
+}
+
+body.admin-page .btn-submit:hover,
+body.admin2-page button:hover,
+body.almoxarifado-page button:hover,
+body.atendimento-page .btn-abrir-tv:hover,
+body.atendimento-page .btn-cadastrar:hover,
+body.atendimento-page .btn-refresh:hover,
+body.triagem-page button:hover,
+body.medico-page button:hover,
+body.medicacoes-page button:hover {
+    color: #fff;
+    background: var(--portal-primary-hover);
+    box-shadow: none;
+    filter: none;
+}
+
+body.admin-page .btn-action,
+body.almoxarifado-page .tab-btn,
+body.atendimento-page .btn-logout,
+body.atendimento-page .btn-refresh {
+    color: #40546d;
+    background: var(--portal-surface-soft);
+    border: 1px solid var(--portal-border);
+}
+
+body.admin-page .btn-action-delete {
+    color: #a63d49;
+    background: #fff7f7;
+    border-color: #f1d7d9;
+}
+
+body.admin2-page .container,
+body.atendimento-page .container,
+body.triagem-page .container,
+body.medico-page .container,
+body.medicacoes-page .container {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--portal-ink);
+    background: url("portal-art.svg") top right / min(320px, 42vw) 190px no-repeat, var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 14px;
+    box-shadow: var(--portal-shadow);
+}
+
+body.admin2-page .container::before,
+body.atendimento-page .container::before,
+body.triagem-page .container::before,
+body.medico-page .container::before,
+body.medicacoes-page .container::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    width: min(320px, 42vw);
+    height: 190px;
+    background: url("portal-art.svg") top right / contain no-repeat;
+    content: "";
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+body.admin2-page .container > *,
+body.atendimento-page .container > *,
+body.triagem-page .container > *,
+body.medico-page .container > *,
+body.medicacoes-page .container > * {
+    position: relative;
+    z-index: 1;
+}
+
+body.admin2-page .container {
+    border-width: 1px;
+}
+
+body.admin2-page h2,
+body.admin2-page h3 {
+    color: var(--portal-ink);
+}
+
+body.admin2-page h2 {
+    margin-top: 10px;
+}
+
+body.admin2-page .container > a {
+    color: var(--portal-primary) !important;
+}
+
+body.admin2-page hr {
+    border-top-color: var(--portal-border);
+}
+
+body.atendimento-page .header-title-group h2 {
+    color: var(--portal-ink);
+}
+
+body.atendimento-page .header-title-group p {
+    color: var(--portal-muted);
+}
+
+body.atendimento-page .page-logo,
+body.triagem-page .page-logo,
+body.medico-page .page-logo {
+    filter: none;
+}
+
+body.atendimento-page .panel,
+body.triagem-page .pacientes-fila,
+body.medico-page .consultorio-input {
+    color: var(--portal-ink);
+    background: var(--portal-surface-soft);
+    border: 1px solid var(--portal-border);
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+body.atendimento-page .panel-title,
+body.triagem-page .pacientes-fila h3,
+body.medico-page h3 {
+    color: var(--portal-ink);
+}
+
+body.atendimento-page .paciente-item,
+body.triagem-page .pacientes-fila .fila,
+body.medico-page #triagens .card,
+body.medicacoes-page #listaMedicacoes .card {
+    color: var(--portal-ink);
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 9px;
+    box-shadow: 0 4px 14px rgba(34, 57, 82, 0.05);
+}
+
+body.triagem-page .pacientes-fila .fila {
+    border-left: 4px solid var(--portal-accent);
+}
+
+body.triagem-page .fila-paciente-info strong,
+body.triagem-page .fila-paciente-meta b,
+body.medico-page #triagens .card b,
+body.medicacoes-page #listaMedicacoes .card b {
+    color: #287c8d;
+}
+
+body.triagem-page .fila-status {
+    color: var(--portal-muted);
+}
+
+body.triagem-page .fila-status::before {
+    background: #35c78a;
+    box-shadow: none;
+}
+
+body.atendimento-page .alert-banner {
+    color: #176b4c;
+    background: #eefaf4;
+    border-color: #c8ecda;
+}
+
+body.medico-page .consultorio-input label {
+    color: var(--portal-ink);
+}
+
+body.medico-page hr {
+    border-color: var(--portal-border);
+}
+
+body.medicacoes-page .container > .page-logo {
+    width: 72px;
+    height: 72px;
+    filter: none;
+}
+
+body.medicacoes-page .container > h2 {
+    color: var(--portal-ink);
+}
+
+body.medicacoes-page #listaMedicacoes .card {
+    padding: 20px;
+}
+
+body.medicacoes-page #listaMedicacoes .card h3 {
+    color: var(--portal-ink);
+}
+
+body.almoxarifado-page .alerta-estoque {
+    color: #8a4b0f;
+    background: #fff7ed;
+    border-color: #fed7aa;
+    box-shadow: none;
+}
+
+body.almoxarifado-page .stat-card {
+    color: var(--portal-ink);
+}
+
+body.almoxarifado-page .stat-icon {
+    background: #eef4ff;
+}
+
+body.almoxarifado-page .stat-value {
+    color: var(--portal-ink);
+}
+
+body.almoxarifado-page .stat-label,
+body.almoxarifado-page .card-body,
+body.almoxarifado-page .card-body label {
+    color: var(--portal-muted);
+}
+
+body.almoxarifado-page .form-group {
+    margin-bottom: 16px;
+}
+
+body.almoxarifado-page .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+body.almoxarifado-page .form-group .form-control {
+    display: block;
+    width: 100%;
+    min-height: 40px;
+    margin: 0;
+    padding: 9px 11px;
+    font: 14px Arial, Helvetica, sans-serif;
+}
+
+body.almoxarifado-page .form-group small {
+    color: var(--portal-muted);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+body.almoxarifado-page .main-grid .card {
+    overflow: hidden;
+}
+
+body.almoxarifado-page .card-herder {
+    padding: 16px 20px;
+    background: #fbfcfe;
+    border-bottom: 1px solid var(--portal-border);
+}
+
+body.almoxarifado-page .card-herder h2 {
+    margin: 0;
+}
+
+body.almoxarifado-page .card-body {
+    padding: 20px;
+}
+
+body.almoxarifado-page .entrada-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+body.almoxarifado-page .entrada-tabs .tab-btn {
+    width: auto;
+    margin: 0;
+    color: #40546d;
+    background: var(--portal-surface-soft);
+    border-color: var(--portal-border);
+}
+
+body.almoxarifado-page .entrada-tabs .tab-btn.active {
+    color: #fff;
+    background: var(--portal-primary);
+    border-color: var(--portal-primary);
+}
+
+body.admin2-page .container > img {
+    filter: none;
+}
+
+body.atendimento-page .form-group label,
+body.atendimento-page .form-group small,
+body.atendimento-page input[type="file"],
+body.triagem-page label,
+body.medico-page label,
+body.medicacoes-page label {
+    color: #53677f;
+}
+
+body.atendimento-page .file-upload-box {
+    background: var(--portal-surface-soft);
+    border: 1px dashed #cbd7e5;
+}
+
+body.atendimento-page input[type="file"]::file-selector-button {
+    color: #40546d;
+    font: 600 13px Arial, Helvetica, sans-serif;
+    background: #eaf0f7;
+    border: 1px solid #d5deea;
+    border-radius: 6px;
+}
+
+body.atendimento-page input[type="file"]::file-selector-button:hover {
+    background: #dfe8f3;
+    box-shadow: none;
+}
+
+body.atendimento-page .paciente-meta,
+body.triagem-page .fila-paciente-meta,
+body.medico-page .consultorio-input span {
+    color: var(--portal-muted) !important;
+}
+
+body.atendimento-page .badge-status,
+body.atendimento-page .tag-tipo,
+body.triagem-page .fila-paciente-tipo {
+    color: #287c8d;
+    background: #eef8fa;
+    border: 1px solid #d3ebef;
+}
+
+body.triagem-page .pacientes-fila .fila,
+body.medico-page #triagens .card {
+    border-color: var(--portal-border);
+}
+
+body.triagem-page .pacientes-fila .fila {
+    border-left-color: var(--portal-accent);
+}
+
+body.triagem-page .pacientes-fila .fila:hover {
+    border-color: #b7d9e2;
+    border-left-color: var(--portal-accent);
+    box-shadow: 0 8px 18px rgba(34, 57, 82, 0.1);
+}
+
+body.triagem-page .amarelo {
+    color: #8a4b0f;
+    background: #fff7ed;
+    border-color: #fed7aa;
+    box-shadow: none;
+}
+
+body.triagem-page .refresh-patients {
+    width: auto;
+    margin: 8px 0 0;
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+body.admin-page .quick-access-panel,
+body.admin-page .dashboard-grid > .card,
+body.admin-page .sector-chip,
+body.admin-page .form-control,
+body.admin-page .search-input,
+body.admin-page .card-header,
+body.admin-page .users-table th,
+body.admin-page .users-table td,
+body.admin2-page .container,
+body.admin2-page .card,
+body.admin2-page hr,
+body.almoxarifado-page .stat-card,
+body.almoxarifado-page .alerta-estoque,
+body.almoxarifado-page .main-grid .card,
+body.atendimento-page .container,
+body.atendimento-page .panel,
+body.atendimento-page .paciente-item,
+body.triagem-page .container,
+body.triagem-page .pacientes-fila,
+body.triagem-page .pacientes-fila .fila,
+body.medico-page .container,
+body.medico-page .consultorio-input,
+body.medico-page #triagens .card,
+body.medico-page hr,
+body.medicacoes-page .container,
+body.medicacoes-page #listaMedicacoes .card {
+    border-color: var(--portal-border);
+}
+
+body.admin-page .btn-nav,
+body.admin-page .sector-chip,
+body.admin-page .btn-action,
+body.admin-page .count-badge,
+body.admin-page .badge,
+body.admin-page .user-pill,
+body.almoxarifado-page .btn-nav,
+body.almoxarifado-page .user-pill,
+body.atendimento-page .btn-logout,
+body.atendimento-page .btn-refresh,
+body.triagem-page #fila-pacientes + button,
+body.medico-page .btn-abrir-tv,
+body.medico-page .btn-tv,
+body.triagem-page .btn-abrir-tv {
+    color: #40546d;
+    background: #edf2f8;
+    border-color: #d5deea;
+    box-shadow: none;
+}
+
+body.admin-page .btn-nav:hover,
+body.admin-page .sector-chip:hover,
+body.admin-page .btn-action:hover,
+body.almoxarifado-page .btn-nav:hover,
+body.atendimento-page .btn-logout:hover,
+body.atendimento-page .btn-refresh:hover,
+body.triagem-page #fila-pacientes + button:hover,
+body.medico-page .btn-abrir-tv:hover,
+body.medico-page .btn-tv:hover,
+body.triagem-page .btn-abrir-tv:hover {
+    color: #263d5a;
+    background: #e1eaf5;
+    border-color: #c4d2e3;
+    box-shadow: none;
+}
+
+body.admin-page .btn-nav-danger,
+body.admin-page .btn-action-delete {
+    color: #a63d49;
+    background: #fff7f7;
+    border-color: #f1d7d9;
+}
+
+body.medico-page #triagens .card .patient-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+body.medico-page #triagens .card .patient-actions button {
+    width: auto;
+    margin: 0;
+    padding: 9px 14px;
+    font: 600 13px Arial, Helvetica, sans-serif;
+    border-radius: 7px;
+    box-shadow: none;
+}
+
+body.medico-page #triagens .card .patient-actions .action-primary {
+    order: 0;
+    color: #fff;
+    background: var(--portal-primary);
+    border: 1px solid var(--portal-primary);
+}
+
+body.medico-page #triagens .card .patient-actions .action-primary:hover {
+    background: var(--portal-primary-hover);
+}
+
+body.medico-page #triagens .card .patient-actions .action-secondary {
+    order: 1;
+    color: #40546d;
+    background: #edf2f8;
+    border: 1px solid #d5deea;
+}
+
+body.medico-page #triagens .card .patient-actions .action-secondary:hover {
+    color: #263d5a;
+    background: #e1eaf5;
+    border-color: #c4d2e3;
+}
+
+body.medico-page .btn-abrir-tv,
+body.triagem-page .btn-abrir-tv {
+    width: auto;
+    margin: 0;
+    padding: 10px 14px;
+}
+
+body.atendimento-page .header-actions .btn-abrir-tv {
+    color: #40546d;
+    background: #edf2f8;
+    border: 1px solid #d5deea;
+}
+
+body.atendimento-page .header-actions .btn-abrir-tv:hover {
+    color: #263d5a;
+    background: #e1eaf5;
+    border-color: #c4d2e3;
+}
+
+body.atendimento-page .header-actions .btn-logout {
+    color: #a63d49;
+    background: #fff7f7;
+    border: 1px solid #f1d7d9;
+}
+
+body.atendimento-page .header-actions .btn-logout:hover {
+    color: #8e2d38;
+    background: #fdeced;
+}
+
+@media (max-width: 700px) {
+    body.admin-page .quick-access-panel {
+        background-position: right -80px bottom -35px;
+    }
+
+    body.admin2-page .container::before,
+    body.atendimento-page .container::before,
+    body.triagem-page .container::before,
+    body.medico-page .container::before,
+    body.medicacoes-page .container::before {
+        width: 190px;
+        height: 130px;
+        opacity: 0.16;
+    }
+
+    body.almoxarifado-page .stats-bar {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.admin-page *,
+    body.admin2-page *,
+    body.almoxarifado-page *,
+    body.atendimento-page *,
+    body.triagem-page *,
+    body.medico-page *,
+    body.medicacoes-page * {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body.tv-page {
+    --tv-surface: #14283a;
+    --tv-border: #36546b;
+    color: #f2f7fb;
+    background:
+        radial-gradient(ellipse at 85% 13%, rgba(38, 133, 153, 0.3), transparent 31%),
+        linear-gradient(135deg, #102235, #132d41);
+}
+
+body.tv-page::before {
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.018), rgba(0, 0, 0, 0.08)),
+        linear-gradient(90deg, rgba(126, 181, 197, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(126, 181, 197, 0.04) 1px, transparent 1px);
+    background-size: auto, 40px 40px, 40px 40px;
+}
+
+body.tv-page .box {
+    background: linear-gradient(145deg, #1a3449, #14283a);
+    border: 1px solid var(--tv-border);
+    box-shadow: 0 14px 36px rgba(4, 17, 29, 0.26);
+}
+
+body.tv-page .box-title {
+    color: #83d0dc;
+}
+
+body.tv-page .local-number {
+    color: #f1f8fb;
+    text-shadow: none;
+}
+
+body.tv-page .patient-name {
+    color: #f5fafc;
+}
+
+body.tv-page #history-list {
+    color: #c1d0dc;
+}
+
+body.tv-page #history-list li {
+    border-bottom-color: rgba(193, 208, 220, 0.14);
+}
+
+body.tv-page #history-list li:first-child {
+    color: #8ddbe5;
+}
+
+body.tv-page .logo-text {
+    color: #e7f3f6;
+}
+
+body.tv-page .tv-logo {
+    filter: drop-shadow(0 10px 24px rgba(10, 17, 35, 0.36));
+}
+
+@keyframes portal-call-alert {
+    50% {
+        border-color: #81d1dd;
+        box-shadow: 0 0 0 5px rgba(129, 209, 221, 0.14), 0 14px 36px rgba(4, 17, 29, 0.3);
+    }
+}
+
+body.tv-page .patient-box.flash {
+    animation: portal-call-alert 0.6s ease-in-out 3;
+}
+
+@media (max-width: 640px) {
+    body.tv-page .box {
+        border-radius: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.tv-page .patient-box.flash {
+        animation: none;
+    }
+}

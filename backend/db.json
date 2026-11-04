@@ -1,0 +1,163 @@
+{
+  "usuarios": [
+    {
+      "usuario": "admin",
+      "senha": "123",
+      "tipo": "admin",
+      "nome": "Administrador do Sistema"
+    },
+    {
+      "usuario": "atendimento",
+      "senha": "123",
+      "tipo": "atendimento",
+      "nome": "Recepção / Atendimento"
+    },
+    {
+      "usuario": "triagem",
+      "senha": "123",
+      "tipo": "triagem",
+      "nome": "Enfermagem Triagem"
+    },
+    {
+      "usuario": "medico",
+      "senha": "123",
+      "tipo": "medico",
+      "nome": "Dr(a). Clínico Geral"
+    },
+    {
+      "usuario": "farmacia",
+      "senha": "123",
+      "tipo": "medicacoes",
+      "nome": "Farmácia / Medicações"
+    },
+    {
+      "id": 1792454917038,
+      "usuario": "tesste",
+      "senha": "teste",
+      "tipo": "medico",
+      "nome": "teste",
+      "createdAt": "2026-10-20T00:08:37.038Z"
+    },
+    {
+      "id": 1792457647930,
+      "usuario": "teste",
+      "senha": "teste",
+      "tipo": "atendimento",
+      "nome": "teste",
+      "createdAt": "2026-10-20T00:54:07.930Z"
+    },
+    {
+      "id": 1792588212765,
+      "usuario": "teste2",
+      "senha": "teste",
+      "tipo": "triagem",
+      "nome": "teste2",
+      "createdAt": "2026-10-21T13:10:12.765Z"
+    },
+    {
+      "id": 1792595569206,
+      "usuario": "yan",
+      "senha": "123",
+      "tipo": "triagem",
+      "nome": "yan",
+      "createdAt": "2026-10-21T15:12:49.206Z"
+    },
+    {
+      "id": 1792596083012,
+      "usuario": "hugo",
+      "senha": "123",
+      "tipo": "medico",
+      "nome": "hugo",
+      "createdAt": "2026-10-21T15:21:23.012Z"
+    }
+  ],
+  "pacientes": [
+    {
+      "id": 1700000000001,
+      "nome": "Carlos Eduardo Santos",
+      "cpf": "123.456.789-00",
+      "tipo": "Particular",
+      "status": "triagem",
+      "createdAt": "2026-08-13T19:00:00.000Z"
+    },
+    {
+      "id": 1700000000002,
+      "nome": "Ana Maria Silva",
+      "cpf": "987.654.321-11",
+      "tipo": "Convenio",
+      "status": "triagem",
+      "createdAt": "2026-08-13T19:05:00.000Z"
+    }
+  ],
+  "triagens": [
+    {
+      "id": 1700000000101,
+      "nome": "Ana Maria Silva",
+      "sintoma": "febre",
+      "temperatura": 39.5,
+      "alergia": "Dipirona",
+      "observacao": "Paciente refere dor de cabeça intensa e febre alta há 2 dias.",
+      "risco": "vermelho",
+      "status": "aguardando_medico",
+      "createdAt": "2026-08-13T19:10:00.000Z"
+    },
+    {
+      "id": 1700000000102,
+      "nome": "João Pedro Souza",
+      "sintoma": "dor_leve",
+      "temperatura": 36.8,
+      "alergia": "Nenhuma",
+      "observacao": "Dor leve no joelho direito após esforço físico.",
+      "risco": "verde",
+      "status": "aguardando_medico",
+      "createdAt": "2026-08-13T19:15:00.000Z"
+    }
+  ],
+  "consultas": [
+    {
+      "id": 1700000000201,
+      "paciente": "Ana Maria Silva",
+      "diagnostico": "Infecção Viral das Vias Aéreas / Síndrome Gripal",
+      "medicacao": "Paracetamol",
+      "obs": "Repouso por 3 dias, hidratação abundante. Evitar Dipirona devido a alergia.",
+      "createdAt": "2026-08-13T19:25:00.000Z"
+    }
+  ],
+  "tv_chamada": {
+    "id": "1793201694822",
+    "localTipo": "CONSULTÓRIO",
+    "localNumero": "01",
+    "paciente": "João Pedro Souza",
+    "hora": "12:34"
+  },
+  "tv_historico": [
+    {
+      "id": "1793201694822",
+      "localTipo": "CONSULTÓRIO",
+      "localNumero": "01",
+      "paciente": "João Pedro Souza",
+      "hora": "12:34"
+    },
+    {
+      "id": "1793201692719",
+      "localTipo": "CONSULTÓRIO",
+      "localNumero": "01",
+      "paciente": "Ana Maria Silva",
+      "hora": "12:34"
+    },
+    {
+      "id": "1700000000301",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "paciente": "Carlos Eduardo Santos",
+      "hora": "19:15"
+    },
+    {
+      "id": "1700000000300",
+      "localTipo": "CONSULTÓRIO",
+      "localNumero": "01",
+      "paciente": "Ana Maria Silva",
+      "hora": "19:10"
+    }
+  ]
+}

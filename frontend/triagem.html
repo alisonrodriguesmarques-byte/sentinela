@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>YAHWEH — Triagem</title>
+<link rel="icon" type="image/svg+xml" href="css/brand-mark.svg">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.78)
+        ),
+        url("css/fundo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #efe3c1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+
+    width: 520px;
+    max-width: 100%;
+
+    background: rgba(18, 18, 18, 0.94);
+
+    border: 2px solid #9c7a3d;
+    border-radius: 15px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.9),
+        inset 0 0 25px rgba(255, 255, 255, 0.04);
+}
+
+.logo {
+    width: 130px;
+    height: 130px;
+
+    object-fit: contain;
+    display: block;
+
+    margin: 0 auto 15px;
+
+    filter:
+        drop-shadow(0 0 10px #ffd700)
+        drop-shadow(0 0 25px rgba(255, 215, 0, 0.5));
+
+    transition: 0.3s;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h1 img {
+    width: 50%;
+}
+
+h2 {
+    color: #efe3c1;
+
+    margin-bottom: 25px;
+
+    font-size: 27px;
+
+    text-shadow:
+        0 0 10px rgba(212, 175, 55, 0.15);
+}
+
+p {
+    color: #cba85d;
+
+    letter-spacing: 3px;
+
+    margin: 10px 0;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    margin: 10px 0;
+    padding: 15px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: #292929;
+    color: #fff;
+
+    font-size: 15px;
+    font-family: 'Cinzel', serif;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #aaa;
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #292929;
+    color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: #353535;
+
+    border-color: #b48a39;
+
+    box-shadow:
+        0 0 12px rgba(180, 138, 57, 0.45);
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+#resultado {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    display: none;
+
+    text-align: center;
+}
+
+.vermelho {
+    display: block;
+
+    background: rgba(120, 0, 0, 0.75);
+
+    color: #fff;
+
+    border: 2px solid #ff3b3b;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.25);
+}
+
+.amarelo {
+    display: block;
+
+    background: rgba(125, 99, 0, 0.75);
+
+    color: #fff;
+
+    border: 2px solid #e5c100;
+
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.verde {
+    display: block;
+
+    background: rgba(18, 77, 22, 0.75);
+
+    color: #fff;
+
+    border: 2px solid #4caf50;
+
+    box-shadow:
+        0 0 15px rgba(76, 175, 80, 0.2);
+}
+
+button {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+
+    color: #111;
+
+    background:
+        linear-gradient(
+            #e3c77f,
+            #9f7635
+        );
+
+    transition: 0.25s;
+}
+
+button:hover {
+    background:
+        linear-gradient(
+            #f0d994,
+            #b88b40
+        );
+
+    box-shadow:
+        0 0 15px rgba(214, 177, 93, 0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+hr {
+    border: none;
+
+    border-top: 1px solid #7d6230;
+
+    margin: 35px 0;
+}
+
+.btn-abrir-tv {
+    width: auto;
+
+    margin: 0 auto;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            #e0c17a,
+            #9f7635
+        );
+
+    color: #111;
+
+    font-size: 16px;
+
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+}
+
+.btn-abrir-tv:hover {
+    background:
+        linear-gradient(
+            #f0d994,
+            #b88b40
+        );
+}
+
+.pacientes-fila {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: rgba(30, 30, 30, 0.95);
+
+    border: 1px solid #80632f;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    box-shadow:
+        inset 0 0 15px rgba(255, 255, 255, 0.02);
+}
+
+.pacientes-fila h3 {
+    margin: 0 0 18px;
+
+    color: #e3c77f;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 15px;
+}
+
+.pacientes-fila h3 span {
+    font-size: 11px;
+
+    font-weight: normal;
+
+    color: #999;
+
+    letter-spacing: 0;
+}
+
+.fila {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 14px;
+
+    margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #292929,
+            #202020
+        );
+
+    border: 1px solid #51401f;
+
+    border-radius: 8px;
+
+    color: #eee;
+
+    transition: 0.25s;
+}
+
+.fila:hover {
+    border-color: #a9853e;
+
+    box-shadow:
+        0 0 10px rgba(180, 138, 57, 0.15);
+}
+
+.fila strong {
+    display: block;
+
+    color: #e3c77f;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.fila small {
+    color: #999;
+
+    font-size: 11px;
+
+    font-family: Arial, sans-serif;
+}
+
+.fila .btn {
+    width: auto;
+
+    margin: 0 0 0 5px;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.fila .btn.azul {
+    background:
+        linear-gradient(
+            #e3c77f,
+            #9f7635
+        );
+
+    color: #111;
+}
+
+.fila .btn.azul:hover {
+    background:
+        linear-gradient(
+            #f0d994,
+            #b88b40
+        );
+}
+
+.fila .btn.verde-btn {
+    background:
+        linear-gradient(
+            #7ec5ff,
+            #008cff
+        );
+
+    color: #fff;
+}
+
+.fila .btn.verde-btn:hover {
+    background:
+        linear-gradient(
+            #008cff,
+            #7ec5ff
+        );
+}
+
+#fila-pacientes + button {
+    width: auto;
+
+    margin-top: 8px;
+
+    padding: 7px 12px;
+
+    background: #3b3b3b;
+
+    color: #ddd;
+
+    border: 1px solid #666;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+}
+
+#fila-pacientes + button:hover {
+    background: #4b4b4b;
+
+    box-shadow: none;
+}
+
+#fila-pacientes > p {
+    color: #888 !important;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 0;
+
+    padding: 10px;
+}
+
+.footer {
+    margin-top: 20px;
+
+    color: #888;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+        align-items: flex-start;
+
+        overflow-y: auto;
+    }
+
+    .container {
+        width: 100%;
+
+        padding: 25px 20px;
+
+        margin: 20px 0;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .fila {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .fila > div:last-child {
+        display: flex;
+
+        gap: 8px;
+    }
+
+    .fila .btn {
+        flex: 1;
+
+        margin: 0;
+    }
+
+    .pacientes-fila h3 {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .btn-abrir-tv {
+        width: 100%;
+    }
+}
+</style>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portal.css">
+</head>
+
+<body class="triagem-page">
+<div class="container">
+
+  <!-- Cabeçalho com botão da TV -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <div class="triagem-page-brand">
+      <img class="site-logo page-logo" src="css/brand-mark.svg" alt="YAHWEH">
+      <h2 style="margin:0;">YAHWEH — Triagem Hospitalar</h2>
+    </div>
+    <button class="btn-abrir-tv action-secondary" onclick="window.open('tv.html','_blank')">📺 Abrir Tela da TV</button>
+  </div>
+
+  <!-- Fila de pacientes do Atendimento criada para mostrar quem pode ser chamado na TV -->
+  <div class="pacientes-fila">
+    <h3>
+      Pacientes Cadastrados no Atendimento
+      <span>Clique em "Chamar na TV" para chamar ao guichê</span>
+    </h3>
+    <div id="fila-pacientes">
+      <p style="color:#888; text-align:center;">Carregando...</p>
+    </div>
+    <button class="action-secondary refresh-patients" onclick="carregarPacientes()">🔄 Atualizar lista</button>
+  </div>
+
+  <hr>
+
+  <h3>Formulário de Triagem</h3>
+  <input id="nome" placeholder="Nome do paciente">
+
+  <select id="sintoma">
+    <option value="">Selecione o sintoma</option>
+    <option value="dor_leve">Dor leve</option>
+    <option value="resfriado">Resfriado</option>
+    <option value="coriza">Coriza</option>
+    <option value="tosse">Tosse</option>
+    <option value="febre">Febre</option>
+    <option value="vomito">Vômito</option>
+    <option value="diarreia">Diarreia</option>
+    <option value="falta_ar_moderada">Falta de ar moderada</option>
+    <option value="falta_ar_grave">Falta de ar grave</option>
+    <option value="infarto">Suspeita de infarto</option>
+    <option value="avc">Suspeita de AVC</option>
+    <option value="convulsao">Convulsão</option>
+    <option value="hemorragia">Hemorragia</option>
+  </select>
+
+  <input id="temp" type="number" placeholder="Temperatura">
+  <input id="alergia" placeholder="Alergias">
+  <textarea id="observacao" placeholder="Observações"></textarea>
+
+  <div id="resultado"></div>
+
+  <button onclick="salvar()">Salvar Triagem</button>
+
+</div>
+
+<script>
+
+function carregarPacientes() {
+  fetch("/pacientes")
+    .then(r => r.json())
+    .then(pacientes => {
+      const div = document.getElementById("fila-pacientes");
+
+      // Mostra apenas os com status "triagem"
+      const fila = pacientes.filter(p => p.status === "triagem");
+
+      if (fila.length === 0) {
+        div.innerHTML = "<p style='color:#888; text-align:center;'>Nenhum paciente aguardando.</p>";
+        return;
+      }
+
+      div.innerHTML = "";
+      fila.forEach(p => {
+        const item = document.createElement("div");
+        item.className = "fila";
+        item.innerHTML = `
+          <div class="fila-paciente-info">
+            <strong>${p.nome}</strong><br>
+            <div class="fila-paciente-meta">
+              <span><b>CPF:</b> ${p.cpf || "—"}</span>
+              <span class="fila-paciente-tipo">${p.tipo || "—"}</span>
+            </div>
+          </div>
+          <div class="fila-paciente-acoes">
+            <span class="fila-status">Aguardando triagem</span>
+            <button class="btn-tv" onclick="chamarNaTV('${p.nome}')">📺 Chamar na TV</button>
+          </div>
+        `;
+        div.appendChild(item);
+      });
+    })
+    .catch(() => {
+      document.getElementById("fila-pacientes").innerHTML =
+        "<p style='color:red;'>Erro ao carregar pacientes.</p>";
+    });
+}
+
+// Função criada para enviar o nome do paciente para a TV quando ele for chamado no guichê.
+function chamarNaTV(nome) {
+  fetch("/tv/chamar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      localTipo: "GUICHÊ",
+      localNumero: "01",
+      paciente: nome
+    })
+  })
+  .then(r => r.json())
+  .then(() => {
+    alert("✅ " + nome + " foi chamado na TV para o Guichê 01!");
+  });
+}
+
+function classificarRisco(sintoma, temperatura) {
+  const vermelhos = ["infarto","avc","convulsao","hemorragia","falta_ar_grave"];
+  const amarelos = ["febre","vomito","diarreia","falta_ar_moderada"];
+  if (temperatura >= 39) return "vermelho";
+  if (vermelhos.includes(sintoma)) return "vermelho";
+  if (amarelos.includes(sintoma)) return "amarelo";
+  return "verde";
+}
+
+function salvar() {
+  const nome = document.getElementById("nome").value;
+  const sintoma = document.getElementById("sintoma").value;
+  const temperatura = Number(document.getElementById("temp").value);
+  const alergia = document.getElementById("alergia").value;
+  const observacao = document.getElementById("observacao").value;
+  const risco = classificarRisco(sintoma, temperatura);
+
+  fetch("/triagem", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, sintoma, temperatura, alergia, observacao, risco })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const resultado = document.getElementById("resultado");
+    resultado.className = risco;
+    resultado.innerHTML = "Classificação: " + risco.toUpperCase();
+    alert("Triagem salva com sucesso!");
+  });
+}
+
+// Carrega a fila ao abrir a página
+carregarPacientes();
+
+// Atualiza a lista automaticamente a cada 10 segundos
+setInterval(carregarPacientes, 10000);
+
+</script>
+
+</body>
+</html>
